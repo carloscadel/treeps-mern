@@ -1,0 +1,98 @@
+// --------------------
+// Definition of variables
+$primary: #00B2B2;
+$bg-secondary: rgba(0, 0, 0, 0.05);
+$font-color-primary: rgba(112, 112, 112, 0.9);
+
+
+// ----------------------------------------
+// To install Boostrap:
+// 1) Run in the client folder: $ npm i bootstrap
+// 2) Import bootstrap with the following line
+// @import 'bootstrap/scss/bootstrap';
+// ----------------------------------------
+
+
+// --------------------
+// Style reusable for all components
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+  color: $font-color-primary;
+}
+
+h3 {
+  font-size: 22px;
+}
+h4 {
+  font-size: 14px;
+}
+
+.separator-div {
+  height: 1px;
+  width: 90%;
+  background-color: $bg-secondary;
+  margin: 20px;
+}
+
+
+// --------------------
+// Style for App component
+.App {
+  display: flex;
+  justify-content: center;
+  background-image: linear-gradient(#ffff, #e6e6e6);
+  
+}
+
+// --------------------
+// Style for Home component
+.Home {
+  max-width: 1000px;
+  height: 100vh;
+  .header-div {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    height: 80px;
+    margin: 10px 0px;
+    .header-prof-pic-div {
+      display: flex;
+      margin: 10px;
+      align-items: center;
+      .header-prof-pic {
+        height: 75px;
+        width: 75px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+    }
+    .header-prof-text-div {
+      display: grid;
+      margin: 10px;
+      .header-prof-text-name-div {
+        height: 30px;
+        h3 {
+          margin: 0 10px;
+        }
+      }
+      .header-prof-text-status-div {
+        display: flex;
+        align-items: center;
+        background-color: $bg-secondary;
+        border-radius: 5px;
+        height: 50px;
+        h4 {
+          line-height: 20px;
+          margin: 0px 10px;
+          border-radius: 5px;
+        }
+      }
+    }
+
+  }
+}
+
+// --------------------
+// Style for Secret component
