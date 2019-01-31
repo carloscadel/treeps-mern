@@ -29,7 +29,9 @@ class Home extends Component {
           <div className="trips-title-div">
             <h4>Trips</h4>
           </div>
-          <div>
+          <div className="trip-cards-slider">
+            <TripCard />
+            <TripCard />
             <TripCard />
           </div>
 

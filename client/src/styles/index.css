@@ -22,6 +22,15 @@ p {
   background-color: rgba(0, 0, 0, 0.05);
   margin: 20px; }
 
+.notification-marker-1 {
+  width: 8px;
+  height: 8px;
+  background-color: #FF7C7C;
+  border-radius: 50%;
+  position: relative;
+  top: 10px;
+  right: 4px; }
+
 .App {
   display: flex;
   justify-content: center;
@@ -68,28 +77,35 @@ p {
     width: 100%; }
     .Home .trips-section .trips-title-div h4 {
       margin: 0; }
-  .Home .trips-section .trip-card {
-    display: grid;
-    grid-template-rows: [one] 1fr [two] 1fr [three] 1fr [four];
-    width: 175px;
-    height: 125px;
-    margin: 10px;
-    border-radius: 3px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
-    .Home .trips-section .trip-card .trip-card-top-row {
-      width: 100%;
-      text-align: center;
-      font-weight: bold;
-      grid-row: [one]/[two]; }
-    .Home .trips-section .trip-card .trip-card-mid-row {
-      width: 100%;
-      text-align: center;
-      grid-row: [two]/[three]; }
-    .Home .trips-section .trip-card .trip-card-bot-row {
-      width: 100%;
-      grid-row: [three]/[four];
-      display: flex; }
-      .Home .trips-section .trip-card .trip-card-bot-row img {
-        align-self: center;
-        margin: 0 0 0 10px;
-        height: 14px; }
+  .Home .trips-section .trip-cards-slider {
+    display: flex;
+    width: 100vw;
+    overflow-x: auto; }
+  .Home .trips-section .trip-card-wrapper {
+    display: flex; }
+    .Home .trips-section .trip-card-wrapper .trip-card {
+      display: grid;
+      grid-template-rows: [one] 1fr [two] 1fr [three] 1fr [four];
+      width: 175px;
+      height: 125px;
+      margin: 15px 5px 20px;
+      border-radius: 3px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); }
+      .Home .trips-section .trip-card-wrapper .trip-card .trip-card-top-row {
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        grid-row: [one]/[two]; }
+      .Home .trips-section .trip-card-wrapper .trip-card .trip-card-mid-row {
+        width: 100%;
+        text-align: center;
+        grid-row: [two]/[three]; }
+      .Home .trips-section .trip-card-wrapper .trip-card .trip-card-bot-row {
+        width: 100%;
+        grid-row: [three]/[four];
+        display: flex; }
+        .Home .trips-section .trip-card-wrapper .trip-card .trip-card-bot-row img {
+          z-index: 1000;
+          align-self: center;
+          margin: 0 0 0 10px;
+          height: 14px; }

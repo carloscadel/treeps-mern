@@ -2,6 +2,7 @@
 // Definition of variables
 $primary: #00B2B2;
 $bg-secondary: rgba(0, 0, 0, 0.05);
+$alert-1: #FF7C7C;
 $font-color-primary: rgba(112, 112, 112, 0.9);
 
 
@@ -43,6 +44,16 @@ p {
   width: 90%;
   background-color: $bg-secondary;
   margin: 20px;
+}
+
+.notification-marker-1 {
+  width: 8px;
+  height: 8px;
+  background-color: $alert-1;
+  border-radius: 50%;
+  position: relative;
+  top: 10px;
+  right: 4px;
 }
 
 
@@ -110,33 +121,43 @@ p {
         margin: 0;
       }
     }
-    .trip-card {
-      display: grid;
-      grid-template-rows: [one] 1fr [two] 1fr [three] 1fr [four];
-      width: 175px;
-      height: 125px;
-      margin: 10px;
-      border-radius: 3px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
-      .trip-card-top-row {
-        width: 100%;
-        text-align: center;
-        font-weight: bold;
-        grid-row: [one] / [two];
-      }
-      .trip-card-mid-row {
-        width: 100%;
-        text-align: center;
-        grid-row: [two] / [three];
-      }
-      .trip-card-bot-row {
-        width: 100%;
-        grid-row: [three] / [four];
-        display: flex;
-        img {
-          align-self: center;
-          margin: 0 0 0 10px;
-          height: 14px;
+    .trip-cards-slider {
+      display: flex;
+      width: 100vw;
+      overflow-x: auto;
+    }
+    .trip-card-wrapper {
+      display: flex;
+
+      .trip-card {
+        display: grid;
+        grid-template-rows: [one] 1fr [two] 1fr [three] 1fr [four];
+        width: 175px;
+        height: 125px;
+        margin: 15px 5px 20px;
+        border-radius: 3px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); 
+        .trip-card-top-row {
+          width: 100%;
+          text-align: center;
+          font-weight: bold;
+          grid-row: [one] / [two];
+        }
+        .trip-card-mid-row {
+          width: 100%;
+          text-align: center;
+          grid-row: [two] / [three];
+        }
+        .trip-card-bot-row {
+          width: 100%;
+          grid-row: [three] / [four];
+          display: flex;
+          img {
+            z-index: 1000;
+            align-self: center;
+            margin: 0 0 0 10px;
+            height: 14px;
+          }
         }
       }
     }
