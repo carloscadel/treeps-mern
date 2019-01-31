@@ -25,7 +25,16 @@ body {
 h3 {
   font-size: 22px;
 }
+
 h4 {
+  font-size: 18px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+p {
   font-size: 14px;
 }
 
@@ -54,8 +63,8 @@ h4 {
   .header-div {
     display: grid;
     grid-template-columns: 1fr 4fr;
-    height: 80px;
-    margin: 10px 0px;
+    height: 100px;
+    margin: 10px 20px;
     .header-prof-pic-div {
       display: flex;
       margin: 10px;
@@ -83,14 +92,54 @@ h4 {
         background-color: $bg-secondary;
         border-radius: 5px;
         height: 50px;
-        h4 {
+        p {
           line-height: 20px;
           margin: 0px 10px;
           border-radius: 5px;
         }
       }
     }
-
+  }
+  .trips-section {
+    .trips-title-div {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      h4 {
+        // text-align: center;
+        margin: 0;
+      }
+    }
+    .trip-card {
+      display: grid;
+      grid-template-rows: [one] 1fr [two] 1fr [three] 1fr [four];
+      width: 175px;
+      height: 125px;
+      margin: 10px;
+      border-radius: 3px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+      .trip-card-top-row {
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        grid-row: [one] / [two];
+      }
+      .trip-card-mid-row {
+        width: 100%;
+        text-align: center;
+        grid-row: [two] / [three];
+      }
+      .trip-card-bot-row {
+        width: 100%;
+        grid-row: [three] / [four];
+        display: flex;
+        img {
+          align-self: center;
+          margin: 0 0 0 10px;
+          height: 14px;
+        }
+      }
+    }
   }
 }
 

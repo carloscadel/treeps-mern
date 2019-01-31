@@ -8,6 +8,12 @@ h3 {
   font-size: 22px; }
 
 h4 {
+  font-size: 18px; }
+
+h5 {
+  font-size: 14px; }
+
+p {
   font-size: 14px; }
 
 .separator-div {
@@ -27,8 +33,8 @@ h4 {
   .Home .header-div {
     display: grid;
     grid-template-columns: 1fr 4fr;
-    height: 80px;
-    margin: 10px 0px; }
+    height: 100px;
+    margin: 10px 20px; }
     .Home .header-div .header-prof-pic-div {
       display: flex;
       margin: 10px;
@@ -52,7 +58,38 @@ h4 {
         background-color: rgba(0, 0, 0, 0.05);
         border-radius: 5px;
         height: 50px; }
-        .Home .header-div .header-prof-text-div .header-prof-text-status-div h4 {
+        .Home .header-div .header-prof-text-div .header-prof-text-status-div p {
           line-height: 20px;
           margin: 0px 10px;
           border-radius: 5px; }
+  .Home .trips-section .trips-title-div {
+    display: flex;
+    justify-content: center;
+    width: 100%; }
+    .Home .trips-section .trips-title-div h4 {
+      margin: 0; }
+  .Home .trips-section .trip-card {
+    display: grid;
+    grid-template-rows: [one] 1fr [two] 1fr [three] 1fr [four];
+    width: 175px;
+    height: 125px;
+    margin: 10px;
+    border-radius: 3px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
+    .Home .trips-section .trip-card .trip-card-top-row {
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      grid-row: [one]/[two]; }
+    .Home .trips-section .trip-card .trip-card-mid-row {
+      width: 100%;
+      text-align: center;
+      grid-row: [two]/[three]; }
+    .Home .trips-section .trip-card .trip-card-bot-row {
+      width: 100%;
+      grid-row: [three]/[four];
+      display: flex; }
+      .Home .trips-section .trip-card .trip-card-bot-row img {
+        align-self: center;
+        margin: 0 0 0 10px;
+        height: 14px; }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TripCard from '../TripCard';
 
 class Home extends Component {
   constructor(props) {
@@ -18,13 +19,19 @@ class Home extends Component {
               <h3>Carlos, 35</h3>
             </div>
             <div className="header-prof-text-status-div">
-              <h4>Planning my trip to Myanmar and Thailand for February!!</h4>
+              <p>Planning my trip to Myanmar and Thailand for February!!</p>
             </div>
           </div>
         </div>
         <div className="separator-div">
         </div>
-        <section>
+        <section className="trips-section"> 
+          <div className="trips-title-div">
+            <h4>Trips</h4>
+          </div>
+          <div>
+            <TripCard />
+          </div>
 
         </section>
       </div>
