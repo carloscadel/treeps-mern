@@ -31,6 +31,23 @@ p {
   top: 10px;
   right: 4px; }
 
+.btn-add {
+  display: flex;
+  float: right;
+  position: relative;
+  right: 20px;
+  top: 20px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #00B2B2;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); }
+  .btn-add h3 {
+    color: white; }
+
 .App {
   display: flex;
   justify-content: center;
