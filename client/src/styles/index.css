@@ -2,7 +2,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Raleway', sans-serif;
-  color: rgba(112, 112, 112, 0.9); }
+  color: rgba(112, 112, 112, 0.9);
+  background-image: linear-gradient(#ffff, #e6e6e6); }
 
 h3 {
   font-size: 22px; }
@@ -34,9 +35,6 @@ p {
 .btn-add {
   display: flex;
   float: right;
-  position: relative;
-  right: 20px;
-  top: 20px;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -93,7 +91,7 @@ p {
     justify-content: center;
     width: 100%; }
     .Home .trips-section .trips-title-div h4 {
-      margin: 0; }
+      margin: 0 10px; }
   .Home .trips-section .trip-cards-slider {
     display: flex;
     width: 100vw;
@@ -126,3 +124,26 @@ p {
           align-self: center;
           margin: 0 0 0 10px;
           height: 14px; }
+  .Home .trips-section .trip-card-add-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 175px;
+    height: 125px;
+    margin: 15px 5px 20px;
+    border-radius: 3px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); }
+    .Home .trips-section .trip-card-add-div .trip-card-add-inner-div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 175px;
+      height: 125px; }
+      .Home .trips-section .trip-card-add-div .trip-card-add-inner-div h1 {
+        text-align: center; }
+  .Home .contacts-section .contacts-title-div {
+    display: flex;
+    justify-content: center;
+    width: 100%; }
+    .Home .contacts-section .contacts-title-div h4 {
+      margin: 0; }

@@ -21,6 +21,8 @@ body {
   padding: 0;
   font-family: 'Raleway', sans-serif;
   color: $font-color-primary;
+  background-image: linear-gradient(#ffff, #e6e6e6);
+
 }
 
 h3 {
@@ -59,9 +61,9 @@ p {
 .btn-add {
   display: flex;
   float: right;
-  position: relative;
-  right: 20px;
-  top: 20px;
+  // position: relative;
+  // right: 20px;
+  // top: 22px;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -135,8 +137,7 @@ p {
       justify-content: center;
       width: 100%;
       h4 {
-        // text-align: center;
-        margin: 0;
+        margin: 0 10px;
       }
     }
     .trip-cards-slider {
@@ -146,7 +147,6 @@ p {
     }
     .trip-card-wrapper {
       display: flex;
-
       .trip-card {
         display: grid;
         grid-template-rows: [one] 1fr [two] 1fr [three] 1fr [four];
@@ -177,6 +177,37 @@ p {
             height: 14px;
           }
         }
+      }
+    }
+    .trip-card-add-div {
+      display: flex;
+      // grid-template-rows: [one] 1fr [two] 1fr [three] 1fr [four];
+      justify-content: center;
+      align-items: center;
+      width: 175px;
+      height: 125px;
+      margin: 15px 5px 20px;
+      border-radius: 3px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      .trip-card-add-inner-div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 175px;
+        height: 125px;
+        h1 {
+          text-align: center;
+        }
+      }
+    }
+  }
+  .contacts-section {
+    .contacts-title-div {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      h4 {
+        margin: 0;
       }
     }
   }

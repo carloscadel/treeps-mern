@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TripCard from '../TripCard';
 import BtnAdd from '../BtnAdd';
+import ContactBtn from '../ContactBtn';
+import TripCardAdd from '../TripCardAdd';
 
 class Home extends Component {
   constructor(props) {
@@ -27,14 +29,26 @@ class Home extends Component {
         <div className="separator-div">
         </div>
         <section className="trips-section"> 
-            <BtnAdd />
           <div className="trips-title-div">
             <h4>Treeps</h4>
+            {/* <BtnAdd /> */}
           </div>
           <div className="trip-cards-slider">
             <TripCard />
             <TripCard />
             <TripCard />
+
+            <TripCardAdd />
+          </div>
+        </section>
+        <div className="separator-div">
+        </div>
+        <section className="contacts-section"> 
+          <div className="contacts-title-div">
+            <h4>Contacts</h4>
+          </div>
+          <div className="contacts-slider">
+            <ContactBtn />
           </div>
         </section>
       </div>
