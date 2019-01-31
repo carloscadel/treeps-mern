@@ -24,6 +24,9 @@ class Home extends Component {
         </div>
         <div className="separator-div">
         </div>
+        <section>
+
+        </section>
       </div>
     );
   }
