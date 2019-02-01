@@ -67,6 +67,20 @@ export default {
       .catch(errHandler)
   },
 
+  getTreeps() {
+    return service
+      .get('/treeps')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  postTreeps(data) {
+    return service
+      .post('/treeps', data)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   getSecret() {
     return service
       .get('/secret')

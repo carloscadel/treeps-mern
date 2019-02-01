@@ -3,12 +3,20 @@ import TripCard from '../TripCard';
 import BtnAdd from '../BtnAdd';
 import ContactBtn from '../ContactBtn';
 import TripCardAdd from '../TripCardAdd';
+import api from '../../api';
 
 class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
     }
+  }
+  handleClick(e) {
+    e.preventDefault()
+    api.postTreeps()
+    .then(treeps => {
+      console.log('ha!!')
+    })
   }
   render() {                
     return (
@@ -31,7 +39,8 @@ class Home extends Component {
         <section className="trips-section"> 
           <div className="trips-title-div">
             <h4>Treeps</h4>
-            {/* <BtnAdd /> */}
+            {/* <button onClick={(e) => this.handleClick(e)}><BtnAdd /></button> */}
+            <a href="/treeps/add"><BtnAdd /></a>
           </div>
           <div className="trip-cards-slider">
             <TripCard />
