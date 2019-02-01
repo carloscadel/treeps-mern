@@ -20,8 +20,8 @@ router.get('/', (req, res, next) => {
 
 // Route to add a treep
 router.post('/', (req, res, next) => {
-  let { name, area, description } = req.body
-  Treep.create({ name, capitals, area, description })
+  let { treepName, treepCountry } = req.body
+  Treep.create({ treepName, treepCountry })
     .then(treep => {
       res.json({
         success: true,

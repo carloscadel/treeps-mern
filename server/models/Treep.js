@@ -4,7 +4,8 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 const treepSchema = new Schema({
   _owner: ObjectId,
-  name: String
+  treepName: String,
+  treepCountry: String
 }, {
     timestamps: {
       createdAt: 'created_at',
