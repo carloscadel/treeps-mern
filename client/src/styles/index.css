@@ -145,11 +145,15 @@ input:checked + .slider:before {
         align-items: center;
         background-color: rgba(0, 0, 0, 0.05);
         border-radius: 5px;
-        height: 50px; }
+        height: 50px;
+        transition: all 0.2s; }
         .Home .header-div .header-prof-text-div .header-prof-text-status-div p {
           line-height: 20px;
           margin: 0px 10px;
           border-radius: 5px; }
+      .Home .header-div .header-prof-text-div .header-prof-text-status-div:hover {
+        background-color: rgba(0, 0, 0, 0.03);
+        transition: all 0.2s; }
   .Home .trips-section .trips-title-div {
     display: flex;
     justify-content: center;

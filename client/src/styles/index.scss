@@ -2,6 +2,7 @@
 // Definition of variables
 $primary: #00B2B2;
 $bg-secondary: rgba(0, 0, 0, 0.05);
+$bg-secondary-hover: rgba(0, 0, 0, 0.03);
 $alert-1: #FF7C7C;
 $font-color-primary: rgba(112, 112, 112, 0.9);
 
@@ -198,11 +199,16 @@ input:checked + .slider:before {
         background-color: $bg-secondary;
         border-radius: 5px;
         height: 50px;
+        transition: all 0.2s;
         p {
           line-height: 20px;
           margin: 0px 10px;
           border-radius: 5px;
         }
+      }
+      .header-prof-text-status-div:hover {
+        background-color: $bg-secondary-hover;
+        transition: all 0.2s;
       }
     }
   }

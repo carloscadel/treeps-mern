@@ -7,20 +7,32 @@ export default class AddTreep extends Component {
     super(props)
     this.state = {
       treepName: "",
-      treepCountry: ""
+      treepLocation: "",
+      treepStartDate: "",
+      treepEndDate: "",
+      hideMe: false
     }
   }
   handleInputChange(stateFieldName, e) {
-    this.setState({
-      [stateFieldName]: e.target.value
-    })
+    if (stateFieldName === "hideMe") {
+      this.setState({
+        hideMe: !this.state.hideMe
+      })
+    } else {
+      this.setState({
+        [stateFieldName]: e.target.value
+      })
+    }
     // console.log(this.state[stateFieldName])
   }
   handleClick(e) {
     e.preventDefault()
     let data = {
       treepName: this.state.treepName,
-      treepCountry: this.state.treepCountry
+      treepLocation: this.state.treepLocation,
+      treepStartDate: this.state.treepStartDate,
+      treepEndDate: this.state.treepEndDate,
+      hideMe: this.state.hideMe
     }
     api.postTreeps(data)
     .then(result => {
@@ -34,16 +46,17 @@ export default class AddTreep extends Component {
     return (
       <div>
         <form>
-          <label>Name of your treep</label>
+          <label>Name</label>
           <input name="treepName" onChange={(e) => this.handleInputChange("treepName", e)} /><br/>
-          <label>Country</label>
-          <input name="treepCountry" onChange={(e) => this.handleInputChange("treepCountry", e)} /><br/>
-          <label>Dates</label>
-          <input type="date"></input><br/>
+          <label>Location</label>
+          <input name="treepLocation" onChange={(e) => this.handleInputChange("treepLocation", e)} /><br/>
+          <label>Starting date</label>
+          <input type="date" onChange={(e) => this.handleInputChange("treepStartDate", e)} /><br/>
+          <label>End date</label>
+          <input type="date" onChange={(e) => this.handleInputChange("treepEndDate", e)} /><br/>
           <label>Hide me</label>
-          <input type="checkbox" />
-          <button type="submit" onClick={(e) => this.handleClick(e)}>Submit</button>
-          
+          <input type="checkbox" checked={this.state.hideMe} onChange={(e) => this.handleInputChange("hideMe", e)} /><br/>
+          <button className="btn-add" type="submit" onClick={(e) => this.handleClick(e)}>Submit</button>
         </form>
       </div>
     )

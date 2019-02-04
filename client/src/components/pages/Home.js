@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import TripCard from '../TripCard';
+import TreepCard from '../TreepCard';
 import BtnAdd from '../BtnAdd';
 import ContactBtn from '../ContactBtn';
-import TripCardAdd from '../TripCardAdd';
+import TreepCardAdd from '../TreepCardAdd';
 import api from '../../api';
 
 class Home extends Component {
@@ -43,11 +43,11 @@ class Home extends Component {
             <a href="/treeps/add"><BtnAdd /></a>
           </div>
           <div className="trip-cards-slider">
-            <TripCard />
-            <TripCard />
-            <TripCard />
+            <TreepCard />
+            <TreepCard />
+            <TreepCard />
 
-            <TripCardAdd />
+            <TreepCardAdd />
           </div>
         </section>
         <div className="separator-div">

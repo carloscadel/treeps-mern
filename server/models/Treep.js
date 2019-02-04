@@ -3,9 +3,12 @@ const Schema = mongoose.Schema;
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 const treepSchema = new Schema({
-  _owner: ObjectId,
+  _owner: { type: Schema.Types.ObjectId, ref: 'User' },
   treepName: String,
-  treepCountry: String
+  treepLocation: String,
+  treepStartDate: Date,
+  treepEndDate: Date,
+  hideMe: Boolean
 }, {
     timestamps: {
       createdAt: 'created_at',

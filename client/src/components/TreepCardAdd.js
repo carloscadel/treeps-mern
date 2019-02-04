@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class TripCardAdd extends Component {
+export default class TreepCardAdd extends Component {
   render() {
     return (
       <div className="trip-card-add-div"> 

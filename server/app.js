@@ -48,8 +48,9 @@ app.use(session({
 require('./passport')(app)
 
 
-app.use('/api', require('./routes/index'))
+app.use('/api', require('./routes/users'))
 app.use('/api', require('./routes/auth'))
+app.use('/api/users', require('./routes/users'))
 app.use('/api/countries', require('./routes/countries'))
 app.use('/api/treeps', require('./routes/treeps'))
 
