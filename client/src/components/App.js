@@ -27,7 +27,6 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <h1 className="App-title">treep</h1>
           <NavLink to="/" exact>Homepage</NavLink>
           {api.isLoggedIn() && <NavLink to="/home">Home</NavLink>}
@@ -35,6 +34,7 @@ class App extends Component {
           {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
           {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link>}
         </header>
+        <div className="App-body">
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/signup" component={Signup} />
@@ -44,6 +44,7 @@ class App extends Component {
           <Route path="/treeps/add" component={AddTreep} />
           <Route render={() => <h2>404</h2>} />
         </Switch>
+        </div>
       </div>
     );
   }

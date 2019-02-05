@@ -9,6 +9,7 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      treeps: []
     }
   }
   handleClick(e) {
@@ -17,6 +18,15 @@ class Home extends Component {
     .then(treeps => {
       console.log('ha!!')
     })
+  }
+  componentDidMount() {
+    api.getTreeps()
+    .then(treeps => {
+      this.setState({
+        treeps: treeps
+      })
+    })
+    // console.log(this.state.treeps)
   }
   render() {                
     return (
@@ -43,11 +53,10 @@ class Home extends Component {
             <a href="/treeps/add"><BtnAdd /></a>
           </div>
           <div className="trip-cards-slider">
-            <TreepCard />
-            <TreepCard />
-            <TreepCard />
+            {this.state.treeps.map(treep => 
+              <TreepCard key={treep._id} treepLocation={treep.treepLocation} treepStartDate={treep.treepStartDate} treepEndDate={treep.treepEndDate} /> )}
 
-            <TreepCardAdd />
+            {/* <TreepCardAdd /> */}
           </div>
         </section>
         <div className="separator-div">

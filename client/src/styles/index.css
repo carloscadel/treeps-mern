@@ -109,11 +109,17 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%; }
 
-.App {
+.App-body {
   display: flex;
   justify-content: center;
   min-height: 100vh;
   background-image: linear-gradient(#ffff, #e6e6e6); }
+
+.App-header {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center; }
 
 .Home {
   max-width: 1000px;
@@ -169,7 +175,7 @@ input:checked + .slider:before {
     .Home .trips-section .trip-card-wrapper .trip-card {
       display: grid;
       grid-template-rows: [one] 1fr [two] 1fr [three] 1fr [four];
-      width: 175px;
+      width: 200px;
       height: 125px;
       margin: 15px 5px 20px;
       border-radius: 3px;
