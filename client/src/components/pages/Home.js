@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TreepCard from '../TreepCard';
 import BtnAdd from '../BtnAdd';
 import ContactBtn from '../ContactBtn';
-import TreepCardAdd from '../TreepCardAdd';
+// import TreepCardAdd from '../TreepCardAdd';
 import api from '../../api';
 
 class Home extends Component {

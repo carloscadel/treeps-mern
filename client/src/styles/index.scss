@@ -303,4 +303,10 @@ input:checked + .slider:before {
 }
 
 // --------------------
-// Style for Secret component
+// Style for Calendar component
+.react-calendar {
+  border: none !important;
+  abbr[title] {
+    text-decoration: none !important;
+  }
+}

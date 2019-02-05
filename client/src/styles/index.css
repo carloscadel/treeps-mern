@@ -222,3 +222,8 @@ input:checked + .slider:before {
     width: 100%; }
     .Home .contacts-section .contacts-title-div h4 {
       margin: 0; }
+
+.react-calendar {
+  border: none !important; }
+  .react-calendar abbr[title] {
+    text-decoration: none !important; }
