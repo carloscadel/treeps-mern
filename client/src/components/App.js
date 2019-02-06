@@ -28,7 +28,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">treep</h1>
+          <h1 className="App-title">treeps</h1>
           <NavLink to="/" exact>Homepage</NavLink>
           {api.isLoggedIn() && <NavLink to="/home">Home</NavLink>}
           {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}

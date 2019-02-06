@@ -54,10 +54,10 @@ class Home extends Component {
             {this.state.treeps.map(treep => 
               <a key={treep._id} href={"/treeps/" + treep._id} >
                 <TreepCard  
-                  treepLocation={treep.treepLocation} 
-                  treepStartDate={treep.treepStartDate} 
-                  treepEndDate={treep.treepEndDate} 
-                  treepFormattedDates={treep.treepFormattedDates}
+                  location={treep.location} 
+                  startDate={treep.startDate} 
+                  endDate={treep.endDate} 
+                  formattedDates={treep.formattedDates}
                 />
               </a> 
             )}

@@ -10,10 +10,10 @@ const userSchema = new Schema({
   confirmationCode: String,
   status: {type: String, enum: ["active", "inactive"], default: "inactive"},
   treeps: {  
-    treepName: String,
-    treepLocation: String,
-    treepStartDate: Date,
-    treepEndDate: Date,
+    name: String,
+    location: String,
+    startDate: Date,
+    endDate: Date,
     hideMe: Boolean 
   }
 }, {

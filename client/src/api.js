@@ -74,6 +74,12 @@ export default {
       .catch(errHandler)
   },
 
+  deleteTreep(treepId) {
+    return service
+      .post('/treeps/' + treepId + '/delete')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
   getSecret() {
     return service
       .get('/secret')

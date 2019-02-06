@@ -5,8 +5,8 @@ export default class TreepCard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      treepLocation: this.props.treepLocation,
-      treepFormattedDates: this.props.treepFormattedDates
+      location: this.props.location,
+      formattedDates: this.props.formattedDates
     }
   }
 
@@ -15,10 +15,10 @@ export default class TreepCard extends Component {
       <div className="trip-card-wrapper">
         <div className="trip-card">
           <div className="trip-card-top-row">
-            <p>{this.state.treepLocation}</p>
+            <p>{this.state.location}</p>
           </div>
           <div className="trip-card-mid-row">
-            <p>{this.state.treepFormattedDates}</p>
+            <p>{this.state.formattedDates}</p>
           </div>
           <div className="trip-card-bot-row">
             <img src="multiple-users-707070.png" alt="Users icon" />

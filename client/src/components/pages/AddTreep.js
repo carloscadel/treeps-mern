@@ -6,14 +6,13 @@ export default class AddTreep extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      treepName: "",
-      treepLocation: "",
-      treepStartDate: "",
-      treepEndDate: "",
-      treepFormattedDates: "",
+      name: "",
+      location: "",
+      startDate: "",
+      endDate: "",
+      formattedDates: "",
       hideMe: false
     }
-    console.log(this.state.treepStartDate)
   }
   handleInputChange(stateFieldName, e) {
     if (stateFieldName === "hideMe") {
@@ -29,9 +28,9 @@ export default class AddTreep extends Component {
   handleClick(e) {
     e.preventDefault()
     let data = {
-      treepLocation: this.state.treepLocation,
-      treepStartDate: this.state.treepStartDate,
-      treepEndDate: this.state.treepEndDate,
+      location: this.state.location,
+      startDate: this.state.startDate,
+      endDate: this.state.endDate,
       hideMe: this.state.hideMe
     }
     api.postTreeps(data)
@@ -44,8 +43,8 @@ export default class AddTreep extends Component {
   }
   onDatesRangeChange = date => {
     this.setState({
-      treepStartDate: date[0],
-      treepEndDate: date[1]
+      startDate: date[0],
+      endDate: date[1]
     })
   }
   render() {
@@ -53,7 +52,7 @@ export default class AddTreep extends Component {
       <div>
         <form>
           <label>Location</label>
-          <input name="treepLocation" onChange={(e) => this.handleInputChange("treepLocation", e)} /><br/>
+          <input name="location" onChange={(e) => this.handleInputChange("location", e)} /><br/>
           <Calendar onChange={this.onDatesRangeChange} selectRange={true} />
           <label>Hide me</label>
           <input type="checkbox" checked={this.state.hideMe} onChange={(e) => this.handleInputChange("hideMe", e)} /><br/>

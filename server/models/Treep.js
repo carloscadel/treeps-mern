@@ -4,11 +4,11 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 const treepSchema = new Schema({
   _owner: { type: Schema.Types.ObjectId, ref: 'User' },
-  treepName: String,
-  treepLocation: String,
-  treepStartDate: Date,
-  treepEndDate: Date,
-  treepFormattedDates: String,
+  name: String,
+  location: String,
+  startDate: Date,
+  endDate: Date,
+  formattedDates: String,
   hideMe: Boolean
 }, {
     timestamps: {
