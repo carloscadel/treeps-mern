@@ -23,7 +23,11 @@ body {
   font-family: 'Raleway', sans-serif;
   color: $font-color-primary;
   background-image: linear-gradient(#ffff, #e6e6e6);
-
+}
+a:-webkit-any-link {
+  color: $font-color-primary;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 h3 {
@@ -203,9 +207,10 @@ input:checked + .slider:before {
       .header-prof-text-status-div {
         display: flex;
         align-items: center;
-        background-color: $bg-secondary;
         border-radius: 5px;
         height: 50px;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.01);
         transition: all 0.2s;
         p {
           line-height: 20px;
@@ -214,7 +219,7 @@ input:checked + .slider:before {
         }
       }
       .header-prof-text-status-div:hover {
-        background-color: $bg-secondary-hover;
+        background-color: rgba(0, 0, 0, 0.03);
         transition: all 0.2s;
       }
     }
@@ -243,6 +248,8 @@ input:checked + .slider:before {
         margin: 15px 5px 20px;
         border-radius: 3px;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); 
+        background-color: rgba(0, 0, 0, 0.01);
+        transition: all 0.2s;
         .trip-card-top-row {
           width: 100%;
           text-align: center;
@@ -265,6 +272,10 @@ input:checked + .slider:before {
             height: 14px;
           }
         }
+      }
+      .trip-card:hover {
+        background-color: rgba(0, 0, 0, 0.03);
+        transition: all 0.2s;
       }
     }
     .trip-card-add-div {

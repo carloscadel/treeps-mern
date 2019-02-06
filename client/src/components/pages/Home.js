@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import TreepCard from '../TreepCard';
 import BtnAdd from '../BtnAdd';
 import ContactBtn from '../ContactBtn';
-// import TreepCardAdd from '../TreepCardAdd';
 import api from '../../api';
 
 class Home extends Component {
@@ -16,7 +15,7 @@ class Home extends Component {
     e.preventDefault()
     api.postTreeps()
     .then(treeps => {
-      console.log('ha!!')
+      console.log('success')
     })
   }
   componentDidMount() {
@@ -26,7 +25,6 @@ class Home extends Component {
         treeps: treeps
       })
     })
-    // console.log(this.state.treeps)
   }
   render() {                
     return (
@@ -54,7 +52,15 @@ class Home extends Component {
           </div>
           <div className="trip-cards-slider">
             {this.state.treeps.map(treep => 
-              <TreepCard key={treep._id} treepLocation={treep.treepLocation} treepStartDate={treep.treepStartDate} treepEndDate={treep.treepEndDate} /> )}
+              <a key={treep._id} href={"/treeps/" + treep._id} >
+                <TreepCard  
+                  treepLocation={treep.treepLocation} 
+                  treepStartDate={treep.treepStartDate} 
+                  treepEndDate={treep.treepEndDate} 
+                  treepFormattedDates={treep.treepFormattedDates}
+                />
+              </a> 
+            )}
 
             {/* <TreepCardAdd /> */}
           </div>

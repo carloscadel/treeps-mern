@@ -10,8 +10,10 @@ export default class AddTreep extends Component {
       treepLocation: "",
       treepStartDate: "",
       treepEndDate: "",
+      treepFormattedDates: "",
       hideMe: false
     }
+    console.log(this.state.treepStartDate)
   }
   handleInputChange(stateFieldName, e) {
     if (stateFieldName === "hideMe") {
@@ -33,14 +35,14 @@ export default class AddTreep extends Component {
       hideMe: this.state.hideMe
     }
     api.postTreeps(data)
-    .then(result => {
-      console.log("Success!")
+    .then(res => {
+      console.log("New treep created")
     })
     .catch(err => {
       console.log("Error")
-    })    // console.log(this.state.treepName, this.state.treepCountry)
+    })   
   }
-  onModalChange = date => {
+  onDatesRangeChange = date => {
     this.setState({
       treepStartDate: date[0],
       treepEndDate: date[1]
@@ -52,7 +54,7 @@ export default class AddTreep extends Component {
         <form>
           <label>Location</label>
           <input name="treepLocation" onChange={(e) => this.handleInputChange("treepLocation", e)} /><br/>
-          <Calendar onChange={this.onModalChange} selectRange={true} />
+          <Calendar onChange={this.onDatesRangeChange} selectRange={true} />
           <label>Hide me</label>
           <input type="checkbox" checked={this.state.hideMe} onChange={(e) => this.handleInputChange("hideMe", e)} /><br/>
           <button className="btn-add" type="submit" onClick={(e) => this.handleClick(e)}>Submit</button>

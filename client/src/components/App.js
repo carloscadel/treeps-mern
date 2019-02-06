@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Home from './pages/Home';
 import AddTreep from './pages/AddTreep';
+import Treep from './pages/Treep'
 
 import api from '../api';
 
@@ -36,12 +37,13 @@ class App extends Component {
         </header>
         <div className="App-body">
         <Switch>
-          <Route path="/" exact component={Homepage} />
+          <Route exact path="/" component={Homepage} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           {/* <Route path="/secret" component={Secret} /> */}
           <Route path="/home" component={Home} />
-          <Route path="/treeps/add" component={AddTreep} />
+          <Route exact path="/treeps/add" component={AddTreep} />
+          <Route exact path="/treeps/:id" component={Treep} />
           <Route render={() => <h2>404</h2>} />
         </Switch>
         </div>

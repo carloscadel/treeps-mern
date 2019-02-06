@@ -53,23 +53,16 @@ export default {
       .get('/logout')
   },
 
-  getCountries() {
-    return service
-      .get('/countries')
-      .then(res => res.data)
-      .catch(errHandler)
-  },
-
-  postCountries(data) {
-    return service
-      .post('/countries', data)
-      .then(res => res.data)
-      .catch(errHandler)
-  },
-
   getTreeps() {
     return service
       .get('/treeps')
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  getOneTreep(treepId) {
+    return service
+      .get("/treeps/" + treepId)
       .then(res => res.data)
       .catch(errHandler)
   },

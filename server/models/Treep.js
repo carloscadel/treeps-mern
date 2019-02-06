@@ -8,6 +8,7 @@ const treepSchema = new Schema({
   treepLocation: String,
   treepStartDate: Date,
   treepEndDate: Date,
+  treepFormattedDates: String,
   hideMe: Boolean
 }, {
     timestamps: {

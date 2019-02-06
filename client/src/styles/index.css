@@ -5,6 +5,11 @@ body {
   color: rgba(112, 112, 112, 0.9);
   background-image: linear-gradient(#ffff, #e6e6e6); }
 
+a:-webkit-any-link {
+  color: rgba(112, 112, 112, 0.9);
+  cursor: pointer;
+  text-decoration: none; }
+
 h3 {
   font-size: 22px; }
 
@@ -149,9 +154,10 @@ input:checked + .slider:before {
       .Home .header-div .header-prof-text-div .header-prof-text-status-div {
         display: flex;
         align-items: center;
-        background-color: rgba(0, 0, 0, 0.05);
         border-radius: 5px;
         height: 50px;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.01);
         transition: all 0.2s; }
         .Home .header-div .header-prof-text-div .header-prof-text-status-div p {
           line-height: 20px;
@@ -179,7 +185,9 @@ input:checked + .slider:before {
       height: 125px;
       margin: 15px 5px 20px;
       border-radius: 3px;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); }
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      background-color: rgba(0, 0, 0, 0.01);
+      transition: all 0.2s; }
       .Home .trips-section .trip-card-wrapper .trip-card .trip-card-top-row {
         width: 100%;
         text-align: center;
@@ -198,6 +206,9 @@ input:checked + .slider:before {
           align-self: center;
           margin: 0 0 0 10px;
           height: 14px; }
+    .Home .trips-section .trip-card-wrapper .trip-card:hover {
+      background-color: rgba(0, 0, 0, 0.03);
+      transition: all 0.2s; }
   .Home .trips-section .trip-card-add-div {
     display: flex;
     justify-content: center;
