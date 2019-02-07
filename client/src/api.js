@@ -21,6 +21,14 @@ export default {
     return localStorage.getItem('user') != null
   },
 
+  getCurrentUser(){
+    console.log('Hey!')
+    return service
+      .get(`/users/current`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   signup(userInfo) {
     return service
       .post('/signup', userInfo)
@@ -80,9 +88,9 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
-  getSecret() {
+  getSecretHome() {
     return service
-      .get('/secret')
+      .get('/home')
       .then(res => res.data)
       .catch(errHandler)
   },

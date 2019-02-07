@@ -8,7 +8,8 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      treeps: []
+      treeps: [],
+      user: this.props.user
     }
   }
   handleClick(e) {
@@ -19,6 +20,13 @@ class Home extends Component {
     })
   }
   componentDidMount() {
+    api.getSecretHome()
+    .then(res => {
+      console.log('Secrets... secrets...')
+    })
+    .catch(err => {
+      console.log(err)
+    })
     api.getTreeps()
     .then(treeps => {
       this.setState({
@@ -26,7 +34,11 @@ class Home extends Component {
       })
     })
   }
-  render() {                
+
+  render() {  
+    if (!this.state.user) {
+      return <div>Please login or signup</div>    
+    }     
     return (
       <div className="Home">
         <div className="header-div">
