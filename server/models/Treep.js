@@ -8,8 +8,8 @@ const treepSchema = new Schema({
   location: String,
   startDate: Date,
   endDate: Date,
-  formattedDates: String,
-  hideMe: Boolean
+  formattedDates: String
+  // hideMe: Boolean
 }, {
     timestamps: {
       createdAt: 'created_at',

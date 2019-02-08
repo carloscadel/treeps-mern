@@ -6,6 +6,7 @@ export default class AddTreep extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      _ownerId: this.props.user._id,
       name: "",
       location: "",
       startDate: "",
@@ -33,7 +34,7 @@ export default class AddTreep extends Component {
       endDate: this.state.endDate,
       hideMe: this.state.hideMe
     }
-    api.postTreeps(data)
+    api.addTreep(data)
     .then(res => {
       console.log("New treep created")
     })
@@ -46,6 +47,12 @@ export default class AddTreep extends Component {
       startDate: date[0],
       endDate: date[1]
     })
+  }
+  componentDidMount() {
+    this.setState({
+      _ownerId: this.props.user._id
+    })
+    console.log("AddTreep", this.state._ownerId)
   }
   render() {
     return (

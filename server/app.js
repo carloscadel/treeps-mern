@@ -8,7 +8,7 @@ const mongoose = require('mongoose')
 const logger = require('morgan')
 const path = require('path')
 const nocache = require('nocache')
-const session = require("express-session")
+const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 
 require('./configs/database')

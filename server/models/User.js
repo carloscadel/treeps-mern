@@ -2,20 +2,23 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: {type: String, default:""},
-  email: {type: String, unique: true, match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/},
+  name: { type: String, required: true },
+  username: { type: String, required: true, unique: true },
+  email: { type: String, unique: true, match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/},
   password: String,
-  profImgPath: {type: String,  default:""},
-  public_id: {type: String, default:""},
+  profImgPath: { type: String,  default:"" },
+  userStatus: { type: String, default: "" },
+  dob: { type: Date, required: true },
   confirmationCode: String,
-  status: {type: String, enum: ["active", "inactive"], default: "inactive"},
-  treeps: {  
+  confirmed: { type: Boolean, default: false },
+  treeps: [{  
     name: String,
     location: String,
     startDate: Date,
     endDate: Date,
-    hideMe: Boolean 
-  }
+    formattedDates: String
+    // hideMe: Boolean 
+  }]
 }, {
     timestamps: {
       createdAt: 'created_at',

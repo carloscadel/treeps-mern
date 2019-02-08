@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import TreepCard from '../TreepCard';
 import BtnAdd from '../BtnAdd';
 import ContactBtn from '../ContactBtn';
@@ -9,8 +10,10 @@ class Home extends Component {
     super(props)
     this.state = {
       treeps: [],
-      user: this.props.user
+      username: "",
+      userStatus: ""
     }
+    // console.log(this.state.user)
   }
   handleClick(e) {
     e.preventDefault()
@@ -19,7 +22,15 @@ class Home extends Component {
       console.log('success')
     })
   }
+  
   componentDidMount() {
+    api.getCurrentUser()
+    .then(user => {
+      this.setState({
+        username: user.username,
+        userStatus: user.userStatus
+      })
+    })
     api.getTreeps()
     .then(treeps => {
       this.setState({
@@ -29,10 +40,10 @@ class Home extends Component {
   }
 
   render() {  
-    console.log('HEY', this.state.user)
-    if (!this.state.user) {
-      return <div>Please login or signup</div>    
-    }     
+    // if (!this.state.user) {
+    //   return <div>Please <a href="/login">login</a> or <a href="/signup">signup</a></div>    
+    // }     
+    console.log(this.props.user)
     return (
       <div className="Home">
         <div className="header-div">
@@ -41,10 +52,13 @@ class Home extends Component {
           </div>
           <div className="header-prof-text-div">
             <div className="header-prof-text-name-div">
-              <h3>Carlos, 35</h3>
+              <h3>{this.state.username}</h3>
             </div>
             <div className="header-prof-text-status-div">
-              <p>Planning my trip to Myanmar and Thailand for February!!</p>
+            <form>
+              <p><input type="text" value={this.state.userStatus} /></p>
+
+            </form>
             </div>
           </div>
         </div>
@@ -53,8 +67,7 @@ class Home extends Component {
         <section className="trips-section"> 
           <div className="trips-title-div">
             <h4>Treeps</h4>
-            {/* <button onClick={(e) => this.handleClick(e)}><BtnAdd /></button> */}
-            <a href="/treeps/add"><BtnAdd /></a>
+            <Link to="/treeps/add" ><BtnAdd /></Link>
           </div>
           <div className="trip-cards-slider">
             {this.state.treeps.map(treep => 
@@ -67,8 +80,6 @@ class Home extends Component {
                 />
               </a> 
             )}
-
-            {/* <TreepCardAdd /> */}
           </div>
         </section>
         <div className="separator-div">

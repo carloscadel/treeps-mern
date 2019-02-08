@@ -22,6 +22,7 @@ class App extends Component {
   getCurrentUser = () => {
     api.getCurrentUser()
       .then(user => {
+        console.log(user)
         this.setState({user})
       })
       .catch(err => console.log(err))
@@ -54,9 +55,8 @@ class App extends Component {
           <Route path="/" exact component={Homepage} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" render={props => <Login {...props} onLogin={this.getCurrentUser} />} />
-          {/* <Route path="/secret" component={Secret} /> */}
           <Route path="/home" render={props => <Home {...props} user={this.state.user} onUserChange={user => this.userSetState(user)} />}/>
-          <Route path="/treeps/add" exact component={AddTreep} />
+          <Route path="/treeps/add" exact render={props => <AddTreep user={this.state.user} onUserChange={user => this.userSetState(user)} />} />
           <Route path="/treeps/:id" exact component={Treep} />
           <Route render={() => <h2>404</h2>} />
         </Switch>

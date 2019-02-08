@@ -23,7 +23,7 @@ class Login extends Component {
       .then(result => {
         console.log('SUCCESS!')
         this.props.onLogin()
-        this.props.history.push("/") // Redirect to the home page
+        this.props.history.push("/home") // Redirect to the private home page
       })
       .catch(err => this.setState({ message: err.toString() }))
   }

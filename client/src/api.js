@@ -22,10 +22,9 @@ export default {
   },
 
   getCurrentUser(){
-    console.log('Hey!')
     return service
       .get(`/users/current`)
-      .then(res => res.data)
+      .then(res => res.data.user)
       .catch(errHandler)
   },
 
@@ -75,7 +74,7 @@ export default {
       .catch(errHandler)
   },
 
-  postTreeps(data) {
+  addTreep(data) {
     return service
       .post('/treeps', data)
       .then(res => res.data)
