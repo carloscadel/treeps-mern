@@ -34,6 +34,9 @@ class App extends Component {
       user: null
     })
   }
+  componentDidMount() {
+    this.getCurrentUser()
+  }  
   render() {
     console.log('App, this.state.user', this.state.user)
     return (

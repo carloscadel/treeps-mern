@@ -6,7 +6,7 @@ const service = axios.create({
 })
 
 const errHandler = err => {
-  console.error(err)
+  // console.error(err)
   if (err.response && err.response.data) {
     console.error("API response", err.response.data)
     throw err.response.data.message
@@ -88,14 +88,6 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
-  getSecretHome() {
-    return service
-      .get('/home')
-      .then(res => res.data)
-      .catch(errHandler)
-  },
-
-
 
   addPicture(file) {
     const formData = new FormData()

@@ -20,13 +20,6 @@ class Home extends Component {
     })
   }
   componentDidMount() {
-    api.getSecretHome()
-    .then(res => {
-      console.log('Secrets... secrets...')
-    })
-    .catch(err => {
-      console.log(err)
-    })
     api.getTreeps()
     .then(treeps => {
       this.setState({
@@ -36,6 +29,7 @@ class Home extends Component {
   }
 
   render() {  
+    console.log('HEY', this.state.user)
     if (!this.state.user) {
       return <div>Please login or signup</div>    
     }     
