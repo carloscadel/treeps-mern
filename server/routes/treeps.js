@@ -3,29 +3,17 @@ const User = require('../models/User')
 
 const router = express.Router();
 
-
 router.use((req, res, next) => {
   console.log('DEBUG routes/treeps');
   next()
 })
 
-// Route to get all treeps
-router.get('/', (req, res, next) => {
-  Treep.find()
-    .then(treeps => {
-      res.json(treeps);
-    })
-    .catch(err => next(err))
-})
-
 // Route to get one treep
 router.get('/:treepId', (req, res, next) => {
-  // console.log(req.user._id)
   const treepId = req.params.treepId
   User.findOne(req.user._id)
     .then(user => {
       const treep = user.treeps.filter(el => el._id == treepId)
-      console.log('TREEP', treep[0])
       return res.json(treep[0])
     })
     .catch(err => next(err))
@@ -54,21 +42,19 @@ router.post('/add', (req, res, next) => {
     })
     .then(res => { console.log('Success') })
     .catch(err => next(err))
-
-  // Treep.create({ name, location, startDate, endDate, formattedDates, hideMe })
-  //   .then(treep => {
-  //     res.json({
-  //       success: true,
-  //       treep
-  //     })
-  //   })
-  //   .catch(err => next(err))
 })
 
 router.post('/:treepId/delete', (req, res, next) => {
-  Treep.findByIdAndDelete(req.params.treepId)
-    .then(res => {
-      console.log('Treep deleted')
+  const treepId = req.params.treepId
+  var treeps = []
+  User.findOne(req.user._id)
+    .then(user => {
+      treeps = user.treeps.filter(el => el._id != treepId)
+      console.log(treeps)
+    })
+    .then(user => {
+      User.findOneAndUpdate(req.user._id, { treeps: treeps })
+        .then(res => console.log('Success'))
     })
     .catch(err => next(err))
 })
