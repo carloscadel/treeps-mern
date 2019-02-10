@@ -33,12 +33,6 @@ class Home extends Component {
         treeps: user.treeps
       })
     })
-    // api.getTreeps()
-    // .then(treeps => {
-    //   this.setState({
-    //     treeps: treeps
-    //   })
-    // })
   }
 
   render() {  

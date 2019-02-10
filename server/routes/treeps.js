@@ -1,5 +1,4 @@
 const express = require('express');
-const Treep = require('../models/Treep')
 const User = require('../models/User')
 
 const router = express.Router();
@@ -17,19 +16,23 @@ router.get('/', (req, res, next) => {
       res.json(treeps);
     })
     .catch(err => next(err))
-});
+})
 
+// Route to get one treep
 router.get('/:treepId', (req, res, next) => {
-  Treep.findById(req.params.treepId)
-    .then(treep => {
-      res.json(treep);
+  // console.log(req.user._id)
+  const treepId = req.params.treepId
+  User.findOne(req.user._id)
+    .then(user => {
+      const treep = user.treeps.filter(el => el._id == treepId)
+      console.log('TREEP', treep[0])
+      return res.json(treep[0])
     })
     .catch(err => next(err))
-});
+})
 
 // Route to add a treep
 router.post('/add', (req, res, next) => {
-  console.log(req)
   // Save dates range already formatted
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   const day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
