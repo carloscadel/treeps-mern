@@ -16,13 +16,12 @@ export default class HomeHeader extends Component {
     this.setState({
       userStatus: e.target.value
     })
-    var inputEvent = document.getElementById('header-prof-status-input-box')
-    inputEvent.addEventListener('keypress', (key) => {
-      if(key.charCode === 13) {
-        let data = { _userId: this.state.userId, currentUserStatus: this.state.userStatus}
-        api.changeUserStatus(data)
-      }
-    })
+  }
+  handleSubmit = (e) => {
+    e.preventDefault()
+    let data = { _userId: this.state.userId, currentUserStatus: this.state.userStatus}
+    api.changeUserStatus(data)
+    document.activeElement.blur()
   }
   componentDidMount() {
     api.getCurrentUser()
@@ -33,6 +32,7 @@ export default class HomeHeader extends Component {
         userStatus: user.userStatus
       })
     })
+    .catch(err => console.log(err))
   }
   render() {
     return (
@@ -46,8 +46,8 @@ export default class HomeHeader extends Component {
               <h3>{this.state.username}</h3>
             </div>
             <div className="header-prof-status-input-div">
-            <form >
-              <p><input id="header-prof-status-input-box" type="text" value={this.state.userStatus} onChange={this.handleStatusChange} onSubmit={this.handleStatusSubmit} /></p>
+            <form onSubmit={this.handleSubmit}>
+              <p><input id="header-prof-status-input-box" type="text" value={this.state.userStatus} onChange={this.handleStatusChange} /></p>
             </form>
             </div>
           </div>

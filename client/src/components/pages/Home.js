@@ -16,13 +16,6 @@ class Home extends Component {
       userStatus: ""
     }
   }
-  handleClick(e) {
-    e.preventDefault()
-    api.postTreeps(this.state.userId)
-    .then(treeps => {
-      console.log('success')
-    })
-  }
   componentDidMount() {
     api.getCurrentUser()
     .then(user => {
