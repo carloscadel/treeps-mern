@@ -22,7 +22,6 @@ class App extends Component {
   getCurrentUser = () => {
     api.getCurrentUser()
       .then(user => {
-        console.log(user)
         this.setState({user})
       })
       .catch(err => console.log(err))
@@ -39,7 +38,6 @@ class App extends Component {
     this.getCurrentUser()
   }  
   render() {
-    console.log('App, this.state.user', this.state.user)
     return (
       <div className="App">
         <header className="App-header">

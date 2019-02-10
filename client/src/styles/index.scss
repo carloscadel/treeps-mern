@@ -222,6 +222,28 @@ input:checked + .slider:before {
         background-color: rgba(0, 0, 0, 0.03);
         transition: all 0.2s;
       }
+      .header-prof-status-input-div {
+        input {
+          display: flex;
+          width: 100%;
+          border: none;
+          align-items: center;
+          border-radius: 5px;
+          height: 50px;
+          cursor: pointer;
+          background-color: rgba(0, 0, 0, 0.01);
+          transition: all 0.2s;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
+          outline: none;
+        }
+        input:hover {
+          background-color: rgba(0, 0, 0, 0.03);
+          transition: all 0.2s;
+        }
+        
+      }
     }
   }
   .trips-section {

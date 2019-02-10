@@ -166,6 +166,23 @@ input:checked + .slider:before {
       .Home .header-div .header-prof-text-div .header-prof-text-status-div:hover {
         background-color: rgba(0, 0, 0, 0.03);
         transition: all 0.2s; }
+      .Home .header-div .header-prof-text-div .header-prof-status-input-div input {
+        display: flex;
+        width: 100%;
+        border: none;
+        align-items: center;
+        border-radius: 5px;
+        height: 50px;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.01);
+        transition: all 0.2s;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        outline: none; }
+      .Home .header-div .header-prof-text-div .header-prof-status-input-div input:hover {
+        background-color: rgba(0, 0, 0, 0.03);
+        transition: all 0.2s; }
   .Home .trips-section .trips-title-div {
     display: flex;
     justify-content: center;

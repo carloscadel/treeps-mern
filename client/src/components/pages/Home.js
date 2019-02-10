@@ -4,64 +4,50 @@ import TreepCard from '../TreepCard';
 import BtnAdd from '../BtnAdd';
 import ContactBtn from '../ContactBtn';
 import api from '../../api';
+import HomeHeader from '../partials/HomeHeader';
 
 class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
       treeps: [],
+      userId: "",
       username: "",
       userStatus: ""
     }
-    // console.log(this.state.user)
   }
   handleClick(e) {
     e.preventDefault()
-    api.postTreeps()
+    api.postTreeps(this.state.userId)
     .then(treeps => {
       console.log('success')
     })
   }
-  
   componentDidMount() {
     api.getCurrentUser()
     .then(user => {
       this.setState({
+        userId: user._id,
         username: user.username,
-        userStatus: user.userStatus
+        userStatus: user.userStatus,
+        treeps: user.treeps
       })
     })
-    api.getTreeps()
-    .then(treeps => {
-      this.setState({
-        treeps: treeps
-      })
-    })
+    // api.getTreeps()
+    // .then(treeps => {
+    //   this.setState({
+    //     treeps: treeps
+    //   })
+    // })
   }
 
   render() {  
     // if (!this.state.user) {
     //   return <div>Please <a href="/login">login</a> or <a href="/signup">signup</a></div>    
     // }     
-    console.log(this.props.user)
     return (
       <div className="Home">
-        <div className="header-div">
-          <div className="header-prof-pic-div">
-            <img className="header-prof-pic" src="Carlos.jpeg" alt="Profile" />
-          </div>
-          <div className="header-prof-text-div">
-            <div className="header-prof-text-name-div">
-              <h3>{this.state.username}</h3>
-            </div>
-            <div className="header-prof-text-status-div">
-            <form>
-              <p><input type="text" value={this.state.userStatus} /></p>
-
-            </form>
-            </div>
-          </div>
-        </div>
+        <HomeHeader />
         <div className="separator-div">
         </div>
         <section className="trips-section"> 

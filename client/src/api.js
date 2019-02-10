@@ -27,6 +27,14 @@ export default {
       .then(res => res.data.user)
       .catch(errHandler)
   },
+  changeUserStatus(data) {
+    return service
+      .post(`/users/changeUserStatus/`, data)
+      .then(res => {
+        return res.data
+      })
+      .catch(errHandler)
+  },
 
   signup(userInfo) {
     return service
@@ -76,7 +84,7 @@ export default {
 
   addTreep(data) {
     return service
-      .post('/treeps', data)
+      .post('/treeps/add', data)
       .then(res => res.data)
       .catch(errHandler)
   },

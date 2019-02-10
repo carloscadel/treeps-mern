@@ -29,6 +29,7 @@ export default class AddTreep extends Component {
   handleClick(e) {
     e.preventDefault()
     let data = {
+      _ownerId: this.state._ownerId,
       location: this.state.location,
       startDate: this.state.startDate,
       endDate: this.state.endDate,
@@ -52,7 +53,7 @@ export default class AddTreep extends Component {
     this.setState({
       _ownerId: this.props.user._id
     })
-    console.log("AddTreep", this.state._ownerId)
+    // console.log("AddTreep", this.state._ownerId)
   }
   render() {
     return (
