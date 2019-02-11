@@ -143,6 +143,11 @@ input:checked + .slider:before {
         width: 75px;
         border-radius: 50%;
         object-fit: cover;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: all 0.2s; }
+      .Home .header-div .header-prof-pic-div .header-prof-pic:hover {
+        transition: all 0.2s;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
     .Home .header-div .header-prof-text-div {
       display: grid;
@@ -180,7 +185,7 @@ input:checked + .slider:before {
         -moz-box-shadow: none;
         box-shadow: none;
         outline: none; }
-      .Home .header-div .header-prof-text-div .header-prof-status-input-div input:hover {
+      .Home .header-div .header-prof-text-div .header-prof-status-input-div input:hover, .Home .header-div .header-prof-text-div .header-prof-status-input-div input:focus {
         background-color: rgba(0, 0, 0, 0.03);
         transition: all 0.2s; }
   .Home .trips-section .trips-title-div {
@@ -202,7 +207,7 @@ input:checked + .slider:before {
       height: 125px;
       margin: 15px 5px 20px;
       border-radius: 3px;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
       background-color: rgba(0, 0, 0, 0.01);
       transition: all 0.2s; }
       .Home .trips-section .trip-card-wrapper .trip-card .trip-card-top-row {
@@ -225,6 +230,7 @@ input:checked + .slider:before {
           height: 14px; }
     .Home .trips-section .trip-card-wrapper .trip-card:hover {
       background-color: rgba(0, 0, 0, 0.03);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
       transition: all 0.2s; }
   .Home .trips-section .trip-card-add-div {
     display: flex;

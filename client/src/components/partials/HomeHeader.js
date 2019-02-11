@@ -8,7 +8,9 @@ export default class HomeHeader extends Component {
     this.state = {
       userId: "",
       username: "",
-      userStatus: ""
+      userStatus: "",
+      userDob: "",
+      showImgPicker: true
     }
   }
   handleStatusChange = (e) => {
@@ -17,11 +19,20 @@ export default class HomeHeader extends Component {
       userStatus: e.target.value
     })
   }
-  handleSubmit = (e) => {
+  handleStatusSubmit = (e) => {
     e.preventDefault()
     let data = { _userId: this.state.userId, currentUserStatus: this.state.userStatus}
     api.changeUserStatus(data)
     document.activeElement.blur()
+  }
+  calculateAge() {
+    var today = new Date()
+    var dob = new Date(this.state.userDob)
+    return Math.floor((today - dob)/1000/3600/24/365.25)
+  }
+  imagePicker = () => {
+    // e.preventDefault()
+    console.log('Mofo')
   }
   componentDidMount() {
     api.getCurrentUser()
@@ -29,7 +40,8 @@ export default class HomeHeader extends Component {
       this.setState({
         userId: user._id,
         username: user.username,
-        userStatus: user.userStatus
+        userStatus: user.userStatus,
+        userDob: user.dob
       })
     })
     .catch(err => console.log(err))
@@ -38,15 +50,19 @@ export default class HomeHeader extends Component {
     return (
       <div>
         <div className="header-div">
+        <form onSubmit={this.imagePicker} method="post" encType="multipart/form-data">
           <div className="header-prof-pic-div">
-            <img className="header-prof-pic" src="Carlos.jpeg" alt="Profile" />
+            <label>
+              <img className="header-prof-pic" src="Carlos.jpeg" alt="Profile pic" /><input type="file" name="photo" style={{display: 'none'}}/>
+            </label>
           </div>
+        </form>
           <div className="header-prof-text-div">
             <div className="header-prof-text-name-div">
-              <h3>{this.state.username}</h3>
+              <h3>{this.state.username}, {this.calculateAge()}</h3>
             </div>
             <div className="header-prof-status-input-div">
-            <form onSubmit={this.handleSubmit}>
+            <form autoComplete="off" onSubmit={this.handleStatusSubmit}>
               <p><input id="header-prof-status-input-box" type="text" value={this.state.userStatus} onChange={this.handleStatusChange} /></p>
             </form>
             </div>

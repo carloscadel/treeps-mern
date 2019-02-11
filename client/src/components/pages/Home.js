@@ -11,6 +11,7 @@ class Home extends Component {
     super(props)
     this.state = {
       treeps: [],
+      user: null,
       userId: "",
       username: "",
       userStatus: ""
@@ -20,6 +21,7 @@ class Home extends Component {
     api.getCurrentUser()
     .then(user => {
       this.setState({
+        user: user,
         userId: user._id,
         username: user.username,
         userStatus: user.userStatus,
@@ -29,9 +31,9 @@ class Home extends Component {
   }
 
   render() {  
-    // if (!this.state.user) {
-    //   return <div>Please <a href="/login">login</a> or <a href="/signup">signup</a></div>    
-    // }     
+    if (!this.state.user) {
+      return <div>Please <a href="/login">login</a> or <a href="/signup">signup</a></div>    
+    }     
     return (
       <div className="Home">
         <HomeHeader />

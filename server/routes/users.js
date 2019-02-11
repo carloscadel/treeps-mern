@@ -10,8 +10,6 @@ router.get('/current', isLoggedIn, (req, res, next) => {
 })
 
 router.post('/changeuserstatus', isLoggedIn, (req, res, next) => {
-  console.log(req.body._userId)
-  console.log(req.body.currentUserStatus)
   User.findByIdAndUpdate(req.body._userId, { userStatus: req.body.currentUserStatus })
     .then((data) => {
       res.json({
@@ -20,6 +18,10 @@ router.post('/changeuserstatus', isLoggedIn, (req, res, next) => {
       })
     })
   // console.log(res)
+})
+
+router.post('/profpicupload', isLoggedIn, (req, res, next) => {
+  console.log('heo')
 })
 
 module.exports = router
