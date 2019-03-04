@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   color: rgba(112, 112, 112, 0.9);
   background-image: linear-gradient(#ffff, #e6e6e6); }
 
@@ -31,7 +31,7 @@ p {
 .notification-marker-1 {
   width: 8px;
   height: 8px;
-  background-color: #FF7C7C;
+  background-color: #ff7c7c;
   border-radius: 50%;
   position: relative;
   top: 10px;
@@ -43,7 +43,7 @@ p {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #00B2B2;
+  background-color: #00b2b2;
   width: 21px;
   height: 21px;
   border-radius: 50%;
@@ -82,8 +82,8 @@ button {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s; }
+  -webkit-transition: 0.4s;
+  transition: 0.4s; }
 
 .slider:before {
   position: absolute;
@@ -93,14 +93,14 @@ button {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s; }
+  -webkit-transition: 0.4s;
+  transition: 0.4s; }
 
 input:checked + .slider {
-  background-color: #2196F3; }
+  background-color: #2196f3; }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3; }
+  box-shadow: 0 0 1px #2196f3; }
 
 input:checked + .slider:before {
   -webkit-transform: translateX(10px);
@@ -185,7 +185,8 @@ input:checked + .slider:before {
         -moz-box-shadow: none;
         box-shadow: none;
         outline: none; }
-      .Home .header-div .header-prof-text-div .header-prof-status-input-div input:hover, .Home .header-div .header-prof-text-div .header-prof-status-input-div input:focus {
+      .Home .header-div .header-prof-text-div .header-prof-status-input-div input:hover,
+      .Home .header-div .header-prof-text-div .header-prof-status-input-div input:focus {
         background-color: rgba(0, 0, 0, 0.03);
         transition: all 0.2s; }
   .Home .trips-section .trips-title-div {

@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import api from '../../api';
+import React, { Component } from "react"
+import api from "../../api"
 
 export default class Treep extends Component {
   constructor(props) {
@@ -13,17 +13,18 @@ export default class Treep extends Component {
     }
   }
   handleTreepDelete = () => {
-    api.deleteTreep(this.props.match.params.id)
-    .then(res => console.log('Treep deleted'))
+    api
+      .deleteTreep(this.props.match.params.id)
+      .then(res => console.log("Treep deleted"))
+      .catch(err => console.log(err))
   }
   componentDidMount() {
-    api.getOneTreep(this.props.match.params.id)
-    .then(res => {
+    api.getOneTreep(this.props.match.params.id).then(res => {
       this.setState({
         location: res.location,
         startDate: res.startDate,
         endDate: res.endDate,
-        formattedDates:res.formattedDates
+        formattedDates: res.formattedDates
       })
     })
   }
@@ -32,7 +33,7 @@ export default class Treep extends Component {
       <div>
         <h4>{this.state.location}</h4>
         <p>{this.state.formattedDates}</p>
-        <button onClick={this.handleTreepDelete} >Delete treep</button>
+        <button onClick={this.handleTreepDelete}>Delete treep</button>
       </div>
     )
   }

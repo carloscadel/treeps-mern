@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import api from '../../api';
-import Calendar from 'react-calendar'
+import React, { Component } from "react"
+import api from "../../api"
+import Calendar from "react-calendar"
 
 export default class AddTreep extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      _ownerId: this.props.user._id,
+      _ownerId: "",
       name: "",
       location: "",
       startDate: "",
@@ -35,13 +35,14 @@ export default class AddTreep extends Component {
       endDate: this.state.endDate,
       hideMe: this.state.hideMe
     }
-    api.addTreep(data)
-    .then(res => {
-      console.log("New treep created")
-    })
-    .catch(err => {
-      console.log("Error")
-    })   
+    api
+      .addTreep(data)
+      .then(res => {
+        console.log("New treep created")
+      })
+      .catch(err => {
+        console.log("Error")
+      })
   }
   onDatesRangeChange = date => {
     this.setState({
@@ -50,21 +51,26 @@ export default class AddTreep extends Component {
     })
   }
   componentDidMount() {
-    this.setState({
-      _ownerId: this.props.user._id
+    api.getCurrentUser().then(user => {
+      this.setState({
+        _ownerId: user._id
+      })
     })
-    // console.log("AddTreep", this.state._ownerId)
   }
   render() {
     return (
       <div>
         <form>
           <label>Location</label>
-          <input name="location" onChange={(e) => this.handleInputChange("location", e)} /><br/>
+          <input name="location" onChange={e => this.handleInputChange("location", e)} />
+          <br />
           <Calendar onChange={this.onDatesRangeChange} selectRange={true} />
           <label>Hide me</label>
-          <input type="checkbox" checked={this.state.hideMe} onChange={(e) => this.handleInputChange("hideMe", e)} /><br/>
-          <button className="btn-add" type="submit" onClick={(e) => this.handleClick(e)}>Submit</button>
+          <input type="checkbox" checked={this.state.hideMe} onChange={e => this.handleInputChange("hideMe", e)} />
+          <br />
+          <button className="btn-add" type="submit" onClick={e => this.handleClick(e)}>
+            Submit
+          </button>
         </form>
       </div>
     )

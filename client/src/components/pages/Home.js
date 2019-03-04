@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
-import TreepCard from '../TreepCard';
-import BtnAdd from '../BtnAdd';
-import ContactBtn from '../ContactBtn';
-import api from '../../api';
-import HomeHeader from '../partials/HomeHeader';
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
+import TreepCard from "../TreepCard"
+import BtnAdd from "../BtnAdd"
+import ContactBtn from "../ContactBtn"
+import api from "../../api"
+import HomeHeader from "../partials/HomeHeader"
 
 class Home extends Component {
   constructor(props) {
@@ -17,49 +17,59 @@ class Home extends Component {
       userStatus: ""
     }
   }
+
+  getUserTreeps() {
+    api
+      .getUserTreeps()
+      .then(treeps => {
+        this.setState({
+          treeps: treeps
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
   componentDidMount() {
-    api.getCurrentUser()
-    .then(user => {
+    api.getCurrentUser().then(user => {
       this.setState({
         user: user,
         userId: user._id,
         username: user.username,
-        userStatus: user.userStatus,
-        treeps: user.treeps
+        userStatus: user.userStatus
       })
     })
+    this.getUserTreeps()
   }
 
-  render() {  
+  render() {
     if (!this.state.user) {
-      return <div>Please <a href="/login">login</a> or <a href="/signup">signup</a></div>    
-    }     
+      return (
+        <div>
+          Please <a href="/login">Login</a> or <a href="/signup">Signup</a>
+        </div>
+      )
+    }
     return (
       <div className="Home">
         <HomeHeader />
-        <div className="separator-div">
-        </div>
-        <section className="trips-section"> 
+        <div className="separator-div" />
+        <section className="trips-section">
           <div className="trips-title-div">
             <h4>Treeps</h4>
-            <Link to="/treeps/add" ><BtnAdd /></Link>
+            <Link to={"/" + this.state.username + "/treeps/add"}>
+              <BtnAdd />
+            </Link>
           </div>
           <div className="trip-cards-slider">
-            {this.state.treeps.map(treep => 
-              <a key={treep._id} href={"/treeps/" + treep._id} >
-                <TreepCard  
-                  location={treep.location} 
-                  startDate={treep.startDate} 
-                  endDate={treep.endDate} 
-                  formattedDates={treep.formattedDates}
-                />
-              </a> 
-            )}
+            {this.state.treeps.map(treep => (
+              <a key={treep._id} href={"/" + this.state.username + "/treeps/" + treep._id}>
+                <TreepCard location={treep.location} startDate={treep.startDate} endDate={treep.endDate} formattedDates={treep.formattedDates} />
+              </a>
+            ))}
           </div>
         </section>
-        <div className="separator-div">
-        </div>
-        <section className="contacts-section"> 
+        <div className="separator-div" />
+        <section className="contacts-section">
           <div className="contacts-title-div">
             <h4>Contacts</h4>
           </div>
@@ -68,8 +78,8 @@ class Home extends Component {
           </div>
         </section>
       </div>
-    );
+    )
   }
 }
 
-export default Home;
+export default Home

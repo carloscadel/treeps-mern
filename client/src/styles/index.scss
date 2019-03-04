@@ -1,11 +1,10 @@
 // --------------------
 // Definition of variables
-$primary: #00B2B2;
+$primary: #00b2b2;
 $bg-secondary: rgba(0, 0, 0, 0.05);
 $bg-secondary-hover: rgba(0, 0, 0, 0.03);
-$alert-1: #FF7C7C;
+$alert-1: #ff7c7c;
 $font-color-primary: rgba(112, 112, 112, 0.9);
-
 
 // ----------------------------------------
 // To install Boostrap:
@@ -14,13 +13,12 @@ $font-color-primary: rgba(112, 112, 112, 0.9);
 // @import 'bootstrap/scss/bootstrap';
 // ----------------------------------------
 
-
 // --------------------
 // Style reusable for all components
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   color: $font-color-primary;
   background-image: linear-gradient(#ffff, #e6e6e6);
 }
@@ -84,13 +82,13 @@ p {
 
 // removing the default styling for any button
 button {
-	background: none;
-	color: inherit;
-	border: none;
-	padding: 0;
-	font: inherit;
-	cursor: pointer;
-	outline: inherit;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }
 
 /* The switch - the box around the slider */
@@ -117,8 +115,8 @@ button {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -129,16 +127,16 @@ button {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
@@ -163,7 +161,6 @@ input:checked + .slider:before {
   justify-content: center;
   min-height: 100vh;
   background-image: linear-gradient(#ffff, #e6e6e6);
-  
 }
 
 .App-header {
@@ -244,11 +241,11 @@ input:checked + .slider:before {
           box-shadow: none;
           outline: none;
         }
-        input:hover, input:focus {
+        input:hover,
+        input:focus {
           background-color: rgba(0, 0, 0, 0.03);
           transition: all 0.2s;
         }
-        
       }
     }
   }
@@ -275,7 +272,7 @@ input:checked + .slider:before {
         height: 125px;
         margin: 15px 5px 20px;
         border-radius: 3px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); 
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         // background-image: url('/valencia1.png');
         // opacity: 0.5;
         // background-size: cover;
@@ -307,7 +304,7 @@ input:checked + .slider:before {
       }
       .trip-card:hover {
         background-color: rgba(0, 0, 0, 0.03);
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); 
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         transition: all 0.2s;
       }
     }

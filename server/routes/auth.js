@@ -1,16 +1,15 @@
 const express = require("express")
-const passport = require('passport')
+const passport = require("passport")
 const router = express.Router()
 const User = require("../models/User")
-const { isLoggedIn } = require('../middlewares');
-
+const { isLoggedIn } = require("../middlewares")
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt")
 const bcryptSalt = 10
 
 router.post("/signup", (req, res, next) => {
-  const { username, password, name, dob } = req.body
+  const { username, password, name, dob, email } = req.body
   if (!username || !password) {
     res.status(400).json({ message: "Indicate username and password" })
     return
@@ -23,7 +22,7 @@ router.post("/signup", (req, res, next) => {
       }
       const salt = bcrypt.genSaltSync(bcryptSalt)
       const hashPass = bcrypt.hashSync(password, salt)
-      const newUser = new User({ username, password: hashPass, name, dob })
+      const newUser = new User({ username, password: hashPass, name, dob, email })
       return newUser.save()
     })
     .then(userSaved => {
@@ -32,14 +31,14 @@ router.post("/signup", (req, res, next) => {
       // (that saves the USER ID in the session)
       req.logIn(userSaved, () => {
         // hide "encryptedPassword" before sending the JSON (it's a security risk)
-        userSaved.password = undefined;
-        res.json( userSaved );
-      });
+        userSaved.password = undefined
+        res.json(userSaved)
+      })
     })
     .catch(err => next(err))
 })
 
-router.post('/login', (req, res, next) => {
+router.post("/login", (req, res, next) => {
   const { username, password } = req.body
 
   // first check to see if there's a document with that username
@@ -72,10 +71,10 @@ router.post('/login', (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.post('/login-with-passport-local-strategy', (req, res, next) => {
-  passport.authenticate('local', (err, theUser, failureDetails) => {
+router.post("/login-with-passport-local-strategy", (req, res, next) => {
+  passport.authenticate("local", (err, theUser, failureDetails) => {
     if (err) {
-      res.status(500).json({ message: 'Something went wrong' })
+      res.status(500).json({ message: "Something went wrong" })
       return
     }
 
@@ -84,9 +83,9 @@ router.post('/login-with-passport-local-strategy', (req, res, next) => {
       return
     }
 
-    req.login(theUser, (err) => {
+    req.login(theUser, err => {
       if (err) {
-        res.status(500).json({ message: 'Something went wrong' })
+        res.status(500).json({ message: "Something went wrong" })
         return
       }
 
@@ -98,7 +97,7 @@ router.post('/login-with-passport-local-strategy', (req, res, next) => {
 
 router.get("/logout", isLoggedIn, (req, res) => {
   req.logout()
-  res.json({ message: 'You are out!' })
+  res.json({ message: "You are out!" })
 })
 
 module.exports = router
