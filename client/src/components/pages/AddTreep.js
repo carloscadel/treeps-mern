@@ -1,22 +1,22 @@
-import React, { Component } from "react"
-import api from "../../api"
-import Calendar from "react-calendar"
+import React, { Component } from 'react'
+import api from '../../api'
+import Calendar from 'react-calendar'
 
 export default class AddTreep extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      _ownerId: "",
-      name: "",
-      location: "",
-      startDate: "",
-      endDate: "",
-      formattedDates: "",
+      _ownerId: '',
+      name: '',
+      location: '',
+      startDate: '',
+      endDate: '',
+      formattedDates: '',
       hideMe: false
     }
   }
   handleInputChange(stateFieldName, e) {
-    if (stateFieldName === "hideMe") {
+    if (stateFieldName === 'hideMe') {
       this.setState({
         hideMe: !this.state.hideMe
       })
@@ -38,10 +38,10 @@ export default class AddTreep extends Component {
     api
       .addTreep(data)
       .then(res => {
-        console.log("New treep created")
+        console.log('New treep created')
       })
       .catch(err => {
-        console.log("Error")
+        console.log('Error')
       })
   }
   onDatesRangeChange = date => {
@@ -62,13 +62,13 @@ export default class AddTreep extends Component {
       <div>
         <form>
           <label>Location</label>
-          <input name="location" onChange={e => this.handleInputChange("location", e)} />
+          <input name='location' onChange={e => this.handleInputChange('location', e)} />
           <br />
           <Calendar onChange={this.onDatesRangeChange} selectRange={true} />
           <label>Hide me</label>
-          <input type="checkbox" checked={this.state.hideMe} onChange={e => this.handleInputChange("hideMe", e)} />
+          <input type='checkbox' checked={this.state.hideMe} onChange={e => this.handleInputChange('hideMe', e)} />
           <br />
-          <button className="btn-add" type="submit" onClick={e => this.handleClick(e)}>
+          <button className='btn-add' type='submit' onClick={e => this.handleClick(e)}>
             Submit
           </button>
         </form>

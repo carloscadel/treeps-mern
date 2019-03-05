@@ -1,12 +1,12 @@
-import React, { Component } from "react"
-import api from "../../api"
+import React, { Component } from 'react'
+import api from '../../api'
 
 class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: "",
-      password: "",
+      username: '',
+      password: '',
       message: null
     }
   }
@@ -22,23 +22,23 @@ class Login extends Component {
     api
       .login(this.state.username, this.state.password)
       .then(result => {
-        console.log("SUCCESS!")
+        console.log('SUCCESS!')
         this.props.onLogin()
-        this.props.history.push("/" + this.state.username) // Redirect to the private home page
+        this.props.history.push('/' + this.state.username) // Redirect to the private home page
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
 
   render() {
     return (
-      <div className="Login">
+      <div className='Login'>
         <h2>Login</h2>
         <form>
-          Username: <input type="text" value={this.state.username} onChange={e => this.handleInputChange("username", e)} /> <br />
-          Password: <input type="password" value={this.state.password} onChange={e => this.handleInputChange("password", e)} /> <br />
+          Username: <input type='text' value={this.state.username} onChange={e => this.handleInputChange('username', e)} /> <br />
+          Password: <input type='password' value={this.state.password} onChange={e => this.handleInputChange('password', e)} /> <br />
           <button onClick={e => this.handleClick(e)}>Login</button>
         </form>
-        {this.state.message && <div className="info info-danger">{this.state.message}</div>}
+        {this.state.message && <div className='info info-danger'>{this.state.message}</div>}
       </div>
     )
   }
