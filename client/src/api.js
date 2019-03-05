@@ -108,11 +108,14 @@ export default {
       .catch(errHandler)
   },
 
-  addPicture(file) {
+  addUserPicture(file, id) {
+    console.log('FROM API', file, id)
     const formData = new FormData()
     formData.append('picture', file)
+    console.log(formData)
+    // console.log('DEBUG formData', formData.get("picture"));
     return service
-      .post('/endpoint/to/add/a/picture', formData, {
+      .post(`/users/${id}/profpicupload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

@@ -1,15 +1,16 @@
-import React, { Component } from "react"
-import api from "../../api"
+import React, { Component } from 'react'
+import api from '../../api'
 
 export default class HomeHeader extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      userId: "",
-      username: "",
-      userStatus: "",
-      userDob: "",
-      showImgPicker: true
+      userId: '',
+      username: '',
+      userStatus: '',
+      userDob: '',
+      showImgPicker: true,
+      profImgPath: null
     }
   }
   handleStatusChange = e => {
@@ -29,9 +30,13 @@ export default class HomeHeader extends Component {
     var dob = new Date(this.state.userDob)
     return Math.floor((today - dob) / 1000 / 3600 / 24 / 365.25)
   }
-  imagePicker = () => {
+  imagePicker = e => {
     // e.preventDefault()
-    console.log("Mofo")
+    api.addUserPicture(e.target.files[0], this.state.userId).then(res =>
+      this.setState({
+        profImgPath: res.picture
+      })
+    )
   }
   componentDidMount() {
     api
@@ -41,7 +46,8 @@ export default class HomeHeader extends Component {
           userId: user._id,
           username: user.username,
           userStatus: user.userStatus,
-          userDob: user.dob
+          userDob: user.dob,
+          profImgPath: user.profImgPath
         })
       })
       .catch(err => console.log(err))
@@ -49,25 +55,25 @@ export default class HomeHeader extends Component {
   render() {
     return (
       <div>
-        <div className="header-div">
-          <form onSubmit={this.imagePicker} method="post" encType="multipart/form-data">
-            <div className="header-prof-pic-div">
+        <div className='header-div'>
+          <form method='post' encType='multipart/form-data'>
+            <div className='header-prof-pic-div'>
               <label>
-                <img className="header-prof-pic" src="Carlos.jpeg" alt="Profile pic" />
-                <input type="file" name="photo" style={{ display: "none" }} />
+                <img className='header-prof-pic' src={this.state.profImgPath} alt='Profile pic' />
+                <input type='file' name='photo' onChange={this.imagePicker} style={{ display: 'none' }} />
               </label>
             </div>
           </form>
-          <div className="header-prof-text-div">
-            <div className="header-prof-text-name-div">
+          <div className='header-prof-text-div'>
+            <div className='header-prof-text-name-div'>
               <h3>
                 {this.state.username}, {this.calculateAge()}
               </h3>
             </div>
-            <div className="header-prof-status-input-div">
-              <form autoComplete="off" onSubmit={this.handleStatusSubmit}>
+            <div className='header-prof-status-input-div'>
+              <form autoComplete='off' onSubmit={this.handleStatusSubmit}>
                 <p>
-                  <input id="header-prof-status-input-box" type="text" value={this.state.userStatus} onChange={this.handleStatusChange} />
+                  <input id='header-prof-status-input-box' type='text' value={this.state.userStatus} onChange={this.handleStatusChange} />
                 </p>
               </form>
             </div>

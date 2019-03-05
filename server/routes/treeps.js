@@ -18,7 +18,6 @@ router.get('/', (req, res, next) => {
 
 // Route to get one treep
 router.get('/:treepId', (req, res, next) => {
-  let data = {}
   Treep.findById(req.params.treepId)
     .then(treep => {
       let query = { $or: [{ startDate: { $gte: new Date(treep.startDate), $lte: new Date(treep.endDate) } }, { endDate: { $gte: new Date(treep.startDate), $lte: new Date(treep.endDate) } }, { $and: [{ startDate: { $lte: new Date(treep.startDate) } }, { endDate: { $gte: new Date(treep.endDate) } }] }] }

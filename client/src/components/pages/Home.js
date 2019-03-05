@@ -51,7 +51,7 @@ class Home extends Component {
     }
     return (
       <div className='Home'>
-        <HomeHeader />
+        <HomeHeader user={this.state.user} />
         <div className='separator-div' />
         <section className='trips-section'>
           <div className='trips-title-div'>
