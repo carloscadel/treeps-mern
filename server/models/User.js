@@ -8,7 +8,7 @@ const userSchema = new Schema(
     email: { type: String, unique: true, match: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ },
     password: String,
     profImgName: { type: String, default: '' },
-    profImgPath: { type: String, default: '' },
+    profImgPath: { type: String, default: 'https://res.cloudinary.com/carloscadel/image/upload/v1551778962/treeps/user_generic.svg' },
     previousUserStatus: { type: String, default: '' },
     userStatus: { type: String, default: '' },
     dob: { type: Date, required: true },

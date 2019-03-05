@@ -36,7 +36,6 @@ export default {
   },
 
   signup(userInfo) {
-    console.log(userInfo)
     return service
       .post('/signup', userInfo)
       .then(res => {
@@ -74,23 +73,17 @@ export default {
       .catch(errHandler)
   },
 
-  // To get all the users whose treep dates are coincident with this treep
-  // getTreepUsers(treepId) {
-  //   return service
-  //     .get('/treeps/' + treepId + '/users')
-  //     .then(res => {
-  //       return res.data
-  //     })
-  //     .catch(errHandler)
-  // },
-
   getOneTreep(treepId) {
     return service
-      .get('/treeps/' + treepId)
-      .then(res => {
-        console.log('RESSSSSSSSSS FROM API', res)
-        return res.data
-      })
+      .get(`/treeps/${treepId}`)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  getTreepMetadata(treepId) {
+    return service
+      .get(`/treeps/${treepId}/metadata`)
+      .then(res => res.data)
       .catch(errHandler)
   },
 
@@ -103,17 +96,14 @@ export default {
 
   deleteTreep(treepId) {
     return service
-      .post('/treeps/' + treepId + '/delete')
+      .post(`/treeps/${treepId}/delete`)
       .then(res => res.data)
       .catch(errHandler)
   },
 
   addUserPicture(file, id) {
-    console.log('FROM API', file, id)
     const formData = new FormData()
     formData.append('picture', file)
-    console.log(formData)
-    // console.log('DEBUG formData', formData.get("picture"));
     return service
       .post(`/users/${id}/profpicupload`, formData, {
         headers: {

@@ -5,12 +5,11 @@ export default class HomeHeader extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      userId: '',
-      username: '',
-      userStatus: '',
-      userDob: '',
-      showImgPicker: true,
-      profImgPath: null
+      userId: this.props.user._id,
+      username: this.props.user.username,
+      userStatus: this.props.user.userStatus,
+      userDob: this.props.user.dob,
+      profImgPath: this.props.user.profImgPath
     }
   }
   handleStatusChange = e => {
@@ -38,20 +37,7 @@ export default class HomeHeader extends Component {
       })
     )
   }
-  componentDidMount() {
-    api
-      .getCurrentUser()
-      .then(user => {
-        this.setState({
-          userId: user._id,
-          username: user.username,
-          userStatus: user.userStatus,
-          userDob: user.dob,
-          profImgPath: user.profImgPath
-        })
-      })
-      .catch(err => console.log(err))
-  }
+
   render() {
     return (
       <div>

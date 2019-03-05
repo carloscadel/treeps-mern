@@ -21,13 +21,14 @@ export default class Treep extends Component {
       .catch(err => console.log(err))
   }
 
-  getTreepUsers() {
+  getTreepMetadata() {
     api
-      .getTreepUsers()
+      .getTreepMetadata(this.props.match.params.id)
       .then(treepUsers => {
         this.setState({
-          treepUsers
+          treepUsers: [...treepUsers]
         })
+        console.log(this.state.treepUsers)
       })
       .catch(err => {
         console.log(err)
@@ -35,12 +36,13 @@ export default class Treep extends Component {
   }
 
   componentDidMount() {
+    this.getTreepMetadata()
     api.getOneTreep(this.props.match.params.id).then(res => {
       this.setState({
-        location: res[0].location,
-        startDate: res[0].startDate,
-        endDate: res[0].endDate,
-        formattedDates: res[0].formattedDates
+        location: res.location,
+        startDate: res.startDate,
+        endDate: res.endDate,
+        formattedDates: res.formattedDates
       })
     })
   }

@@ -20,11 +20,30 @@ router.get('/', (req, res, next) => {
 router.get('/:treepId', (req, res, next) => {
   Treep.findById(req.params.treepId)
     .then(treep => {
+      res.json(treep)
+    })
+    .catch(err => next(err))
+})
+
+router.get('/:treepId/metadata', (req, res, next) => {
+  const currentUser = req.user._id
+  let usersId = []
+  Treep.findById(req.params.treepId)
+    .then(treep => {
       let query = { $or: [{ startDate: { $gte: new Date(treep.startDate), $lte: new Date(treep.endDate) } }, { endDate: { $gte: new Date(treep.startDate), $lte: new Date(treep.endDate) } }, { $and: [{ startDate: { $lte: new Date(treep.startDate) } }, { endDate: { $gte: new Date(treep.endDate) } }] }] }
       Treep.find(query)
         .then(treeps => {
-          treeps = treeps.filter(el => JSON.stringify(el._id) !== JSON.stringify(treep._id)) // Remove current treep from arrray
-          treeps.unshift(treep) // The first element of the array will be the current user's treep
+          // Remove current treep from arrray and any other treeps whose owner is the current user:
+          treeps = treeps.filter(el => {
+            return JSON.stringify(el._id) !== JSON.stringify(treep._id) && JSON.stringify(el._ownerId) !== JSON.stringify(currentUser)
+          })
+          console.log(treeps)
+          treeps.forEach(treep => {
+            if (!usersId.includes(JSON.stringify(treep._ownerId)) && JSON.stringify(currentUser) !== JSON.stringify(treep._ownerId)) {
+              usersId.push(JSON.stringify(treep._ownerId))
+            }
+          })
+          console.log(usersId)
           res.json(treeps)
         })
         .catch(err => next(err))
@@ -62,12 +81,9 @@ router.post('/add', (req, res, next) => {
       .getFullYear()
       .toString()
       .substring(2)
-  // console.log(formattedDates)
-  console.log('req.user', req.user._id)
-  console.log('one', _ownerId)
+
   Treep.create({ _ownerId, name, location, startDate, endDate, formattedDates, hideMe })
     .then(treep => {
-      console.log('two', treep)
       res.json({
         success: true,
         treep
