@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import api from '../../api'
+import GoogleMap from '../GoogleMap'
 
 export default class Treep extends Component {
   constructor(props) {
@@ -52,6 +53,7 @@ export default class Treep extends Component {
         <h4>{this.state.location}</h4>
         <p>{this.state.formattedDates}</p>
         <button onClick={this.handleTreepDelete}>Delete treep</button>
+        <GoogleMap />
       </div>
     )
   }

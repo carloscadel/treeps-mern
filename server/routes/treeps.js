@@ -39,7 +39,7 @@ router.get('/:treepId/metadata', (req, res, next) => {
           })
           console.log(treeps)
           treeps.forEach(treep => {
-            if (!usersId.includes(JSON.stringify(treep._ownerId)) && JSON.stringify(currentUser) !== JSON.stringify(treep._ownerId)) {
+            if (!usersId.includes(JSON.stringify(treep._ownerId))) {
               usersId.push(JSON.stringify(treep._ownerId))
             }
           })
