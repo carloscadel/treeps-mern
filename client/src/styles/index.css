@@ -1,11 +1,11 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Raleway', sans-serif;
   color: rgba(112, 112, 112, 0.9);
   background-image: linear-gradient(#ffff, #e6e6e6); }
 
-a:-webkit-any-link {
+a {
   color: rgba(112, 112, 112, 0.9);
   cursor: pointer;
   text-decoration: none; }
@@ -87,7 +87,7 @@ button {
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 10px;
   width: 10px;
   left: 4px;
