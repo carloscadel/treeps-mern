@@ -1,40 +1,44 @@
 import React, { Component } from 'react'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
-import MapboxDraw from '@mapbox/mapbox-gl-draw'
 import MapboxCircle from 'mapbox-gl-circle'
-// import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 
 class Map extends Component {
   constructor(props) {
     super(props)
-    this.mapRef = React.createRef()
-    this.map = null
-    this.draw = null
-    this.markers = []
-    this.clusterRadius = 200
+    this.state = {
+      mapRef: React.createRef(),
+      map: null,
+      markers: [],
+      clusterRadius: 200,
+      geocoderResultId: null
+    }
   }
 
   initMap() {
     // Embed the map where "this.mapRef" is defined in the render
-    this.map = new mapboxgl.Map({
-      container: this.mapRef.current,
+    this.state.map = new mapboxgl.Map({
+      container: this.state.mapRef.current,
       style: 'mapbox://styles/mapbox/light-v9',
       center: this.props.mapCenter, // lng,lat
       zoom: 10
     })
-    this.draw = new MapboxDraw({
-      displayControlsDefault: false,
-      controls: {
-        polygon: true,
-        trash: true
-      }
-    })
-    this.map.addControl(this.draw)
 
-    this.map.addControl(new mapboxgl.NavigationControl({ showCompass: false }))
+    this.state.map.addControl(
+      new MapboxGeocoder({
+        accessToken: 'pk.eyJ1IjoiY2FybG9zY2FkZWwiLCJhIjoiY2p0Mzc3dnhtMG9nYjQzcGcwcmt1NjVsdSJ9.9CPXMbZlkZGjNFmFMWCMCQ'
+      }).on('result', res => {
+        // Avoid the issue consisting on the result being invoked twice
+        if (this.state.geocoderResultId !== res.result.id) {
+          this.setState({
+            geocoderResultId: res.result.id
+          })
+        }
+      })
+    )
 
-    this.map.on('load', () => {
-      this.map.addSource('treeps', {
+    this.state.map.on('load', () => {
+      this.state.map.addSource('treeps', {
         type: 'geojson',
         data: {
           type: 'FeatureCollection',
@@ -73,21 +77,23 @@ class Map extends Component {
       minRadius: 5000,
       fillColor: '#29AB87',
       strokeWeight: 0
-    }).addTo(this.map)
+    }).addTo(this.state.map)
 
-    var myCircle1 = new MapboxCircle({ lat: 40.03, lng: 0 }, 10000, {
+    var myCircle1 = new MapboxCircle({ lat: 40.03, lng: 0 }, 15000, {
       editable: false,
       minRadius: 5000,
       fillColor: '#29AB87',
       strokeWeight: 0
-    }).addTo(this.map)
+    }).addTo(this.state.map)
 
-    var myCircle3 = new MapboxCircle({ lat: 40.05, lng: 0.05 }, 10000, {
+    var myCircle3 = new MapboxCircle({ lat: 40.05, lng: 0.05 }, 20000, {
       editable: false,
       minRadius: 5000,
       fillColor: '#29AB87',
       strokeWeight: 0
-    }).addTo(this.map)
+    }).addTo(this.state.map)
+
+    console.log(window)
 
     // myCircle.on('centerchanged', function(circleObj) {
     //   console.log('New center:', circleObj.getCenter())
@@ -113,14 +119,14 @@ class Map extends Component {
     //   )
     // }
   }
-  handleItemSelection() {
-    this.map.setCenter(this.props.mapCenter)
-  }
+
   componentDidMount() {
     this.initMap()
   }
+
   render() {
-    return <div ref={this.mapRef} className='map' style={{ width: 400, height: 400 }} />
+    console.log(this.state.geocoderResultId)
+    return <div ref={this.state.mapRef} className='map' style={{ width: 400, height: 400 }} />
   }
 }
 

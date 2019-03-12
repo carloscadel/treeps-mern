@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import api from '../../api'
 import Calendar from 'react-calendar'
+import PlaceSearchBox from '../PlaceSearchBox'
 
 export default class AddTreep extends Component {
   constructor(props) {
@@ -12,8 +13,12 @@ export default class AddTreep extends Component {
       startDate: '',
       endDate: '',
       formattedDates: '',
-      hideMe: false
+      hideMe: false,
+      value: null
     }
+  }
+  onSelect = value => {
+    this.setState({ value: value })
   }
   handleInputChange(stateFieldName, e) {
     if (stateFieldName === 'hideMe') {
@@ -63,6 +68,7 @@ export default class AddTreep extends Component {
         <form>
           <label>Location</label>
           <input name='location' onChange={e => this.handleInputChange('location', e)} />
+          <PlaceSearchBox />
           <br />
           <Calendar onChange={this.onDatesRangeChange} selectRange={true} />
           <label>Hide me</label>

@@ -6,15 +6,18 @@ $bg-secondary-hover: rgba(0, 0, 0, 0.03);
 $alert-1: #ff7c7c;
 $font-color-primary: rgba(112, 112, 112, 0.9);
 
-// ----------------------------------------
-// To install Boostrap:
-// 1) Run in the client folder: $ npm i bootstrap
-// 2) Import bootstrap with the following line
-// @import 'bootstrap/scss/bootstrap';
-// ----------------------------------------
-
 // --------------------
 // Style reusable for all components
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -357,3 +360,5 @@ input:checked + .slider:before {
     text-decoration: none !important;
   }
 }
+
+// Style for Geocoder component
