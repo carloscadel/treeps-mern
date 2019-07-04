@@ -15,15 +15,16 @@ class Map extends Component {
     }
   }
 
-  initMap() {
+  async initMap() {
     // Embed the map where "this.mapRef" is defined in the render
+    var map = await new mapboxgl.Map({
+      container: this.state.mapRef.current,
+      style: 'mapbox://styles/mapbox/light-v9',
+      center: this.props.mapCenter, // lng,lat
+      zoom: 10
+    })
     this.setState({
-      map: new mapboxgl.Map({
-        container: this.state.mapRef.current,
-        style: 'mapbox://styles/mapbox/light-v9',
-        center: this.props.mapCenter, // lng,lat
-        zoom: 10
-      })
+      map
     })
 
     this.state.map.addControl(
@@ -38,7 +39,7 @@ class Map extends Component {
         }
       })
     )
-
+    // The following is just some sample data
     this.state.map.on('load', () => {
       this.state.map.addSource('treeps', {
         type: 'geojson',
