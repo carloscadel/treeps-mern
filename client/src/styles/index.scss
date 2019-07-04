@@ -179,6 +179,21 @@ input:checked + .slider:before {
   justify-content: center;
 }
 
+//---------------------
+//Style for NavBar component
+
+#nav {
+  display: flex; 
+  justify-content: space-between;
+  padding: 10px 15px;
+  #nav-links-container {
+    display: flex;
+    width: 33%;
+    justify-content: space-between;
+  }
+}
+
+
 // --------------------
 // Style for Home component
 .Home {

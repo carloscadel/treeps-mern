@@ -4,7 +4,7 @@ import TreepCard from '../TreepCard'
 import BtnAdd from '../BtnAdd'
 import ContactBtn from '../ContactBtn'
 import api from '../../api'
-import HomeHeader from '../partials/HomeHeader'
+import HomeHeader from '../partials/HomeHeader.jsx'
 
 class Home extends Component {
   constructor(props) {

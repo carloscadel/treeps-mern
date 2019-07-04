@@ -10,18 +10,20 @@ class Map extends Component {
       mapRef: React.createRef(),
       map: null,
       markers: [],
-      clusterRadius: 200,
+      clusterRadius: 0,
       geocoderResultId: null
     }
   }
 
   initMap() {
     // Embed the map where "this.mapRef" is defined in the render
-    this.state.map = new mapboxgl.Map({
-      container: this.state.mapRef.current,
-      style: 'mapbox://styles/mapbox/light-v9',
-      center: this.props.mapCenter, // lng,lat
-      zoom: 10
+    this.setState({
+      map: new mapboxgl.Map({
+        container: this.state.mapRef.current,
+        style: 'mapbox://styles/mapbox/light-v9',
+        center: this.props.mapCenter, // lng,lat
+        zoom: 10
+      })
     })
 
     this.state.map.addControl(
@@ -92,8 +94,6 @@ class Map extends Component {
       fillColor: '#29AB87',
       strokeWeight: 0
     }).addTo(this.state.map)
-
-    console.log(window)
 
     // myCircle.on('centerchanged', function(circleObj) {
     //   console.log('New center:', circleObj.getCenter())

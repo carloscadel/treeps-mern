@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Route, Switch, Link, NavLink } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Homepage from './pages/Homepage'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Home from './pages/Home'
 import AddTreep from './pages/AddTreep'
 import Treep from './pages/Treep'
-
+import NavBar from './partials/NavBar'
 import api from '../api'
 
 class App extends Component {
@@ -41,20 +41,7 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <header className='App-header'>
-          <h1 className='App-title'>treeps</h1>
-          <NavLink to='/' exact>
-            Homepage
-          </NavLink>
-          {api.isLoggedIn() && <NavLink to={!this.state.user ? '/' : '/' + this.state.user.username}>Home</NavLink>}
-          {!api.isLoggedIn() && <NavLink to='/signup'>Signup</NavLink>}
-          {!api.isLoggedIn() && <NavLink to='/login'>Login</NavLink>}
-          {api.isLoggedIn() && (
-            <Link to='/' onClick={e => this.handleLogoutClick(e)}>
-              Logout
-            </Link>
-          )}
-        </header>
+        <NavBar />
         <div className='App-body'>
           <Switch>
             <Route path='/' exact component={Homepage} />
