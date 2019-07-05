@@ -16,8 +16,7 @@ export default class Homepage extends Component {
           <Link to='/login'>Log in</Link> or <Link to='/signup'>Sign up</Link>
           </h4>
         </div>
-        
-      </div>
+      </div>  
     )
   }
 }

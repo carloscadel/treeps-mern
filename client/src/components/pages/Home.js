@@ -8,8 +8,6 @@ import HomeHeader from '../partials/HomeHeader.jsx'
 import { connect } from 'react-redux'
 import { addArticle } from '../../redux/actions'
 
-
-
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -26,6 +24,7 @@ class Home extends Component {
     api
       .getUserTreeps()
       .then(treeps => {
+        console.log(treeps)
         this.setState({
           treeps: treeps
         })
@@ -66,8 +65,15 @@ class Home extends Component {
           </div>
           <div className='trip-cards-slider'>
             {this.state.treeps.map(treep => (
-              <a key={treep._id} href={'/' + this.state.username + '/treeps/' + treep._id}>
-                <TreepCard location={treep.location} startDate={treep.startDate} endDate={treep.endDate} formattedDates={treep.formattedDates} />
+              <a
+                key={treep._id}
+                href={'/' + this.state.username + '/treeps/' + treep._id}>
+                <TreepCard
+                  location={treep.location}
+                  startDate={treep.startDate}
+                  endDate={treep.endDate}
+                  formattedDates={treep.formattedDates}
+                />
               </a>
             ))}
           </div>
@@ -86,11 +92,11 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return state
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
     addArticle: article => {
       dispatch(addArticle(article))
@@ -98,4 +104,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home)
