@@ -5,6 +5,10 @@ import BtnAdd from '../common/BtnAdd'
 import ContactBtn from '../ContactBtn'
 import api from '../../api'
 import HomeHeader from '../partials/HomeHeader.jsx'
+import { connect } from 'react-redux'
+import { addArticle } from '../../redux/actions'
+
+
 
 class Home extends Component {
   constructor(props) {
@@ -82,4 +86,16 @@ class Home extends Component {
   }
 }
 
-export default Home
+const mapStateToProps = (state) => {
+  return state
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addArticle: article => {
+      dispatch(addArticle(article))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
