@@ -13,7 +13,6 @@ import { addArticle } from '../../redux/actions'
 class Home extends Component {
   constructor(props) {
     super(props)
-    console.log(this.props)
     this.state = {
       treeps: [],
       user: null,
