@@ -1,3 +1,50 @@
+#homepage-container {
+  display: flex;
+  width: 100%;
+  height: 85vh;
+  background-image: url("/images/homepage/head-dive001.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: center; }
+
+#homepage-title {
+  font-family: adobe-handwriting-ernie, sans-serif;
+  font-size: 100px;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.95); }
+
+#homepage-main-content {
+  display: flex;
+  flex-flow: column;
+  padding: 50px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.95);
+  text-align: center; }
+  #homepage-main-content h1 {
+    font-weight: bold;
+    margin: 40px; }
+  #homepage-main-content a {
+    color: #00b2b2; }
+
+#nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px; }
+  #nav #nav__links-container {
+    display: flex;
+    width: auto;
+    justify-content: flex-end;
+    align-items: center; }
+    #nav #nav__links-container a {
+      margin: 0 15px; }
+  #nav #nav-title {
+    font-family: adobe-handwriting-ernie, sans-serif; }
+
 * {
   padding: 0;
   margin: 0; }
@@ -28,6 +75,13 @@ h5 {
 
 p {
   font-size: 14px; }
+
+.info {
+  background-color: #ffd000; }
+
+.info--danger {
+  background-color: #ff7c7c;
+  color: rgba(255, 255, 255, 0.9); }
 
 .separator-div {
   height: 1px;
@@ -133,15 +187,6 @@ input:checked + .slider:before {
   height: 100%;
   justify-content: center; }
 
-#nav {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 15px; }
-  #nav #nav-links-container {
-    display: flex;
-    width: 33%;
-    justify-content: space-between; }
-
 .Home {
   max-width: 1000px;
   height: 100vh; }
@@ -213,7 +258,7 @@ input:checked + .slider:before {
       margin: 0 10px; }
   .Home .trips-section .trip-cards-slider {
     display: flex;
-    width: 100vw;
+    width: 100%;
     overflow-x: auto; }
   .Home .trips-section .trip-card-wrapper {
     display: flex; }

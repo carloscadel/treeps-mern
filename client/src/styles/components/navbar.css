@@ -1,0 +1,13 @@
+#nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px; }
+  #nav #nav__links-container {
+    display: flex;
+    width: auto;
+    justify-content: flex-end;
+    align-items: center; }
+    #nav #nav__links-container a {
+      margin: 0 15px; }
+  #nav #nav-title {
+    font-family: adobe-handwriting-ernie, sans-serif; }

@@ -4,7 +4,18 @@ $primary: #00b2b2;
 $bg-secondary: rgba(0, 0, 0, 0.05);
 $bg-secondary-hover: rgba(0, 0, 0, 0.03);
 $alert-1: #ff7c7c;
+$info-1: #ffd000;
 $font-color-primary: rgba(112, 112, 112, 0.9);
+$font-color-primary-whitish: rgba(255, 255, 255, 0.9);
+// --------------------
+// Import CSS modules
+
+// Pages
+@import 'components/homepage.scss';
+
+// Components
+@import 'components/navbar.scss';
+
 
 // --------------------
 // Style reusable for all components
@@ -51,6 +62,15 @@ h5 {
 
 p {
   font-size: 14px;
+}
+
+.info {
+  background-color: $info-1;
+}
+
+.info--danger {
+  background-color: $alert-1;
+  color: $font-color-primary-whitish;
 }
 
 .separator-div {
@@ -179,21 +199,6 @@ input:checked + .slider:before {
   justify-content: center;
 }
 
-//---------------------
-//Style for NavBar component
-
-#nav {
-  display: flex; 
-  justify-content: space-between;
-  padding: 10px 15px;
-  #nav-links-container {
-    display: flex;
-    width: 33%;
-    justify-content: space-between;
-  }
-}
-
-
 // --------------------
 // Style for Home component
 .Home {
@@ -284,7 +289,7 @@ input:checked + .slider:before {
     }
     .trip-cards-slider {
       display: flex;
-      width: 100vw;
+      width: 100%;
       overflow-x: auto;
     }
     .trip-card-wrapper {

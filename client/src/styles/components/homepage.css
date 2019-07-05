@@ -1,0 +1,26 @@
+#homepage-container {
+  display: flex;
+  width: 100%; }
+
+#homepage-main-left-container {
+  display: flex;
+  width: 50%;
+  height: 500px;
+  background-image: url("/images/homepage/head-dive001.jpg");
+  background-size: cover;
+  background-position: center center; }
+
+#homepage-main-right-container {
+  display: flex;
+  width: 50%;
+  height: 500px;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-content: center; }
+  #homepage-main-right-container h1 {
+    font-weight: bold;
+    text-align: center; }
+  #homepage-main-right-container h4 {
+    text-align: center; }
+  #homepage-main-right-container a {
+    font-weight: bold; }

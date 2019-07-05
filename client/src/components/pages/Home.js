@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import TreepCard from '../TreepCard'
-import BtnAdd from '../BtnAdd'
+import BtnAdd from '../common/BtnAdd'
 import ContactBtn from '../ContactBtn'
 import api from '../../api'
 import HomeHeader from '../partials/HomeHeader.jsx'

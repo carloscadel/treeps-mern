@@ -1,0 +1,17 @@
+#nav {
+  display: flex; 
+  justify-content: space-between;
+  padding: 10px 15px;
+  #nav__links-container {
+    display: flex;
+    width: auto;
+    justify-content: flex-end;
+    align-items: center;
+    a {
+      margin: 0 15px;
+    }
+  }
+  #nav-title {
+    font-family: adobe-handwriting-ernie, sans-serif;
+  }
+}
