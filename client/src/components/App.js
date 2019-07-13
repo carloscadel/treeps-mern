@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import AddTreep from './pages/AddTreep'
 import Treep from './pages/Treep'
 import NavBar from './partials/NavBar'
+import Footer from './partials/Footer'
 import api from '../api'
 
 class App extends Component {
@@ -53,6 +54,7 @@ class App extends Component {
             <Route render={() => <h2>404</h2>} />
           </Switch>
         </div>
+        <Footer />
       </div>
     )
   }

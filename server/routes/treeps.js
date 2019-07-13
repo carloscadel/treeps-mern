@@ -1,5 +1,6 @@
 const express = require('express')
 const Treep = require('../models/Treep')
+const { isLoggedIn } = require("../middlewares")
 
 const router = express.Router()
 
@@ -9,7 +10,7 @@ router.use((req, res, next) => {
 })
 
 // Route to get all treeps from a user
-router.get('/', (req, res, next) => {
+router.get('/', isLoggedIn, (req, res, next) => {
   const _ownerId = req.user._id
   Treep.find({ _ownerId })
     .then(treeps => res.json(treeps))
@@ -17,7 +18,7 @@ router.get('/', (req, res, next) => {
 })
 
 // Route to get one treep
-router.get('/:treepId', (req, res, next) => {
+router.get('/:treepId', isLoggedIn, (req, res, next) => {
   Treep.findById(req.params.treepId)
     .then(treep => {
       res.json(treep)
@@ -25,7 +26,7 @@ router.get('/:treepId', (req, res, next) => {
     .catch(err => next(err))
 })
 
-router.get('/:treepId/metadata', (req, res, next) => {
+router.get('/:treepId/metadata', isLoggedIn, (req, res, next) => {
   const currentUser = req.user._id
   let usersId = []
   Treep.findById(req.params.treepId)

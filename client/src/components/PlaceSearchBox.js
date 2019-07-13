@@ -44,7 +44,7 @@ export default class PlaceSearchBox extends Component {
             {this.state.resultsList !== null &&
               this.state.resultsList.map(el => (
                 <li key={el.id}>
-                  <a href='#'>{el.place_name}</a>
+                  {/* <a href='#'>{el.place_name}</a> */}
                 </li>
               ))}
           </ul>

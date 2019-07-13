@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
-import MapboxCircle from 'mapbox-gl-circle'
+// import MapboxCircle from 'mapbox-gl-circle'
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 
 class Map extends Component {
@@ -75,26 +75,26 @@ class Map extends Component {
       })
     })
 
-    var myCircle0 = new MapboxCircle({ lat: 40, lng: 0 }, 10000, {
-      editable: false,
-      minRadius: 5000,
-      fillColor: '#29AB87',
-      strokeWeight: 0
-    }).addTo(this.state.map)
+    // var myCircle0 = new MapboxCircle({ lat: 40, lng: 0 }, 10000, {
+    //   editable: false,
+    //   minRadius: 5000,
+    //   fillColor: '#29AB87',
+    //   strokeWeight: 0
+    // }).addTo(this.state.map)
 
-    var myCircle1 = new MapboxCircle({ lat: 40.03, lng: 0 }, 15000, {
-      editable: false,
-      minRadius: 5000,
-      fillColor: '#29AB87',
-      strokeWeight: 0
-    }).addTo(this.state.map)
+    // var myCircle1 = new MapboxCircle({ lat: 40.03, lng: 0 }, 15000, {
+    //   editable: false,
+    //   minRadius: 5000,
+    //   fillColor: '#29AB87',
+    //   strokeWeight: 0
+    // }).addTo(this.state.map)
 
-    var myCircle3 = new MapboxCircle({ lat: 40.05, lng: 0.05 }, 20000, {
-      editable: false,
-      minRadius: 5000,
-      fillColor: '#29AB87',
-      strokeWeight: 0
-    }).addTo(this.state.map)
+    // var myCircle3 = new MapboxCircle({ lat: 40.05, lng: 0.05 }, 20000, {
+    //   editable: false,
+    //   minRadius: 5000,
+    //   fillColor: '#29AB87',
+    //   strokeWeight: 0
+    // }).addTo(this.state.map)
 
     // myCircle.on('centerchanged', function(circleObj) {
     //   console.log('New center:', circleObj.getCenter())

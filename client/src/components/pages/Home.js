@@ -24,7 +24,6 @@ class Home extends Component {
     api
       .getUserTreeps()
       .then(treeps => {
-        console.log(treeps)
         this.setState({
           treeps: treeps
         })

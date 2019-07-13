@@ -9,9 +9,9 @@ export default class Homepage extends Component {
           <h1>treeps</h1>
         </div>
         <div id='homepage-main-content'>
-          <h1>
+          <h3>
             Join a great community.<br/>Meet great people
-          </h1>
+          </h3>
           <h4>
           <Link to='/login'>Log in</Link> or <Link to='/signup'>Sign up</Link>
           </h4>
