@@ -1,6 +1,7 @@
 const express = require('express')
 const Treep = require('../models/Treep')
-const { isLoggedIn } = require("../middlewares")
+const { isLoggedIn } = require('../middlewares')
+const { humanizeDate } = require('../helpers/date-formatters')
 
 const router = express.Router()
 
@@ -10,8 +11,8 @@ router.use((req, res, next) => {
 })
 
 // Route to get all treeps from a user
-router.get('/', isLoggedIn, (req, res, next) => {
-  const _ownerId = req.user._id
+router.get('/user/:userId', isLoggedIn, (req, res, next) => {
+  const _ownerId = req.params.userId
   Treep.find({ _ownerId })
     .then(treeps => res.json(treeps))
     .catch(err => next(err))
@@ -31,20 +32,42 @@ router.get('/:treepId/metadata', isLoggedIn, (req, res, next) => {
   let usersId = []
   Treep.findById(req.params.treepId)
     .then(treep => {
-      let query = { $or: [{ startDate: { $gte: new Date(treep.startDate), $lte: new Date(treep.endDate) } }, { endDate: { $gte: new Date(treep.startDate), $lte: new Date(treep.endDate) } }, { $and: [{ startDate: { $lte: new Date(treep.startDate) } }, { endDate: { $gte: new Date(treep.endDate) } }] }] }
+      let query = {
+        $or: [
+          {
+            startDate: {
+              $gte: new Date(treep.startDate),
+              $lte: new Date(treep.endDate)
+            }
+          },
+          {
+            endDate: {
+              $gte: new Date(treep.startDate),
+              $lte: new Date(treep.endDate)
+            }
+          },
+          {
+            $and: [
+              { startDate: { $lte: new Date(treep.startDate) } },
+              { endDate: { $gte: new Date(treep.endDate) } }
+            ]
+          }
+        ]
+      }
       Treep.find(query)
         .then(treeps => {
           // Remove current treep from arrray and any other treeps whose owner is the current user:
           treeps = treeps.filter(el => {
-            return JSON.stringify(el._id) !== JSON.stringify(treep._id) && JSON.stringify(el._ownerId) !== JSON.stringify(currentUser)
+            return (
+              JSON.stringify(el._id) !== JSON.stringify(treep._id) &&
+              JSON.stringify(el._ownerId) !== JSON.stringify(currentUser)
+            )
           })
-          console.log(treeps)
           treeps.forEach(treep => {
             if (!usersId.includes(JSON.stringify(treep._ownerId))) {
               usersId.push(JSON.stringify(treep._ownerId))
             }
           })
-          console.log(usersId)
           res.json(treeps)
         })
         .catch(err => next(err))
@@ -56,7 +79,20 @@ router.get('/:treepId/metadata', isLoggedIn, (req, res, next) => {
 router.post('/add', (req, res, next) => {
   // Save dates range already formatted
   let { _ownerId, name, location, startDate, endDate, hideMe } = req.body
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec'
+  ]
   const day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
   const startD = new Date(startDate)
   const endD = new Date(endDate)
@@ -83,7 +119,15 @@ router.post('/add', (req, res, next) => {
       .toString()
       .substring(2)
 
-  Treep.create({ _ownerId, name, location, startDate, endDate, formattedDates, hideMe })
+  Treep.create({
+    _ownerId,
+    name,
+    location,
+    startDate,
+    endDate,
+    formattedDates,
+    hideMe
+  })
     .then(treep => {
       res.json({
         success: true,
