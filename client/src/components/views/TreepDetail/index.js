@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import api from '../../api'
-import Map from '../Map'
+import api from '../../../api'
+import Map from '../../partials/Map'
 
 export default class Treep extends Component {
   constructor(props) {

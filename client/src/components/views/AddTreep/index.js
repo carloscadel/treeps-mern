@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import api from '../../api'
+import api from '../../../api'
 import Calendar from 'react-calendar'
-import PlaceSearchBox from '../PlaceSearchBox'
+import PlaceSearchBox from '../../partials/PlaceSearchBox'
 
 export default class AddTreep extends Component {
   constructor(props) {
@@ -67,14 +67,24 @@ export default class AddTreep extends Component {
       <div>
         <form>
           <label>Location</label>
-          <input name='location' onChange={e => this.handleInputChange('location', e)} />
+          <input
+            name='location'
+            onChange={e => this.handleInputChange('location', e)}
+          />
           <PlaceSearchBox />
           <br />
           <Calendar onChange={this.onDatesRangeChange} selectRange={true} />
           <label>Hide me</label>
-          <input type='checkbox' checked={this.state.hideMe} onChange={e => this.handleInputChange('hideMe', e)} />
+          <input
+            type='checkbox'
+            checked={this.state.hideMe}
+            onChange={e => this.handleInputChange('hideMe', e)}
+          />
           <br />
-          <button className='btn-add' type='submit' onClick={e => this.handleClick(e)}>
+          <button
+            className='btn-add'
+            type='submit'
+            onClick={e => this.handleClick(e)}>
             Submit
           </button>
         </form>

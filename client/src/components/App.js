@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Homepage from './pages/Homepage'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
-import Home from './pages/Home'
-import AddTreep from './pages/AddTreep'
-import Treep from './pages/Treep'
+import Homepage from './views/Homepage/'
+import Login from './views/Login/'
+import Signup from './views/Signup/'
+import Home from './views/Home/'
+import AddTreep from './views/AddTreep/'
+import Treep from './views/TreepDetail/'
 import NavBar from './partials/NavBar'
 import Footer from './partials/Footer'
 import api from '../api'
@@ -47,9 +47,33 @@ class App extends Component {
           <Switch>
             <Route path='/' exact component={Homepage} />
             <Route path='/signup' component={Signup} />
-            <Route path='/login' render={props => <Login {...props} onLogin={this.getCurrentUser} />} />
-            <Route path='/:username' exact render={props => <Home {...props} user={this.state.user} onUserChange={user => this.userSetState(user)} />} />
-            <Route path='/:username/treeps/add' exact render={props => <AddTreep user={this.state.user} onUserChange={user => this.userSetState(user)} />} />
+            <Route
+              path='/login'
+              render={props => (
+                <Login {...props} onLogin={this.getCurrentUser} />
+              )}
+            />
+            <Route
+              path='/:username'
+              exact
+              render={props => (
+                <Home
+                  {...props}
+                  user={this.state.user}
+                  onUserChange={user => this.userSetState(user)}
+                />
+              )}
+            />
+            <Route
+              path='/:username/treeps/add'
+              exact
+              render={props => (
+                <AddTreep
+                  user={this.state.user}
+                  onUserChange={user => this.userSetState(user)}
+                />
+              )}
+            />
             <Route path='/:username/treeps/:id' exact component={Treep} />
             <Route render={() => <h2>404</h2>} />
           </Switch>

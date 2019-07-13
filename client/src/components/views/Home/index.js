@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import TreepCard from '../TreepCard'
-import BtnAdd from '../common/BtnAdd'
-import ContactBtn from '../ContactBtn'
-import api from '../../api'
-import HomeHeader from '../partials/HomeHeader.jsx'
+import BtnAdd from '../../partials/BtnAdd'
+import ContactBtn from '../../partials/ContactBtn'
+import api from '../../../api'
+import HomeHeader from '../../partials/HomeHeader.jsx'
+import HomeTreepsBoard from '../../partials/HomeTreepsBoard'
 import { connect } from 'react-redux'
-import { addArticle } from '../../redux/actions'
+import { addArticle } from '../../../redux/actions'
 
 class Home extends Component {
   constructor(props) {
@@ -62,20 +62,10 @@ class Home extends Component {
               <BtnAdd />
             </Link>
           </div>
-          <div className='trip-cards-slider'>
-            {this.state.treeps.map(treep => (
-              <a
-                key={treep._id}
-                href={'/' + this.state.username + '/treeps/' + treep._id}>
-                <TreepCard
-                  location={treep.location}
-                  startDate={treep.startDate}
-                  endDate={treep.endDate}
-                  formattedDates={treep.formattedDates}
-                />
-              </a>
-            ))}
-          </div>
+          <HomeTreepsBoard
+            treeps={this.state.treeps}
+            username={this.state.username}
+          />
         </section>
         <div className='separator-div' />
         <section className='contacts-section'>

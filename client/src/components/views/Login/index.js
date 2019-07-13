@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import api from '../../api'
+import api from '../../../api'
 
 class Login extends Component {
   constructor(props) {
@@ -34,11 +34,25 @@ class Login extends Component {
       <div className='Login'>
         <h2>Login</h2>
         <form>
-          Username: <input type='text' value={this.state.username} onChange={e => this.handleInputChange('username', e)} /> <br />
-          Password: <input type='password' value={this.state.password} onChange={e => this.handleInputChange('password', e)} /> <br />
+          Username:{' '}
+          <input
+            type='text'
+            value={this.state.username}
+            onChange={e => this.handleInputChange('username', e)}
+          />{' '}
+          <br />
+          Password:{' '}
+          <input
+            type='password'
+            value={this.state.password}
+            onChange={e => this.handleInputChange('password', e)}
+          />{' '}
+          <br />
           <button onClick={e => this.handleClick(e)}>Login</button>
         </form>
-        {this.state.message && <div className='info--danger'>{this.state.message}</div>}
+        {this.state.message && (
+          <div className='info--danger'>{this.state.message}</div>
+        )}
       </div>
     )
   }
