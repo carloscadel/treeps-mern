@@ -17,9 +17,6 @@ class App extends Component {
       user: null
     }
   }
-  userSetState = user => {
-    this.setState({ user })
-  }
   getCurrentUser = () => {
     api
       .getCurrentUser()
@@ -56,23 +53,12 @@ class App extends Component {
             <Route
               path='/:username'
               exact
-              render={props => (
-                <Home
-                  {...props}
-                  user={this.state.user}
-                  onUserChange={user => this.userSetState(user)}
-                />
-              )}
+              render={props => <Home {...props} user={this.state.user} />}
             />
             <Route
               path='/:username/treeps/add'
               exact
-              render={props => (
-                <AddTreep
-                  user={this.state.user}
-                  onUserChange={user => this.userSetState(user)}
-                />
-              )}
+              render={props => <AddTreep {...props} user={this.state.user} />}
             />
             <Route path='/:username/treeps/:id' exact component={Treep} />
             <Route render={() => <h2>404</h2>} />

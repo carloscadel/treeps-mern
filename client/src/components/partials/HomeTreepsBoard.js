@@ -9,13 +9,8 @@ export default class HomeTreepsBoard extends Component {
           {this.props.treeps.map(treep => (
             <a
               key={treep._id}
-              href={'/' + this.props.username + '/treeps/' + treep._id}>
-              <TreepCard
-                location={treep.location}
-                startDate={treep.startDate}
-                endDate={treep.endDate}
-                formattedDates={treep.formattedDates}
-              />
+              href={`/${this.props.user.username}/treeps/${treep._id}`}>
+              <TreepCard treep={treep} />
             </a>
           ))}
         </div>

@@ -13,34 +13,33 @@ class Home extends Component {
     super(props)
     this.state = {
       treeps: [],
-      user: null,
-      userId: '',
-      username: '',
-      userStatus: ''
+      user: null
     }
   }
+  getCurrentUserAndTreeps() {
+    api.getCurrentUser().then(user => {
+      this.setState(
+        {
+          user
+        },
+        this.getCurrentUserTreeps(user._id)
+      )
+    })
+  }
 
-  getUserTreeps() {
+  getCurrentUserTreeps(userId) {
     api
-      .getUserTreeps()
+      .getUserTreeps(userId)
       .then(treeps => {
         this.setState({
-          treeps: treeps
+          treeps
         })
       })
       .catch(err => console.log(err))
   }
 
   componentDidMount() {
-    api.getCurrentUser().then(user => {
-      this.setState({
-        user: user,
-        userId: user._id,
-        username: user.username,
-        userStatus: user.userStatus
-      })
-    })
-    this.getUserTreeps()
+    this.getCurrentUserAndTreeps()
   }
 
   render() {
@@ -58,14 +57,11 @@ class Home extends Component {
         <section className='trips-section'>
           <div className='trips-title-div'>
             <h4>Treeps</h4>
-            <Link to={'/' + this.state.username + '/treeps/add'}>
+            <Link to={`/${this.state.user.username}/treeps/add`}>
               <BtnAdd />
             </Link>
           </div>
-          <HomeTreepsBoard
-            treeps={this.state.treeps}
-            username={this.state.username}
-          />
+          <HomeTreepsBoard treeps={this.state.treeps} user={this.state.user} />
         </section>
         <div className='separator-div' />
         <section className='contacts-section'>

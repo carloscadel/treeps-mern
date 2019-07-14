@@ -1,7 +1,10 @@
 import axios from 'axios'
 
 const service = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5000/api',
+  baseURL:
+    process.env.NODE_ENV === 'production'
+      ? '/api'
+      : 'http://localhost:5000/api',
   withCredentials: true
 })
 
@@ -66,9 +69,9 @@ export default {
     return service.get('/logout')
   },
 
-  getUserTreeps() {
+  getUserTreeps(userId) {
     return service
-      .get('/treeps')
+      .get(`/treeps/user/${userId}`)
       .then(res => res.data)
       .catch(errHandler)
   },
