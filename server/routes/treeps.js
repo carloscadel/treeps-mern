@@ -1,7 +1,6 @@
 const express = require('express')
 const Treep = require('../models/Treep')
 const { isLoggedIn } = require('../middlewares')
-const { humanizeDate } = require('../helpers/date-formatters')
 
 const router = express.Router()
 
@@ -77,47 +76,8 @@ router.get('/:treepId/metadata', isLoggedIn, (req, res, next) => {
 
 // Route to add a treep
 router.post('/add', (req, res, next) => {
-  // Save dates range already formatted
-  let { _ownerId, name, location, startDate, endDate, hideMe } = req.body
-  const months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec'
-  ]
-  const day = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-  const startD = new Date(startDate)
-  const endD = new Date(endDate)
-  const formattedDates =
-    day[startD.getDay()] +
-    ' ' +
-    startD.getDate() +
-    ' ' +
-    months[startD.getMonth()] +
-    " '" +
-    startD
-      .getFullYear()
-      .toString()
-      .substring(2) +
-    ' - ' +
-    day[endD.getDay()] +
-    ' ' +
-    endD.getDate() +
-    ' ' +
-    months[endD.getMonth()] +
-    " '" +
-    endD
-      .getFullYear()
-      .toString()
-      .substring(2)
+  const startDate = new Date(startDate)
+  const endDate = new Date(endDate)
 
   Treep.create({
     _ownerId,
@@ -125,7 +85,6 @@ router.post('/add', (req, res, next) => {
     location,
     startDate,
     endDate,
-    formattedDates,
     hideMe
   })
     .then(treep => {
