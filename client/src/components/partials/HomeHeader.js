@@ -1,37 +1,28 @@
 import React, { Component } from 'react'
 import api from '../../api'
+import { calculateAge } from '../../helpers/date-formatters'
 
 export default class HomeHeader extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      userId: this.props.user._id,
-      username: this.props.user.username,
-      userStatus: this.props.user.userStatus,
-      userDob: this.props.user.dob,
+      userStatusInput: this.props.user.userStatus,
       profImgPath: this.props.user.profImgPath
     }
   }
-  handleStatusChange = e => {
+  handleStatusInputChange = e => {
     e.preventDefault()
     this.setState({
-      userStatus: e.target.value
+      userStatusInput: e.target.value
     })
   }
   handleStatusSubmit = e => {
     e.preventDefault()
-    let data = { _userId: this.state.userId, currentUserStatus: this.state.userStatus }
-    api.changeUserStatus(data)
+    this.props.onUserStatusSubmit(this.state.userStatusInput)
     document.activeElement.blur()
   }
-  calculateAge() {
-    var today = new Date()
-    var dob = new Date(this.state.userDob)
-    return Math.floor((today - dob) / 1000 / 3600 / 24 / 365.25)
-  }
   imagePicker = e => {
-    // e.preventDefault()
-    api.addUserPicture(e.target.files[0], this.state.userId).then(res =>
+    api.addUserPicture(e.target.files[0], this.props.user._id).then(res =>
       this.setState({
         profImgPath: res.picture
       })
@@ -45,21 +36,35 @@ export default class HomeHeader extends Component {
           <form method='post' encType='multipart/form-data'>
             <div className='header-prof-pic-div'>
               <label>
-                <img className='header-prof-pic' src={this.state.profImgPath} alt='Profile pic' />
-                <input type='file' name='photo' onChange={this.imagePicker} style={{ display: 'none' }} />
+                <img
+                  className='header-prof-pic'
+                  src={this.props.user.profImgPath}
+                  alt='Profile pic'
+                />
+                <input
+                  type='file'
+                  name='photo'
+                  onChange={this.imagePicker}
+                  style={{ display: 'none' }}
+                />
               </label>
             </div>
           </form>
           <div className='header-prof-text-div'>
             <div className='header-prof-text-name-div'>
               <h3>
-                {this.state.username}, {this.calculateAge()}
+                {this.props.user.username}, {calculateAge(this.props.user.dob)}
               </h3>
             </div>
             <div className='header-prof-status-input-div'>
               <form autoComplete='off' onSubmit={this.handleStatusSubmit}>
                 <p>
-                  <input id='header-prof-status-input-box' type='text' value={this.state.userStatus} onChange={this.handleStatusChange} />
+                  <input
+                    id='header-prof-status-input-box'
+                    type='text'
+                    value={this.state.userStatusInput}
+                    onChange={this.handleStatusInputChange}
+                  />
                 </p>
               </form>
             </div>

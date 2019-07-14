@@ -2,13 +2,6 @@ import React, { Component } from 'react'
 import { humanizeDate } from '../../helpers/date-formatters'
 
 export default class TreepCard extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      startDate: '',
-      endDate: ''
-    }
-  }
   render() {
     return (
       <div className='trip-card-wrapper'>

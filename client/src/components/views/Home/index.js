@@ -1,9 +1,12 @@
+//----------
+// Home View
+//----------
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import BtnAdd from '../../partials/BtnAdd'
 import ContactBtn from '../../partials/ContactBtn'
 import api from '../../../api'
-import HomeHeader from '../../partials/HomeHeader.jsx'
+import HomeHeader from '../../partials/HomeHeader'
 import HomeTreepsBoard from '../../partials/HomeTreepsBoard'
 import { connect } from 'react-redux'
 import { addArticle } from '../../../redux/actions'
@@ -22,12 +25,11 @@ class Home extends Component {
         {
           user
         },
-        this.getCurrentUserTreeps(user._id)
+        this.getUserTreeps(user._id)
       )
     })
   }
-
-  getCurrentUserTreeps(userId) {
+  getUserTreeps(userId) {
     api
       .getUserTreeps(userId)
       .then(treeps => {
@@ -37,7 +39,13 @@ class Home extends Component {
       })
       .catch(err => console.log(err))
   }
-
+  submitUserStatus = userStatus => {
+    api.changeUserStatus({
+      _userId: this.state.user._id,
+      currentUserStatus: userStatus
+    })
+    document.activeElement.blur()
+  }
   componentDidMount() {
     this.getCurrentUserAndTreeps()
   }
@@ -52,7 +60,10 @@ class Home extends Component {
     }
     return (
       <div className='Home'>
-        <HomeHeader user={this.state.user} />
+        <HomeHeader
+          user={this.state.user}
+          onUserStatusSubmit={this.submitUserStatus}
+        />
         <div className='separator-div' />
         <section className='trips-section'>
           <div className='trips-title-div'>
