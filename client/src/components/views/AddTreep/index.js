@@ -13,7 +13,6 @@ export default class AddTreep extends Component {
       _ownerId: '',
       name: '',
       treepName: '',
-      treepRadius: 0,
       startDate: '',
       endDate: '',
       hideMe: false,
@@ -71,12 +70,10 @@ export default class AddTreep extends Component {
             name='treep-name'
             onChange={e => this.handleInputChange('treepName', e)}
           />
-          <label>Radius</label>
-          <input
-            name='treep-radius'
-            onChange={e => this.handleInputChange('treepRadius', e)}
+          <Mapbox
+            initialMapCenter={this.state.initialMapCenter}
+            treepRadius={this.state.treepRadius}
           />
-          <Mapbox initialMapCenter={this.state.initialMapCenter} />
           <br />
           <Calendar onChange={this.onDatesRangeChange} selectRange={true} />
           <label>Hide me</label>
