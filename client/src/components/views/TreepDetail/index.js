@@ -3,7 +3,7 @@
 //----------
 import React, { Component } from 'react'
 import api from '../../../api'
-import Map from '../../partials/Map'
+import Mapbox from '../../partials/Mapbox'
 
 export default class Treep extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export default class Treep extends Component {
       endDate: '',
       formattedDates: '',
       treepUsers: [],
-      mapCenter: [0, 40]
+      initialMapCenter: [0, 40]
     }
   }
 
@@ -56,7 +56,7 @@ export default class Treep extends Component {
         <h4>{this.state.location}</h4>
         <p>{this.state.formattedDates}</p>
         <button onClick={this.handleTreepDelete}>Delete treep</button>
-        <Map mapCenter={this.state.mapCenter} />
+        <Mapbox initialMapCenter={this.state.initialMapCenter} />
       </div>
     )
   }

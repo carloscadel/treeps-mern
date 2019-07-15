@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl.js'
-// import MapboxCircle from 'mapbox-gl-circle'
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 
-class Map extends Component {
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
+// import MapboxCircle from 'mapbox-gl-circle'
+
+class Mapbox extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -11,26 +12,31 @@ class Map extends Component {
       map: null,
       markers: [],
       clusterRadius: 0,
-      geocoderResultId: null
+      geocoderResultId: null,
+      mapCenter: this.props.initialMapCenter // lng,lat
     }
   }
 
   async initMap() {
+    // This is a the default public token with read-only scopes. It can be shown to the client
+    mapboxgl.accessToken =
+      'pk.eyJ1IjoiY2FybG9zY2FkZWwiLCJhIjoiY2p5M3NpeWQxMGN5MTNnbzM2MW1jbDcyeCJ9.8ggod1kZoiXnKofrO_JzWQ'
+
     // Embed the map where "this.mapRef" is defined in the render
-    var map = await new mapboxgl.Map({
+    const map = await new mapboxgl.Map({
       container: this.state.mapRef.current,
-      style: 'mapbox://styles/mapbox/light-v9',
-      center: this.props.mapCenter, // lng,lat
+      style: 'mapbox://styles/mapbox/streets-v9',
+      center: this.state.mapCenter, // lng,lat
       zoom: 10
     })
+
     this.setState({
       map
     })
 
     this.state.map.addControl(
       new MapboxGeocoder({
-        accessToken:
-          'pk.eyJ1IjoiY2FybG9zY2FkZWwiLCJhIjoiY2p0Mzc3dnhtMG9nYjQzcGcwcmt1NjVsdSJ9.9CPXMbZlkZGjNFmFMWCMCQ'
+        accessToken: mapboxgl.accessToken
       }).on('result', res => {
         // Avoid the issue consisting on the result being invoked twice
         if (this.state.geocoderResultId !== res.result.id) {
@@ -127,14 +133,13 @@ class Map extends Component {
   }
 
   render() {
+    const mapStyle = { width: '100%', height: '100%' }
     return (
-      <div
-        ref={this.state.mapRef}
-        className='map'
-        style={{ width: 400, height: 400 }}
-      />
+      <div className='mapbox-container'>
+        <div ref={this.state.mapRef} style={mapStyle} />
+      </div>
     )
   }
 }
 
-export default Map
+export default Mapbox
