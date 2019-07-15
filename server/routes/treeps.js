@@ -75,15 +75,14 @@ router.get('/:treepId/metadata', isLoggedIn, (req, res, next) => {
 
 // Route to add a treep
 router.post('/add', (req, res, next) => {
-  const { _ownerId, name, location, startDate, endDate, hideMe } = req.body
+  const { _ownerId, name, location, startDate, endDate } = req.body
 
   Treep.create({
     _ownerId,
     name,
     location,
     startDate,
-    endDate,
-    hideMe
+    endDate
   })
     .then(treep => {
       res.json({

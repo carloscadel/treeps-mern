@@ -9,11 +9,12 @@ class Mapbox extends Component {
     this.state = {
       mapRef: React.createRef(),
       map: null,
-      newTreepMarker: null,
+      pickedCoords: null,
       newTreepCircle: null,
-      newTreepCircleCenter: this.props.initialMapCenter,
-      newTreepCircleRadius: 1000,
-      mapCenter: this.props.initialMapCenter, // [lng,lat]
+      newTreepCircleCenter: [-0.3763, 39.4699],
+      newTreepCircleRadius: 3000,
+      mapCenter: [-0.3763, 39.4699], // [lng,lat],
+      treepCircleIsEditable: this.props.treepCircleIsEditable,
       treeps: []
     }
   }
@@ -23,100 +24,83 @@ class Mapbox extends Component {
     mapboxgl.accessToken =
       'pk.eyJ1IjoiY2FybG9zY2FkZWwiLCJhIjoiY2p5M3NpeWQxMGN5MTNnbzM2MW1jbDcyeCJ9.8ggod1kZoiXnKofrO_JzWQ'
 
-    // Embed the map where "this.mapRef" is defined in the render
     var map = await new mapboxgl.Map({
       container: this.state.mapRef.current,
       style: 'mapbox://styles/mapbox/streets-v9',
       center: this.state.mapCenter, // [lng,lat]
-      zoom: 13
-    })
-
-    map.addControl(
-      new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken,
-        mapboxgl: mapboxgl
-      })
-    )
-
-    map.on('click', e => {
-      this.setState({
-        newTreepCircleCenter: [e.lngLat.lng, e.lngLat.lat]
-      })
-      this.drawNewTreepMarker()
-      this.drawTreepCircle()
+      zoom: 12
     })
 
     this.setState({
       map
     })
-  }
 
-  drawNewTreepMarker = () => {
-    this.state.newTreepMarker && this.state.newTreepMarker.remove()
-
-    const marker = new mapboxgl.Marker({ draggable: true })
-      .setLngLat(this.state.newTreepCircleCenter)
-      .addTo(this.state.map)
-    marker.on('dragend', e => {
+    this.state.map.on('click', e => {
       this.setState({
-        newTreepCircleCenter: [marker.getLngLat().lng, marker.getLngLat().lat]
+        newTreepCircleCenter: [e.lngLat.lng, e.lngLat.lat]
       })
-      this.drawTreepCircle()
+      this.drawNewTreepCircle()
     })
-    this.setState({ newTreepMarker: marker })
   }
 
-  drawTreepCircle = () => {
-    this.state.newTreepCircle && this.state.newTreepCircle.remove()
+  addMapGeocoder() {
+    this.state.map.addControl(
+      new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
+      })
+    )
+  }
 
+  createNewTreepCircle = () => {
     const newTreepCircle = new MapboxCircle(
       this.state.newTreepCircleCenter,
       this.state.newTreepCircleRadius,
       {
-        editable: true,
+        editable: this.props.treepCircleIsEditable,
         minRadius: 100,
         maxRadius: 25000,
         fillColor: '#29AB87',
         strokeOpacity: 0
       }
-    ).addTo(this.state.map)
-    newTreepCircle.on('centerchanged', circleObj => {
-      this.setState({ newTreepCircleCenter: circleObj.getCenter() })
-    })
-    newTreepCircle.on('radiuschanged', circleObj => {
-      this.setState({ newTreepCircleRadius: circleObj.getRadius() })
-    })
+    )
+    if (this.props.treepCircleIsEditable) {
+      newTreepCircle
+        .on('centerchanged', circleObj => {
+          this.setState({
+            newTreepCircleCenter: circleObj.getCenter(),
+            newTreepCircle: newTreepCircle
+          })
+          this.props.onTreepCircleChange(newTreepCircle)
+        })
+        .on('radiuschanged', circleObj => {
+          this.setState({
+            newTreepCircleRadius: circleObj.getRadius(),
+            newTreepCircle: newTreepCircle
+          })
+          this.props.onTreepCircleChange(newTreepCircle)
+        })
+      this.props.onTreepCircleChange(newTreepCircle)
+    }
     this.setState({ newTreepCircle })
+    return newTreepCircle
   }
 
-  handleInputChange(stateFieldName, e) {
-    this.setState(
-      {
-        [stateFieldName]: e.target.value
-      },
-      () => {
-        if (stateFieldName === 'newTreepCircleRadius') {
-          this.drawTreepCircle()
-        }
-      }
-    )
+  drawNewTreepCircle = () => {
+    this.state.newTreepCircle && this.state.newTreepCircle.remove()
+    this.createNewTreepCircle().addTo(this.state.map)
   }
 
   async componentDidMount() {
     await this.initMap()
-    this.drawTreepCircle()
-    this.drawNewTreepMarker()
+    this.addMapGeocoder()
+    this.drawNewTreepCircle()
   }
 
   render() {
     const mapStyle = { width: '100%', height: '100%' }
     return (
       <div className='mapbox-container'>
-        <label>Radius</label>
-        <input
-          name='treep-radius'
-          onChange={e => this.handleInputChange('newTreepCircleRadius', e)}
-        />
         <div ref={this.state.mapRef} style={mapStyle} />
       </div>
     )

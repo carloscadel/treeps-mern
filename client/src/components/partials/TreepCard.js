@@ -7,7 +7,7 @@ export default class TreepCard extends Component {
       <div className='trip-card-wrapper'>
         <div className='trip-card'>
           <div className='trip-card-top-row'>
-            <p>{this.props.treep.location}</p>
+            <p>{this.props.treep.name}</p>
           </div>
           <div className='trip-card-mid-row'>
             <p>

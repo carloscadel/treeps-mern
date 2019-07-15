@@ -7,7 +7,17 @@ const treepSchema = new Schema(
     location: String,
     startDate: Date,
     endDate: Date,
-    formattedDates: String,
+    treepCollection: { type: Schema.Types.ObjectId, ref: 'treepCollection' },
+    location: {
+      coordinates: {
+        type: [Number],
+        required: true
+      },
+      radius: {
+        type: Number,
+        required: true
+      }
+    },
     _ownerId: { type: Schema.Types.ObjectId, ref: 'User' }
   },
   {

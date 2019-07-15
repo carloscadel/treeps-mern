@@ -43,7 +43,7 @@ export default class Treep extends Component {
     this.getTreepMetadata()
     api.getOneTreepById(this.props.match.params.id).then(res => {
       this.setState({
-        location: res.location,
+        name: res.name,
         startDate: res.startDate,
         endDate: res.endDate
       })
@@ -57,7 +57,7 @@ export default class Treep extends Component {
           {humanizeDate(this.state.startDate, "dddd D MMM 'YY")} -{' '}
           {humanizeDate(this.state.endDate, "dddd D MMM 'YY")}
         </p>
-        <Mapbox initialMapCenter={this.state.initialMapCenter} />
+        <Mapbox treepCircleIsEditable={false} />
         <button onClick={this.handleTreepDelete}>
           Delete treep<i className='material-icons'>delete_outline</i>
         </button>
