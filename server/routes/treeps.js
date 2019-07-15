@@ -5,7 +5,6 @@ const { isLoggedIn } = require('../middlewares')
 const router = express.Router()
 
 router.use((req, res, next) => {
-  console.log('DEBUG routes/treeps')
   next()
 })
 
@@ -76,8 +75,7 @@ router.get('/:treepId/metadata', isLoggedIn, (req, res, next) => {
 
 // Route to add a treep
 router.post('/add', (req, res, next) => {
-  const startDate = new Date(startDate)
-  const endDate = new Date(endDate)
+  const { _ownerId, name, location, startDate, endDate, hideMe } = req.body
 
   Treep.create({
     _ownerId,

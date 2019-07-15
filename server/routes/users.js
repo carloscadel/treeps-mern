@@ -11,26 +11,31 @@ router.get('/current', isLoggedIn, (req, res, next) => {
 })
 
 router.post('/changeuserstatus', isLoggedIn, (req, res, next) => {
-  User.findByIdAndUpdate(req.body._userId, { userStatus: req.body.currentUserStatus }).then(data => {
+  User.findByIdAndUpdate(req.body._userId, {
+    userStatus: req.body.currentUserStatus
+  }).then(data => {
     res.json({
       success: true,
       data
     })
   })
-  // console.log(res)
 })
 
-router.post('/:id/profpicupload', uploadCloud.single('picture'), (req, res, next) => {
-  User.findByIdAndUpdate(req.params.id, {
-    profImgPath: req.file.url,
-    public_id: req.file.public_id,
-    profImgName: req.file.originalname
-  }).then(() => {
-    res.json({
-      success: true,
-      picture: req.file.url
+router.post(
+  '/:id/profpicupload',
+  uploadCloud.single('picture'),
+  (req, res, next) => {
+    User.findByIdAndUpdate(req.params.id, {
+      profImgPath: req.file.url,
+      public_id: req.file.public_id,
+      profImgName: req.file.originalname
+    }).then(() => {
+      res.json({
+        success: true,
+        picture: req.file.url
+      })
     })
-  })
-})
+  }
+)
 
 module.exports = router

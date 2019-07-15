@@ -29,7 +29,8 @@ class Map extends Component {
 
     this.state.map.addControl(
       new MapboxGeocoder({
-        accessToken: 'pk.eyJ1IjoiY2FybG9zY2FkZWwiLCJhIjoiY2p0Mzc3dnhtMG9nYjQzcGcwcmt1NjVsdSJ9.9CPXMbZlkZGjNFmFMWCMCQ'
+        accessToken:
+          'pk.eyJ1IjoiY2FybG9zY2FkZWwiLCJhIjoiY2p0Mzc3dnhtMG9nYjQzcGcwcmt1NjVsdSJ9.9CPXMbZlkZGjNFmFMWCMCQ'
       }).on('result', res => {
         // Avoid the issue consisting on the result being invoked twice
         if (this.state.geocoderResultId !== res.result.id) {
@@ -126,8 +127,13 @@ class Map extends Component {
   }
 
   render() {
-    console.log(this.state.geocoderResultId)
-    return <div ref={this.state.mapRef} className='map' style={{ width: 400, height: 400 }} />
+    return (
+      <div
+        ref={this.state.mapRef}
+        className='map'
+        style={{ width: 400, height: 400 }}
+      />
+    )
   }
 }
 

@@ -45,7 +45,6 @@ export default {
         // If we have localStorage.getItem('user') saved, the application will consider we are loggedin
         localStorage.setItem('user', JSON.stringify(res.data))
         return res.data
-        // console.log(res.data)
       })
       .catch(errHandler)
   },
@@ -113,6 +112,13 @@ export default {
           'Content-Type': 'multipart/form-data'
         }
       })
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  getMapboxSearchSuggestions(searchQuery) {
+    return service
+      .get(`/mapbox/${searchQuery}`)
       .then(res => res.data)
       .catch(errHandler)
   }

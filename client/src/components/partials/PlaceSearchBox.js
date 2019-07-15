@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import api from '../../api'
 
 export default class PlaceSearchBox extends Component {
   constructor(props) {
@@ -7,9 +7,8 @@ export default class PlaceSearchBox extends Component {
     this.state = {
       baseURL: 'https://api.mapbox.com/geocoding/v5/mapbox.places/',
       searchInput: '',
-      access_token: 'pk.eyJ1IjoiY2FybG9zY2FkZWwiLCJhIjoiY2p0Mzc3dnhtMG9nYjQzcGcwcmt1NjVsdSJ9.9CPXMbZlkZGjNFmFMWCMCQ',
       autocomplete: true,
-      resultsList: null
+      suggestions: null
     }
   }
 
@@ -27,25 +26,30 @@ export default class PlaceSearchBox extends Component {
   }
 
   apiSearch = () => {
-    axios.get(this.state.baseURL + this.state.searchInput + '.json?access_token=' + this.state.access_token + '&autocomplete=true&types=country%2Cregion%2Cdistrict%2Cpostcode%2Clocality%2Cplace%2Cpoi%2Cneighborhood%2Caddress').then(res => {
-      this.setState({
-        resultsList: [...res.data.features]
-      })
-      console.log(this.state.resultsList)
-    })
+    api
+      .getMapboxSearchSuggestions(this.state.searchInput)
+      .then(suggestions => {
+        this.setState({ suggestions: [...suggestions] })
+      }, console.log(this.state.suggestions))
+      .catch(err => console.log(err))
   }
 
   render() {
     return (
       <div>
-        <input type='text' autoComplete='off' placeholder='Where are you going?' name='searchInput' value={this.state.searchInput} onChange={this.onInputChange} />
+        <input
+          type='text'
+          autoComplete='off'
+          placeholder='Where are you going?'
+          name='searchInput'
+          value={this.state.searchInput}
+          onChange={this.onInputChange}
+        />
         <div id='results-list'>
           <ul>
-            {this.state.resultsList !== null &&
-              this.state.resultsList.map(el => (
-                <li key={el.id}>
-                  {/* <a href='#'>{el.place_name}</a> */}
-                </li>
+            {this.state.suggestions !== null &&
+              this.state.suggestions.map(el => (
+                <li key={el.id}>{/* <a href='#'>{el.place_name}</a> */}</li>
               ))}
           </ul>
         </div>

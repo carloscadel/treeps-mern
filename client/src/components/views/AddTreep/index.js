@@ -1,3 +1,6 @@
+//----------
+// AddTreep View
+//----------
 import React, { Component } from 'react'
 import api from '../../../api'
 import Calendar from 'react-calendar'
@@ -12,7 +15,6 @@ export default class AddTreep extends Component {
       location: '',
       startDate: '',
       endDate: '',
-      formattedDates: '',
       hideMe: false,
       value: null
     }

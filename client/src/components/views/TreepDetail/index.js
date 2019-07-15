@@ -1,3 +1,6 @@
+//----------
+// TreepDetail View
+//----------
 import React, { Component } from 'react'
 import api from '../../../api'
 import Map from '../../partials/Map'
@@ -30,7 +33,6 @@ export default class Treep extends Component {
         this.setState({
           treepUsers: [...treepUsers]
         })
-        console.log(this.state.treepUsers)
       })
       .catch(err => {
         console.log(err)

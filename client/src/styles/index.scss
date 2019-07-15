@@ -16,7 +16,6 @@ $font-color-primary-whitish: rgba(255, 255, 255, 0.9);
 // Components
 @import 'components/navbar.scss';
 
-
 // --------------------
 // Style reusable for all components
 
@@ -264,6 +263,7 @@ input:checked + .slider:before {
           -moz-box-shadow: none;
           box-shadow: none;
           outline: none;
+          padding: 5px 10px;
         }
         input:hover,
         input:focus {

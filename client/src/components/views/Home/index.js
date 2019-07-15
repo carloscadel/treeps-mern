@@ -3,13 +3,10 @@
 //----------
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import BtnAdd from '../../partials/BtnAdd'
 import ContactBtn from '../../partials/ContactBtn'
 import api from '../../../api'
 import HomeHeader from '../../partials/HomeHeader'
 import HomeTreepsBoard from '../../partials/HomeTreepsBoard'
-import { connect } from 'react-redux'
-import { addArticle } from '../../../redux/actions'
 
 class Home extends Component {
   constructor(props) {
@@ -69,7 +66,7 @@ class Home extends Component {
           <div className='trips-title-div'>
             <h4>Treeps</h4>
             <Link to={`/${this.state.user.username}/treeps/add`}>
-              <BtnAdd />
+              <i className='material-icons'>library_add</i>
             </Link>
           </div>
           <HomeTreepsBoard treeps={this.state.treeps} user={this.state.user} />
@@ -88,19 +85,4 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return state
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    addArticle: article => {
-      dispatch(addArticle(article))
-    }
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home)
+export default Home

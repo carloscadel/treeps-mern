@@ -14,12 +14,13 @@ require('./configs/cloudinary')
 require('./configs/database')
 
 const app_name = require('./package.json').name
-const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`)
+const debug = require('debug')(
+  `${app_name}:${path.basename(__filename).split('.')[0]}`
+)
 
 const app = express()
 
 app.use(nocache())
-
 // Set "Access-Control-Allow-Origin" header
 app.use(
   cors({
@@ -54,6 +55,7 @@ app.use('/api', require('./routes/index'))
 app.use('/api', require('./routes/auth'))
 app.use('/api/users', require('./routes/users'))
 app.use('/api/treeps', require('./routes/treeps'))
+app.use('/api/mapbox', require('./routes/mapbox'))
 
 // For any routes that start with "/api", catch 404 and forward to error handler
 app.use('/api/*', (req, res, next) => {
@@ -78,7 +80,8 @@ app.use((err, req, res, next) => {
 
     // A limited amount of information sent in production
     if (process.env.NODE_ENV === 'production') res.json(err)
-    else res.json(JSON.parse(JSON.stringify(err, Object.getOwnPropertyNames(err))))
+    else
+      res.json(JSON.parse(JSON.stringify(err, Object.getOwnPropertyNames(err))))
   }
 })
 

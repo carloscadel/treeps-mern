@@ -1,3 +1,6 @@
+//----------
+// Homepage View
+//----------
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -10,13 +13,15 @@ export default class Homepage extends Component {
         </div>
         <div id='homepage-main-content'>
           <h3>
-            Join a great community.<br/>Meet great people
+            Join a great community.
+            <br />
+            Meet great people
           </h3>
           <h4>
-          <Link to='/login'>Log in</Link> or <Link to='/signup'>Sign up</Link>
+            <Link to='/login'>Log in</Link> or <Link to='/signup'>Sign up</Link>
           </h4>
         </div>
-      </div>  
+      </div>
     )
   }
 }
