@@ -75,7 +75,7 @@ export default {
       .catch(errHandler)
   },
 
-  getOneTreep(treepId) {
+  getOneTreepById(treepId) {
     return service
       .get(`/treeps/${treepId}`)
       .then(res => res.data)

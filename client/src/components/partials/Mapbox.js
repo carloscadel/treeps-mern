@@ -36,16 +36,22 @@ class Mapbox extends Component {
 
     this.state.map.addControl(
       new MapboxGeocoder({
-        accessToken: mapboxgl.accessToken
-      }).on('result', res => {
-        // Avoid the issue consisting on the result being invoked twice
-        if (this.state.geocoderResultId !== res.result.id) {
-          this.setState({
-            geocoderResultId: res.result.id
-          })
-        }
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
       })
     )
+    // this.state.map.addControl(
+    //   new MapboxGeocoder({
+    //     accessToken: mapboxgl.accessToken
+    //   }).on('result', res => {
+    //     // Avoid the issue consisting on the result being invoked twice
+    //     if (this.state.geocoderResultId !== res.result.id) {
+    //       this.setState({
+    //         geocoderResultId: res.result.id
+    //       })
+    //     }
+    //   })
+    // )
     // The following is just some sample data
     this.state.map.on('load', () => {
       this.state.map.addSource('treeps', {

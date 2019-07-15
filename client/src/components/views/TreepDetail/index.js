@@ -4,6 +4,7 @@
 import React, { Component } from 'react'
 import api from '../../../api'
 import Mapbox from '../../partials/Mapbox'
+import { humanizeDate } from '../../../helpers/date-formatters'
 
 export default class Treep extends Component {
   constructor(props) {
@@ -13,9 +14,8 @@ export default class Treep extends Component {
       location: '',
       startDate: '',
       endDate: '',
-      formattedDates: '',
       treepUsers: [],
-      initialMapCenter: [0, 40]
+      initialMapCenter: [-0.3763, 39.4699]
     }
   }
 
@@ -41,12 +41,11 @@ export default class Treep extends Component {
 
   componentDidMount() {
     this.getTreepMetadata()
-    api.getOneTreep(this.props.match.params.id).then(res => {
+    api.getOneTreepById(this.props.match.params.id).then(res => {
       this.setState({
         location: res.location,
         startDate: res.startDate,
-        endDate: res.endDate,
-        formattedDates: res.formattedDates
+        endDate: res.endDate
       })
     })
   }
@@ -54,9 +53,14 @@ export default class Treep extends Component {
     return (
       <div>
         <h4>{this.state.location}</h4>
-        <p>{this.state.formattedDates}</p>
-        <button onClick={this.handleTreepDelete}>Delete treep</button>
+        <p>
+          {humanizeDate(this.state.startDate, "dddd D MMM 'YY")} -{' '}
+          {humanizeDate(this.state.endDate, "dddd D MMM 'YY")}
+        </p>
         <Mapbox initialMapCenter={this.state.initialMapCenter} />
+        <button onClick={this.handleTreepDelete}>
+          Delete treep<i className='material-icons'>delete_outline</i>
+        </button>
       </div>
     )
   }
