@@ -4,7 +4,7 @@
 import React, { Component } from 'react'
 import api from '../../../api'
 import Calendar from 'react-calendar'
-import PlaceSearchBox from '../../partials/PlaceSearchBox'
+import Mapbox from '../../partials/Mapbox'
 
 export default class AddTreep extends Component {
   constructor(props) {
@@ -12,15 +12,13 @@ export default class AddTreep extends Component {
     this.state = {
       _ownerId: '',
       name: '',
-      location: '',
+      treepName: '',
+      treepRadius: 0,
       startDate: '',
       endDate: '',
       hideMe: false,
-      value: null
+      initialMapCenter: [-0.3763, 39.4699]
     }
-  }
-  onSelect = value => {
-    this.setState({ value: value })
   }
   handleInputChange(stateFieldName, e) {
     if (stateFieldName === 'hideMe') {
@@ -68,12 +66,17 @@ export default class AddTreep extends Component {
     return (
       <div>
         <form>
-          <label>Location</label>
+          <label>Name your treep</label>
           <input
-            name='location'
-            onChange={e => this.handleInputChange('location', e)}
+            name='treep-name'
+            onChange={e => this.handleInputChange('treepName', e)}
           />
-          <PlaceSearchBox />
+          <label>Radius</label>
+          <input
+            name='treep-radius'
+            onChange={e => this.handleInputChange('treepRadius', e)}
+          />
+          <Mapbox initialMapCenter={this.state.initialMapCenter} />
           <br />
           <Calendar onChange={this.onDatesRangeChange} selectRange={true} />
           <label>Hide me</label>
