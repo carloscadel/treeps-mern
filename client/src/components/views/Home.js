@@ -1,21 +1,21 @@
-//----------
-// Home View
-//----------
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import ContactBtn from '../partials/ContactBtn'
 import api from '../../api'
 import HomeHeader from '../partials/HomeHeader'
 import HomeTreepsBoard from '../partials/HomeTreepsBoard'
+import AddCollectionModal from '../partials/AddCollectionModal'
 
 class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
       treeps: [],
-      user: null
+      user: null,
+      showAddCollectionModal: false
     }
   }
+
   getCurrentUserAndTreeps() {
     api.getCurrentUser().then(user => {
       this.setState(
@@ -26,6 +26,7 @@ class Home extends Component {
       )
     })
   }
+
   getUserTreeps(userId) {
     api
       .getUserTreeps(userId)
@@ -36,6 +37,7 @@ class Home extends Component {
       })
       .catch(err => console.log(err))
   }
+
   submitUserStatus = userStatus => {
     api.changeUserStatus({
       _userId: this.state.user._id,
@@ -43,6 +45,17 @@ class Home extends Component {
     })
     document.activeElement.blur()
   }
+
+  openModal = () => {
+    this.setState({ showAddCollectionModal: true })
+  }
+
+  afterOpenModal = () => {}
+
+  closeModal = () => {
+    this.setState({ showAddCollectionModal: false })
+  }
+
   componentDidMount() {
     this.getCurrentUserAndTreeps()
   }
@@ -63,6 +76,17 @@ class Home extends Component {
         />
         <div className='separator-div' />
         <section className='trips-section'>
+          <div className='trips-title-div'>
+            <h4>Treep Collections</h4>
+            <button onClick={this.openModal}>
+              <i className='material-icons'>library_add</i>
+            </button>
+            <AddCollectionModal
+              isOpen={this.state.showAddCollectionModal}
+              closeModal={this.closeModal}
+            />
+          </div>
+          <div className='separator-div' />
           <div className='trips-title-div'>
             <h4>Treeps</h4>
             <Link to={`/${this.state.user.username}/treeps/add`}>

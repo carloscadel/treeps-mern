@@ -320,7 +320,6 @@ input:checked + .slider:before {
           grid-row: [three] / [four];
           display: flex;
           img {
-            z-index: 1000;
             align-self: center;
             margin: 0 0 0 10px;
             height: 14px;
