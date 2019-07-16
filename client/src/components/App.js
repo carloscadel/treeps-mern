@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Homepage from './views/Homepage/'
-import Login from './views/Login/'
-import Signup from './views/Signup/'
-import Home from './views/Home/'
-import AddTreep from './views/AddTreep/'
-import Treep from './views/TreepDetail/'
+import Homepage from './views/Homepage'
+import Login from './views/Login'
+import Signup from './views/Signup'
+import Home from './views/Home'
+import AddTreep from './views/AddTreep'
+import TreepDetail from './views/TreepDetail'
 import NavBar from './partials/NavBar'
 import Footer from './partials/Footer'
 import api from '../api'
@@ -14,7 +14,8 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      user: null
+      user: null,
+      treep: null
     }
   }
   getCurrentUser = () => {
@@ -60,7 +61,13 @@ class App extends Component {
               exact
               render={props => <AddTreep {...props} user={this.state.user} />}
             />
-            <Route path='/:username/treeps/:id' exact component={Treep} />
+            <Route
+              path='/:username/treeps/:id'
+              exact
+              render={props => (
+                <TreepDetail {...props} treep={this.state.treep} />
+              )}
+            />
             <Route render={() => <h2>404</h2>} />
           </Switch>
         </div>

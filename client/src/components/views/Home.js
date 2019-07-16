@@ -3,10 +3,10 @@
 //----------
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import ContactBtn from '../../partials/ContactBtn'
-import api from '../../../api'
-import HomeHeader from '../../partials/HomeHeader'
-import HomeTreepsBoard from '../../partials/HomeTreepsBoard'
+import ContactBtn from '../partials/ContactBtn'
+import api from '../../api'
+import HomeHeader from '../partials/HomeHeader'
+import HomeTreepsBoard from '../partials/HomeTreepsBoard'
 
 class Home extends Component {
   constructor(props) {

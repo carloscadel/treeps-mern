@@ -2,9 +2,9 @@
 // AddTreep View
 //----------
 import React, { Component } from 'react'
-import api from '../../../api'
+import api from '../../api'
 import Calendar from 'react-calendar'
-import Mapbox from '../../partials/Mapbox'
+import Mapbox from '../partials/Mapbox'
 
 export default class AddTreep extends Component {
   constructor(props) {
