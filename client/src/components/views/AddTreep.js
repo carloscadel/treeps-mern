@@ -51,7 +51,6 @@ export default class AddTreep extends Component {
     this.setState({
       treepCircle: newTreepCircle
     })
-    console.log(this.state.treepCircle)
   }
 
   onDatesRangeChange = date => {

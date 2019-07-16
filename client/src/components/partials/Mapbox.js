@@ -27,7 +27,7 @@ class Mapbox extends Component {
 
     var map = await new mapboxgl.Map({
       container: this.state.mapRef.current,
-      style: 'mapbox://styles/mapbox/streets-v9',
+      style: 'mapbox://styles/mapbox/dark-v10',
       center: this.state.mapCenter, // [lng,lat]
       zoom: this.state.mapZoom,
       attributionControl: false
@@ -58,7 +58,6 @@ class Mapbox extends Component {
         marker: false
       })
     )
-    console.log(this.state.map)
   }
 
   createtreepCircle = () => {

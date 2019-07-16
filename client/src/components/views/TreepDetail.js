@@ -39,7 +39,6 @@ export default class TreepDetail extends Component {
   componentDidMount() {
     this.getTreepMetadata()
     api.getOneTreepById(this.props.match.params.id).then(treep => {
-      console.log(treep)
       this.setState({
         treep
       })
