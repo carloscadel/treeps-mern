@@ -11,6 +11,7 @@ class Home extends Component {
     super(props)
     this.state = {
       treeps: [],
+      colls: [],
       user: null,
       showAddCollectionModal: false
     }
@@ -22,7 +23,8 @@ class Home extends Component {
         {
           user
         },
-        this.getUserTreeps(user._id)
+        this.getUserTreeps(user._id),
+        this.getUserCollections(user._id)
       )
     })
   }
@@ -34,6 +36,15 @@ class Home extends Component {
         this.setState({
           treeps
         })
+      })
+      .catch(err => console.log(err))
+  }
+
+  getUserCollections(userId) {
+    api
+      .getUserCollections(userId)
+      .then(colls => {
+        this.setState({ colls })
       })
       .catch(err => console.log(err))
   }
@@ -56,11 +67,19 @@ class Home extends Component {
     this.setState({ showAddCollectionModal: false })
   }
 
+  createCollection = name => {
+    api
+      .addNewCollection({ name: name, _ownerId: this.state.user._id })
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  }
+
   componentDidMount() {
     this.getCurrentUserAndTreeps()
   }
 
   render() {
+    console.log(this.state.colls)
     if (!this.state.user) {
       return (
         <div>
@@ -84,6 +103,7 @@ class Home extends Component {
             <AddCollectionModal
               isOpen={this.state.showAddCollectionModal}
               closeModal={this.closeModal}
+              handleSubmit={this.createCollection}
             />
           </div>
           <div className='separator-div' />

@@ -4,10 +4,9 @@ const Schema = mongoose.Schema
 const treepSchema = new Schema(
   {
     name: String,
-    location: String,
     startDate: Date,
     endDate: Date,
-    treepCollection: { type: Schema.Types.ObjectId, ref: 'treepCollection' },
+    treepCollection: [{ type: Schema.Types.ObjectId, ref: 'treepCollection' }],
     location: {
       coordinates: {
         type: [Number],

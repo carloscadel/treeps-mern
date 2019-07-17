@@ -121,5 +121,26 @@ export default {
       .get(`/mapbox/${searchQuery}`)
       .then(res => res.data)
       .catch(errHandler)
+  },
+
+  addNewCollection(data) {
+    return service
+      .post(`/treeps/collections/create`, data)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  // getUserCollections(userId) {
+  //   return service
+  //     .get(`/treeps/collections/user/${userId}`)
+  //     .then(res => res.data)
+  //     .catch(errHandler)
+  // },
+
+  getUserCollections(userId) {
+    return service
+      .get(`/users/${userId}/collections`)
+      .then(res => res.data)
+      .catch(errHandler)
   }
 }

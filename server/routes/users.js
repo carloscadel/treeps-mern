@@ -38,4 +38,15 @@ router.post(
   }
 )
 
+// Route to get collections owned by a user
+router.get('/:userId/collections', isLoggedIn, (req, res, next) => {
+  const _ownerId = req.params.userId
+  User.findOne({ _id: _ownerId })
+    .populate('treepCollections')
+    .then(collections => {
+      return res.json(collections.treepCollections)
+    })
+    .catch(err => next(err))
+})
+
 module.exports = router

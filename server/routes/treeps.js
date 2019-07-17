@@ -1,5 +1,7 @@
 const express = require('express')
 const Treep = require('../models/Treep')
+const User = require('../models/User')
+const TreepCollection = require('../models/TreepCollection')
 const { isLoggedIn } = require('../middlewares')
 
 const router = express.Router()
@@ -93,11 +95,46 @@ router.post('/add', (req, res, next) => {
     .catch(err => next(err))
 })
 
+// Route to delete a treep
 router.post('/:treepId/delete', (req, res, next) => {
   Treep.findByIdAndDelete(req.params.treepId)
     .then(res => {
       console.log('Treep deleted')
     })
+    .catch(err => next(err))
+})
+
+// Route to create a collection
+router.post('/collections/create', (req, res, next) => {
+  const { name, _ownerId } = req.body
+
+  TreepCollection.create({
+    name,
+    _ownerId
+  })
+    .then(collection => {
+      User.update(
+        { _id: _ownerId },
+        { $push: { treepCollections: collection._id } }
+      )
+        .then(res => {
+          console.log('collection pushed')
+        })
+        .catch(err => console.log(err))
+      return res.json({
+        success: true,
+        collection
+      })
+    })
+    .catch(err => next(err))
+})
+
+// Route to get collections owned by a user
+router.get('/collections/user/:userId', isLoggedIn, (req, res, next) => {
+  // FIXME: USE POPULATE??
+  const _ownerId = req.params.userId
+  TreepCollection.find({ _ownerId })
+    .then(collections => res.json(collections))
     .catch(err => next(err))
 })
 
