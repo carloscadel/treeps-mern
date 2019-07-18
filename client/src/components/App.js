@@ -40,7 +40,7 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <NavBar />
+        <NavBar user={this.state.user} />
         <div className='App-body'>
           <Switch>
             <Route path='/' exact component={Homepage} />

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import ContactBtn from '../partials/ContactBtn'
 import api from '../../api'
 import HomeHeader from '../partials/HomeHeader'
+import HomeCollsBoard from '../partials/HomeCollsBoard'
 import HomeTreepsBoard from '../partials/HomeTreepsBoard'
 import AddCollectionModal from '../partials/AddCollectionModal'
 
@@ -17,21 +18,17 @@ class Home extends Component {
     }
   }
 
-  getCurrentUserAndTreeps() {
-    api.getCurrentUser().then(user => {
-      this.setState(
-        {
-          user
-        },
-        this.getUserTreeps(user._id),
-        this.getUserCollections(user._id)
-      )
+  async getCurrentUser() {
+    await api.getCurrentUser().then(user => {
+      this.setState({
+        user
+      })
     })
   }
 
-  getUserTreeps(userId) {
-    api
-      .getUserTreeps(userId)
+  async getUserTreeps() {
+    await api
+      .getUserTreeps(this.state.user._id)
       .then(treeps => {
         this.setState({
           treeps
@@ -40,9 +37,9 @@ class Home extends Component {
       .catch(err => console.log(err))
   }
 
-  getUserCollections(userId) {
-    api
-      .getUserCollections(userId)
+  async getUserCollections() {
+    await api
+      .getUserCollections(this.state.user._id)
       .then(colls => {
         this.setState({ colls })
       })
@@ -70,16 +67,17 @@ class Home extends Component {
   createCollection = name => {
     api
       .addNewCollection({ name: name, _ownerId: this.state.user._id })
-      .then(res => console.log(res))
+      .then(res => this.getUserCollections())
       .catch(err => console.log(err))
   }
 
-  componentDidMount() {
-    this.getCurrentUserAndTreeps()
+  async componentDidMount() {
+    await this.getCurrentUser()
+    await this.getUserTreeps()
+    await this.getUserCollections()
   }
 
   render() {
-    console.log(this.state.colls)
     if (!this.state.user) {
       return (
         <div>
@@ -94,7 +92,7 @@ class Home extends Component {
           onUserStatusSubmit={this.submitUserStatus}
         />
         <div className='separator-div' />
-        <section className='trips-section'>
+        <section className='colls-section'>
           <div className='trips-title-div'>
             <h4>Treep Collections</h4>
             <button onClick={this.openModal}>
@@ -105,8 +103,12 @@ class Home extends Component {
               closeModal={this.closeModal}
               handleSubmit={this.createCollection}
             />
+            <br />
+            <HomeCollsBoard colls={this.state.colls} user={this.state.user} />
           </div>
-          <div className='separator-div' />
+        </section>
+        <div className='separator-div' />
+        <section className='trips-section'>
           <div className='trips-title-div'>
             <h4>Treeps</h4>
             <Link to={`/${this.state.user.username}/treeps/add`}>

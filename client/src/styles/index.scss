@@ -274,6 +274,88 @@ input:checked + .slider:before {
       }
     }
   }
+
+  .colls-section {
+    .trips-title-div {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      h4 {
+        margin: 0 10px;
+      }
+    }
+    button {
+      display: inline;
+    }
+    .trip-cards-slider {
+      display: flex;
+      width: 100%;
+      overflow-x: auto;
+    }
+    .trip-card-wrapper {
+      display: flex;
+      .trip-card {
+        display: grid;
+        grid-template-rows: [one] 1fr [two] 1fr [three] 1fr [four];
+        width: 200px;
+        height: 125px;
+        margin: 15px 5px 20px;
+        border-radius: 3px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        background-color: rgba(0, 0, 0, 0.01);
+        transition: all 0.2s;
+        .trip-card-top-row {
+          width: 100%;
+          text-align: center;
+          font-weight: bold;
+          grid-row: [one] / [two];
+        }
+        .trip-card-mid-row {
+          width: 100%;
+          text-align: center;
+          grid-row: [two] / [three];
+        }
+        .trip-card-bot-row {
+          width: 100%;
+          grid-row: [three] / [four];
+          display: flex;
+          img {
+            align-self: center;
+            margin: 0 0 0 10px;
+            height: 14px;
+          }
+        }
+      }
+      .trip-card:hover {
+        background-color: rgba(0, 0, 0, 0.03);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.2s;
+      }
+    }
+    .trip-card-add-div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 175px;
+      height: 125px;
+      border-radius: 3px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      margin: 15px 5px 20px;
+      .trip-card-add-inner-div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 175px;
+        height: 125px;
+        margin: 15px 5px 20px;
+
+        h1 {
+          text-align: center;
+        }
+      }
+    }
+  }
+
   .trips-section {
     .trips-title-div {
       display: flex;
@@ -298,10 +380,6 @@ input:checked + .slider:before {
         margin: 15px 5px 20px;
         border-radius: 3px;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        // background-image: url('/valencia1.png');
-        // opacity: 0.5;
-        // background-size: cover;
-        // background-position: center center;
         background-color: rgba(0, 0, 0, 0.01);
         transition: all 0.2s;
         .trip-card-top-row {

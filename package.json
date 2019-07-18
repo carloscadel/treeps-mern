@@ -12,12 +12,12 @@
     "node": "8.9.4"
   },
   "dependencies": {
-    "@babel/runtime": "^7.3.4",
-    "@types/node": "^11.10.4",
+    "@babel/runtime": "^7.5.5",
+    "@types/node": "^11.13.18",
     "babel-polyfill": "^6.26.0",
     "braces": "^2.3.2",
     "minimatch": "^3.0.4",
-    "yarn": "^1.13.0"
+    "yarn": "^1.17.3"
   },
   "devDependencies": {}
 }

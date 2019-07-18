@@ -6,25 +6,24 @@ export default class NavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      user: '',
-      password: '',
+      user: null,
       message: null
     }
   }
+
   handleLogoutClick(e) {
     api.logout()
     this.setState({
       user: null
     })
   }
-  componentDidMount() {
-    api
-      .getCurrentUser()
-      .then(user => {
-        this.setState({ user })
-      })
-      .catch(err => this.setState({ message: err.toString() }))
+
+  componentDidUpdate() {
+    if (this.props.user !== this.state.user) {
+      this.setState({ user: this.props.user })
+    }
   }
+
   render() {
     return (
       <div>
@@ -33,12 +32,15 @@ export default class NavBar extends Component {
             <h1 id='nav-title'>treeps</h1>
           </div>
           <div id='nav__links-container'>
-            {window.location.pathname !== '/' && <NavLink to='/' exact>
-              Homepage
-            </NavLink>}
+            {window.location.pathname !== '/' && (
+              <NavLink to='/' exact>
+                Homepage
+              </NavLink>
+            )}
             {api.isLoggedIn() && (
               <NavLink
-                to={!this.state.user ? '/' : '/' + this.state.user.username}>
+                to={this.state.user ? `/${this.state.user.username}` : '/'}
+              >
                 Home
               </NavLink>
             )}

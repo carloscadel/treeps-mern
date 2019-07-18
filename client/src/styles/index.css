@@ -457,6 +457,69 @@ input:checked + .slider:before {
       .Home .header-div .header-prof-text-div .header-prof-status-input-div input:focus {
         background-color: rgba(0, 0, 0, 0.03);
         transition: all 0.2s; }
+  .Home .colls-section .trips-title-div {
+    display: flex;
+    justify-content: center;
+    width: 100%; }
+    .Home .colls-section .trips-title-div h4 {
+      margin: 0 10px; }
+  .Home .colls-section button {
+    display: inline; }
+  .Home .colls-section .trip-cards-slider {
+    display: flex;
+    width: 100%;
+    overflow-x: auto; }
+  .Home .colls-section .trip-card-wrapper {
+    display: flex; }
+    .Home .colls-section .trip-card-wrapper .trip-card {
+      display: grid;
+      grid-template-rows: [one] 1fr [two] 1fr [three] 1fr [four];
+      width: 200px;
+      height: 125px;
+      margin: 15px 5px 20px;
+      border-radius: 3px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      background-color: rgba(0, 0, 0, 0.01);
+      transition: all 0.2s; }
+      .Home .colls-section .trip-card-wrapper .trip-card .trip-card-top-row {
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        grid-row: [one]/[two]; }
+      .Home .colls-section .trip-card-wrapper .trip-card .trip-card-mid-row {
+        width: 100%;
+        text-align: center;
+        grid-row: [two]/[three]; }
+      .Home .colls-section .trip-card-wrapper .trip-card .trip-card-bot-row {
+        width: 100%;
+        grid-row: [three]/[four];
+        display: flex; }
+        .Home .colls-section .trip-card-wrapper .trip-card .trip-card-bot-row img {
+          align-self: center;
+          margin: 0 0 0 10px;
+          height: 14px; }
+    .Home .colls-section .trip-card-wrapper .trip-card:hover {
+      background-color: rgba(0, 0, 0, 0.03);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s; }
+  .Home .colls-section .trip-card-add-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 175px;
+    height: 125px;
+    border-radius: 3px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    margin: 15px 5px 20px; }
+    .Home .colls-section .trip-card-add-div .trip-card-add-inner-div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 175px;
+      height: 125px;
+      margin: 15px 5px 20px; }
+      .Home .colls-section .trip-card-add-div .trip-card-add-inner-div h1 {
+        text-align: center; }
   .Home .trips-section .trips-title-div {
     display: flex;
     justify-content: center;
