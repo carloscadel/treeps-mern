@@ -98,14 +98,14 @@ class Home extends Component {
             <button onClick={this.openModal}>
               <i className='material-icons'>library_add</i>
             </button>
-            <AddCollectionModal
-              isOpen={this.state.showAddCollectionModal}
-              closeModal={this.closeModal}
-              handleSubmit={this.createCollection}
-            />
-            <br />
-            <HomeCollsBoard colls={this.state.colls} user={this.state.user} />
           </div>
+          <AddCollectionModal
+            isOpen={this.state.showAddCollectionModal}
+            closeModal={this.closeModal}
+            handleSubmit={this.createCollection}
+          />
+          <br />
+          <HomeCollsBoard colls={this.state.colls} user={this.state.user} />
         </section>
         <div className='separator-div' />
         <section className='trips-section'>

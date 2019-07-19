@@ -1,0 +1,458 @@
+// --------------------
+// Definition of variables
+$primary: #00b2b2;
+$bg-secondary: rgba(0, 0, 0, 0.05);
+$bg-secondary-hover: rgba(0, 0, 0, 0.03);
+$alert-1: #ff7c7c;
+$info-1: #ffd000;
+$font-color-primary: rgba(112, 112, 112, 0.9);
+$font-color-primary-whitish: rgba(255, 255, 255, 0.9);
+// --------------------
+// Import CSS modules
+
+// Pages
+@import 'components/homepage.scss';
+
+// Components
+@import 'components/navbar.scss';
+@import 'components/mapbox.scss';
+
+// --------------------
+// Style reusable for all components
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+  color: $font-color-primary;
+  background-image: linear-gradient(#ffff, #e6e6e6);
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+// a:-webkit-any-link {
+//   color: $font-color-primary;
+//   cursor: pointer;
+//   text-decoration: none;
+// }
+
+a {
+  color: $font-color-primary;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+h3 {
+  font-size: 22px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+p {
+  font-size: 14px;
+}
+
+.info {
+  background-color: $info-1;
+}
+
+.info--danger {
+  background-color: $alert-1;
+  color: $font-color-primary-whitish;
+}
+
+.separator-div {
+  height: 1px;
+  width: 90%;
+  background-color: $bg-secondary;
+  margin: 20px;
+}
+
+.notification-marker-1 {
+  width: 8px;
+  height: 8px;
+  background-color: $alert-1;
+  border-radius: 50%;
+  position: relative;
+  top: 10px;
+  right: 4px;
+}
+
+.btn-add {
+  display: flex;
+  float: right;
+  // position: relative;
+  // right: 20px;
+  // top: 22px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: $primary;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  h3 {
+    color: white;
+  }
+}
+
+// removing the default styling for any button
+button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 28px;
+  height: 18px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 10px;
+  width: 10px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(10px);
+  -ms-transform: translateX(10px);
+  transform: translateX(10px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+// --------------------
+// Style for App component
+.App-body {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: linear-gradient(#ffff, #e6e6e6);
+}
+
+.App-header {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+// --------------------
+// Style for Home component
+.Home {
+  max-width: 1000px;
+  height: 100vh;
+  .header-div {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    height: 100px;
+    margin: 10px 20px;
+    .header-prof-pic-div {
+      display: flex;
+      margin: 10px;
+      align-items: center;
+      .header-prof-pic {
+        height: 75px;
+        width: 75px;
+        border-radius: 50%;
+        object-fit: cover;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .header-prof-pic:hover {
+        transition: all 0.2s;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+    }
+    .header-prof-text-div {
+      display: grid;
+      margin: 10px;
+      .header-prof-text-name-div {
+        height: 30px;
+        h3 {
+          margin: 0 10px;
+        }
+      }
+      .header-prof-text-status-div {
+        display: flex;
+        align-items: center;
+        border-radius: 5px;
+        height: 50px;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.01);
+        transition: all 0.2s;
+        p {
+          line-height: 20px;
+          margin: 0px 10px;
+          border-radius: 5px;
+        }
+      }
+      .header-prof-text-status-div:hover {
+        background-color: rgba(0, 0, 0, 0.03);
+        transition: all 0.2s;
+      }
+      .header-prof-status-input-div {
+        input {
+          display: flex;
+          width: 100%;
+          border: none;
+          align-items: center;
+          border-radius: 5px;
+          height: 50px;
+          cursor: pointer;
+          background-color: rgba(0, 0, 0, 0.01);
+          transition: all 0.2s;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
+          outline: none;
+          padding: 5px 10px;
+        }
+        input:hover,
+        input:focus {
+          background-color: rgba(0, 0, 0, 0.03);
+          transition: all 0.2s;
+        }
+      }
+    }
+  }
+
+  .colls-section {
+    .trips-title-div {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      h4 {
+        margin: 0 10px;
+      }
+    }
+    button {
+      display: inline;
+    }
+    .trip-cards-slider {
+      display: flex;
+      width: 100%;
+      overflow-x: auto;
+    }
+    .trip-card-wrapper {
+      display: flex;
+      .trip-card {
+        display: grid;
+        grid-template-rows: [one] 1fr [two] 1fr [three] 1fr [four];
+        width: 200px;
+        height: 125px;
+        margin: 15px 5px 20px;
+        border-radius: 3px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        background-color: rgba(0, 0, 0, 0.01);
+        transition: all 0.2s;
+        .trip-card-top-row {
+          width: 100%;
+          text-align: center;
+          font-weight: bold;
+          grid-row: [one] / [two];
+        }
+        .trip-card-mid-row {
+          width: 100%;
+          text-align: center;
+          grid-row: [two] / [three];
+        }
+        .trip-card-bot-row {
+          width: 100%;
+          grid-row: [three] / [four];
+          display: flex;
+          img {
+            align-self: center;
+            margin: 0 0 0 10px;
+            height: 14px;
+          }
+        }
+      }
+      .trip-card:hover {
+        background-color: rgba(0, 0, 0, 0.03);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.2s;
+      }
+    }
+    .trip-card-add-div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 175px;
+      height: 125px;
+      border-radius: 3px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      margin: 15px 5px 20px;
+      .trip-card-add-inner-div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 175px;
+        height: 125px;
+        margin: 15px 5px 20px;
+
+        h1 {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  .trips-section {
+    .trips-title-div {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      h4 {
+        margin: 0 10px;
+      }
+    }
+    .trip-cards-slider {
+      display: flex;
+      width: 100%;
+      overflow-x: auto;
+    }
+    .trip-card-wrapper {
+      display: flex;
+      .trip-card {
+        display: grid;
+        grid-template-rows: [one] 1fr [two] 1fr [three] 1fr [four];
+        width: 200px;
+        height: 125px;
+        margin: 15px 5px 20px;
+        border-radius: 3px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        background-color: rgba(0, 0, 0, 0.01);
+        transition: all 0.2s;
+        .trip-card-top-row {
+          width: 100%;
+          text-align: center;
+          font-weight: bold;
+          grid-row: [one] / [two];
+        }
+        .trip-card-mid-row {
+          width: 100%;
+          text-align: center;
+          grid-row: [two] / [three];
+        }
+        .trip-card-bot-row {
+          width: 100%;
+          grid-row: [three] / [four];
+          display: flex;
+          img {
+            align-self: center;
+            margin: 0 0 0 10px;
+            height: 14px;
+          }
+        }
+      }
+      .trip-card:hover {
+        background-color: rgba(0, 0, 0, 0.03);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.2s;
+      }
+    }
+    .trip-card-add-div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 175px;
+      height: 125px;
+      border-radius: 3px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      margin: 15px 5px 20px;
+      .trip-card-add-inner-div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 175px;
+        height: 125px;
+        margin: 15px 5px 20px;
+
+        h1 {
+          text-align: center;
+        }
+      }
+    }
+  }
+  .contacts-section {
+    .contacts-title-div {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      h4 {
+        margin: 0;
+      }
+    }
+  }
+}
+
+// --------------------
+// Style for Calendar component
+.react-calendar {
+  border: none !important;
+  abbr[title] {
+    text-decoration: none !important;
+  }
+}
+
+// Style for Geocoder component

@@ -1,12 +1,13 @@
 import React from 'react'
+import { CollsCardWrapper } from '../../styles/components/CollsCard'
 
 const CollCard = props => {
   return (
-    <div className='trip-card-wrapper'>
+    <CollsCardWrapper>
       <div className='trip-card'>
         <p>{props.coll.name}</p>
       </div>
-    </div>
+    </CollsCardWrapper>
   )
 }
 

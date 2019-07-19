@@ -15,7 +15,8 @@
     "react-dom": "^16.5.1",
     "react-modal": "^3.9.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.0.0"
+    "react-scripts": "^2.0.0",
+    "styled-components": "^4.3.2"
   },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src/styles --include-path ./node_modules src/styles/ -o src/styles/",
@@ -26,7 +27,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.6"
+  },
   "browserslist": [
     ">0.2%",
     "not dead",
