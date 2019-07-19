@@ -9,6 +9,7 @@ import TreepDetail from './views/TreepDetail'
 import NavBar from './partials/NavBar'
 import Footer from './partials/Footer'
 import api from '../api'
+import { AppWrapper } from '../styles/components/App'
 
 class App extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div className='App'>
+      <AppWrapper>
         <NavBar user={this.state.user} />
         <div className='App-body'>
           <Switch>
@@ -72,7 +73,7 @@ class App extends Component {
           </Switch>
         </div>
         <Footer />
-      </div>
+      </AppWrapper>
     )
   }
 }
