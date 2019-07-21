@@ -5,7 +5,7 @@ import Link from 'react-router-dom/Link'
 import { font, palette } from 'styled-theme'
 import { ifProp } from 'styled-tools'
 
-const fontSize = ({ height }) => `${height / 40}rem`
+const fontSize = ({ height }) => `${height}rem`
 
 const backgroundColor = ({ transparent, disabled }) =>
   transparent ? 'transparent' : palette(disabled ? 2 : 1)
@@ -21,21 +21,20 @@ const hoverForegroundColor = ({ disabled, transparent }) =>
 const styles = css`
   display: inline-flex;
   font-family: ${font('primary')};
+  font-size: ${fontSize};
+  text-decoration: none;
   align-items: center;
   white-space: nowrap;
-  font-size: ${fontSize};
   border: 0.0625em solid ${ifProp('transparent', 'currentcolor', 'transparent')};
-  height: 2.5em;
   justify-content: center;
-  text-decoration: none;
   cursor: ${ifProp('disabled', 'default', 'pointer')};
   appearance: none;
-  padding: 0 1em;
+  padding: 0.5em 1em;
   border-radius: 0.125em;
   box-sizing: border-box;
   pointer-events: ${ifProp('disabled', 'none', 'auto')};
-  transition: background-color 250ms ease-out, color 250ms ease-out,
-    border-color 250ms ease-out;
+  transition: background-color 200ms ease-out, color 200ms ease-out,
+    border-color 200ms ease-out;
   background-color: ${backgroundColor};
   color: ${foregroundColor};
 
@@ -91,7 +90,7 @@ Button.propTypes = {
 Button.defaultProps = {
   palette: 'primary',
   type: 'button',
-  height: 40
+  height: 1
 }
 
 export default Button

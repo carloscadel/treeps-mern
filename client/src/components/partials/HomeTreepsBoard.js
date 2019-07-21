@@ -1,10 +1,18 @@
 import React from 'react'
-import TreepCard from './TreepCard'
+import TreepCard from '../molecules/TreepCard'
+import styled from 'styled-components'
+
+export const HSlider = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  overflow-x: auto;
+`
 
 const HomeTreepsBoard = props => {
   return (
     <div>
-      <div className='trip-cards-slider'>
+      <HSlider>
         {props.treeps.map(treep => (
           <a
             key={treep._id}
@@ -13,7 +21,7 @@ const HomeTreepsBoard = props => {
             <TreepCard treep={treep} />
           </a>
         ))}
-      </div>
+      </HSlider>
     </div>
   )
 }

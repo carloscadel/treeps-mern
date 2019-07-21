@@ -9,7 +9,14 @@ import TreepDetail from './views/TreepDetail'
 import NavBar from './partials/NavBar'
 import Footer from './partials/Footer'
 import api from '../api'
-import { AppWrapper } from '../styles/components/App'
+import styled from 'styled-components'
+import { font, palette } from 'styled-theme'
+
+export const AppWrapper = styled.div`
+  text-align: center;
+  background-image: linear-gradient(#ffff, #e6e6e6);
+  font-family: ${font('primary')};
+`
 
 class App extends Component {
   constructor(props) {
