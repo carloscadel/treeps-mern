@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import api from '../../api'
-import { calculateAge } from '../../helpers/date-formatters'
+import api from '../../../api'
+import { calculateAge } from '../../../helpers/date-formatters'
 import Img from 'components/atoms/Img'
+
 export default class HomeHeader extends Component {
   constructor(props) {
     super(props)
@@ -36,12 +37,12 @@ export default class HomeHeader extends Component {
           <form method='post' encType='multipart/form-data'>
             <div className='header-prof-pic-div'>
               <label>
-                <img
-                  className='header-prof-pic'
+                <Img
                   src={this.props.user.profImgPath}
                   alt='Profile pic'
+                  profileImg
+                  size={5}
                 />
-                <Img />
                 <input
                   type='file'
                   name='photo'

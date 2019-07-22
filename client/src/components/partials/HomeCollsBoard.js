@@ -1,13 +1,13 @@
 import React from 'react'
-import CollCard from './CollCard'
-import { HSlider } from '../../styles/components/HSlider'
+import CollectionCard from 'components/molecules/CollectionCard/'
+import HSlider from 'components/atoms/HSlider/'
 
 const HomeCollsBoard = props => {
   return (
-    <div>
+    <div width='100%'>
       <HSlider>
         {props.colls.map(coll => (
-          <CollCard key={coll._id} coll={coll} />
+          <CollectionCard key={coll._id} coll={coll} />
         ))}
       </HSlider>
     </div>

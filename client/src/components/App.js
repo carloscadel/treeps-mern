@@ -10,11 +10,10 @@ import NavBar from './partials/NavBar'
 import Footer from './partials/Footer'
 import api from '../api'
 import styled from 'styled-components'
-import { font, palette } from 'styled-theme'
+import { font } from 'styled-theme'
 
 export const AppWrapper = styled.div`
   text-align: center;
-  background-image: linear-gradient(#ffff, #e6e6e6);
   font-family: ${font('primary')};
 `
 

@@ -1,22 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const height = ({ height }) => `${height}rem`
+const size = ({ size }) => `${size}rem`
 
-const radius = ({ radius }) => `${radius}%`
+const radius = ({ profileImg, radius }) => (profileImg ? `50%` : `${radius}`)
 
 const StyledImg = styled.img`
-  height: ${height};
+  height: ${size};
+  width: ${size};
+  object-fit: cover;
   border-radius: ${radius};
 `
 
-const Img = props => {
-  return <StyledImg {...props} />
-}
+const Img = props => <StyledImg {...props} />
 
 Img.defaultProps = {
   radius: 0,
-  height: 1
+  size: 1
 }
 
 export default Img

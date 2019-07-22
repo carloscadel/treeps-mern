@@ -1,13 +1,6 @@
 import React from 'react'
-import TreepCard from '../molecules/TreepCard'
-import styled from 'styled-components'
-
-export const HSlider = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  width: 100%;
-  overflow-x: auto;
-`
+import TreepCard from 'components/molecules/TreepCard'
+import HSlider from 'components/atoms/HSlider/'
 
 const HomeTreepsBoard = props => {
   return (
