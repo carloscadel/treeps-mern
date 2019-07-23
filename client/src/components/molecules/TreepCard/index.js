@@ -53,6 +53,13 @@ const BottomRow = styled.div`
   height: 34%;
 `
 
+const Span = styled.span`
+  &.weekday {
+    padding: 0 0.3em;
+    border: 1px solid;
+  }
+`
+
 const TreepCard = props => {
   return (
     <div>
@@ -62,8 +69,16 @@ const TreepCard = props => {
         </TopRow>
         <CenterRow>
           <p>
-            {humanizeDate(props.treep.startDate, "dd D MMM 'YY")} -{' '}
-            {humanizeDate(props.treep.endDate, "dd D MMM 'YY")}
+            <Span className='weekday'>
+              {humanizeDate(props.treep.startDate, 'dd')}
+            </Span>
+            {humanizeDate(props.treep.startDate, " D MMM 'YY")}
+            <br />
+            <br />
+            <Span className='weekday'>
+              {humanizeDate(props.treep.endDate, ' dd')}
+            </Span>
+            {humanizeDate(props.treep.endDate, " D MMM 'YY")}
           </p>
         </CenterRow>
         <BottomRow>

@@ -47,10 +47,12 @@ class Home extends Component {
   }
 
   submitUserStatus = userStatus => {
-    api.changeUserStatus({
-      _userId: this.state.user._id,
-      currentUserStatus: userStatus
-    })
+    api
+      .changeUserStatus({
+        _userId: this.state.user._id,
+        currentUserStatus: userStatus
+      })
+      .then(res => console.log('Success. Saved new user status'))
     document.activeElement.blur()
   }
 
