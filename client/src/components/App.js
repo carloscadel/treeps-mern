@@ -7,10 +7,19 @@ import Home from './views/Home'
 import AddTreep from './views/AddTreep'
 import TreepDetail from './views/TreepDetail'
 import NavBar from 'components/molecules/NavBar/'
-import Footer from './partials/Footer'
+import Footer from 'components/organisms/Footer/'
 import api from '../api'
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import { font } from 'styled-theme'
+
+const GlobalStyle = createGlobalStyle`
+  html {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+  }
+`
 
 export const AppWrapper = styled.div`
   text-align: center;
@@ -47,6 +56,8 @@ class App extends Component {
   render() {
     return (
       <AppWrapper>
+        <GlobalStyle />
+
         <NavBar user={this.state.user} />
         <div className='App-body'>
           <Switch>

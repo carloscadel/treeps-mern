@@ -50,6 +50,16 @@ const styles = css`
   }
 `
 
+const iconStyles = css`
+  font-size: inherit;
+  text-decoration: none;
+  background: none;
+  color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+`
+
 const StyledLink = styled(
   ({ disabled, transparent, reverse, palette, height, theme, ...props }) => (
     <Link {...props} />
@@ -64,9 +74,24 @@ const Anchor = styled.a`
 const StyledButton = styled.button`
   ${styles}
 `
+const StyledIconLink = styled(({ ...props }) => <Link {...props} />)`
+  ${iconStyles}
+`
+const StyledIconButton = styled.button`
+  ${iconStyles}
+`
 
 const Button = ({ type, ...props }) => {
-  const { to, href } = props
+  const { to, href, icon } = props
+  // The next line will avoid passing a non-standard property (icon) as props
+  delete props.icon
+
+  if (to && icon) {
+    return <StyledIconLink {...props} />
+  }
+  if (!href && !to && icon) {
+    return <StyledIconButton {...props} />
+  }
   if (to) {
     return <StyledLink {...props} />
   }
@@ -84,7 +109,8 @@ Button.propTypes = {
   height: PropTypes.number,
   type: PropTypes.string,
   to: PropTypes.string,
-  href: PropTypes.string
+  href: PropTypes.string,
+  icon: PropTypes.bool
 }
 
 Button.defaultProps = {

@@ -16,11 +16,11 @@ const GenContainer = styled.div`
   color: ${theme.palette.grayscale[0]};
   margin-bottom: 2em;
   padding: 0 1em;
-  background-color: rgb(250, 250, 250);
+  background-color: ${theme.palette.grayscale[10]};
   transition: all 0.2s;
   height: 15em;
   &:hover {
-    background-color: rgb(240, 240, 240);
+    background-color: ${theme.palette.grayscale[9]};
     transition: all 0.2s;
   }
 `
@@ -35,6 +35,14 @@ const ProfileInfoDiv = styled.div`
   flex-flow: column nowrap;
   text-align: left;
   justify-content: space-evenly;
+`
+
+const Username = styled.h2`
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+`
+
+const Form = styled.form`
   & textarea {
     position: relative;
     left: -1em;
@@ -43,20 +51,21 @@ const ProfileInfoDiv = styled.div`
     border-radius: 0.5em;
     outline: none;
     padding: 1em;
-    width: 90%;
+    min-width: 5%;
+    width: 95%;
     background-color: rgba(0, 0, 0, 0);
     transition: all 0.2s;
+    &:hover {
+      background-color: ${theme.palette.grayscale[11]};
+      cursor: pointer;
+    }
     &:focus {
       box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: ${theme.palette.grayscale[12]};
+      cursor: text;
       transition: all 0.2s;
     }
   }
-`
-
-const Username = styled.h2`
-  font-size: 1.5rem;
-  margin-bottom: 1em;
 `
 
 export default class HomeHeader extends Component {
@@ -113,21 +122,19 @@ export default class HomeHeader extends Component {
               {this.props.user.username}, {calculateAge(this.props.user.dob)}
             </Username>
           </div>
-          <div>
-            <form autoComplete='off' onSubmit={this.handleStatusSubmit}>
-              <textarea
-                id='header-prof-status-input-box'
-                type='text'
-                value={this.state.userStatusInput}
-                onKeyDown={e => {
-                  if (e.key === 'Enter') {
-                    this.handleStatusSubmit(e)
-                  }
-                }}
-                onChange={this.handleStatusInputChange}
-              />
-            </form>
-          </div>
+          <Form autoComplete='off' onSubmit={this.handleStatusSubmit}>
+            <textarea
+              id='header-prof-status-input-box'
+              type='text'
+              value={this.state.userStatusInput}
+              onKeyDown={e => {
+                if (e.key === 'Enter') {
+                  this.handleStatusSubmit(e)
+                }
+              }}
+              onChange={this.handleStatusInputChange}
+            />
+          </Form>
         </ProfileInfoDiv>
       </GenContainer>
     )

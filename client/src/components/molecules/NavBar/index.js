@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import api from '../../../api'
 import styled from 'styled-components'
-import { font, palette } from 'styled-theme'
 import theme from 'components/themes/default'
 
 const Nav = styled.nav`
@@ -15,8 +14,10 @@ const Nav = styled.nav`
 const NavLogo = styled.div`
   font-family: adobe-handwriting-ernie, sans-serif;
   font-size: 2rem;
-  color: ${theme.palette.white[0]};
   margin: 0;
+  > * {
+    color: ${theme.palette.white[0]};
+  }
 `
 const NavLinks = styled.div`
   display: flex;
@@ -53,31 +54,26 @@ export default class NavBar extends Component {
     return (
       <Nav>
         <NavLogo>
-          <h1 id='nav-title'>treeps</h1>
+          <NavLink to='/' exact>
+            treeps
+          </NavLink>
         </NavLogo>
-        <div id='nav__links-container'>
-          <NavLinks>
-            {window.location.pathname !== '/' && (
-              <NavLink to='/' exact>
-                Homepage
-              </NavLink>
-            )}
-            {api.isLoggedIn() && (
-              <NavLink
-                to={this.state.user ? `/${this.state.user.username}` : '/'}
-              >
-                Home
-              </NavLink>
-            )}
-            {!api.isLoggedIn() && <NavLink to='/signup'>Sign up</NavLink>}
-            {!api.isLoggedIn() && <NavLink to='/login'>Log in</NavLink>}
-            {api.isLoggedIn() && (
-              <Link to='/' onClick={e => this.handleLogoutClick(e)}>
-                Logout
-              </Link>
-            )}
-          </NavLinks>
-        </div>
+        <NavLinks>
+          {api.isLoggedIn() && (
+            <NavLink
+              to={this.state.user ? `/${this.state.user.username}` : '/'}
+            >
+              Home
+            </NavLink>
+          )}
+          {!api.isLoggedIn() && <NavLink to='/signup'>Sign up</NavLink>}
+          {!api.isLoggedIn() && <NavLink to='/login'>Log in</NavLink>}
+          {api.isLoggedIn() && (
+            <Link to='/' onClick={e => this.handleLogoutClick(e)}>
+              Logout
+            </Link>
+          )}
+        </NavLinks>
       </Nav>
     )
   }

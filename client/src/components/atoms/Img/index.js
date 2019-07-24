@@ -14,6 +14,7 @@ const StyledImg = styled.img`
   object-fit: cover;
   border-radius: ${radius};
   border: ${border};
+  cursor: ${props => props.profileImg && `pointer`};
 `
 
 const Img = props => <StyledImg {...props} />

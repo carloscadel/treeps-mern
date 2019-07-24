@@ -8,6 +8,7 @@ import theme from '../../themes/default'
 const Wrapper = styled.div`
   display: flex;
   flex-flow: column nowrap;
+  flex-basis: auto;
   justify-content: center;
   align-items: center;
   font-family: ${font('primary')};
@@ -17,12 +18,12 @@ const Wrapper = styled.div`
   height: 10em;
   margin: 0.5em;
   padding: 0 1em;
-  background-color: rgb(250, 250, 250);
-  border: 1px solid rgb(240, 240, 240);
+  background-color: ${theme.palette.grayscale[12]};
+  border: 1px solid ${theme.palette.grayscale[11]};
   border-radius: 0.2em;
   transition: all 0.2s;
   &:hover {
-    background-color: rgb(240, 240, 240);
+    background-color: ${theme.palette.grayscale[11]};
     transition: all 0.2s;
   }
 `
@@ -57,6 +58,7 @@ const Span = styled.span`
   &.weekday {
     padding: 0 0.3em;
     border: 1px solid;
+    color: ${theme.palette.primary[0]};
   }
 `
 

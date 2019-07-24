@@ -6,6 +6,17 @@ import HomeHeader from '../molecules/HomeHeader'
 import HomeCollsBoard from '../partials/HomeCollsBoard'
 import HomeTreepsBoard from '../partials/HomeTreepsBoard'
 import AddCollectionModal from '../partials/AddCollectionModal'
+import Button from 'components/atoms/Button/'
+import styled from 'styled-components'
+
+const BoardContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
+
+const Section = styled.section`
+  margin: 3rem 0;
+`
 
 class Home extends Component {
   constructor(props) {
@@ -94,12 +105,12 @@ class Home extends Component {
           onUserStatusSubmit={this.submitUserStatus}
         />
         <div className='separator-div' />
-        <section className='colls-section'>
+        <Section>
           <div className='trips-title-div'>
             <h4>Treep Collections</h4>
-            <button onClick={this.openModal}>
+            <Button icon onClick={this.openModal}>
               <i className='material-icons'>library_add</i>
-            </button>
+            </Button>
           </div>
           <AddCollectionModal
             isOpen={this.state.showAddCollectionModal}
@@ -107,27 +118,34 @@ class Home extends Component {
             handleSubmit={this.createCollection}
           />
           <br />
-          <HomeCollsBoard colls={this.state.colls} user={this.state.user} />
-        </section>
+          <BoardContainer>
+            <HomeCollsBoard colls={this.state.colls} user={this.state.user} />
+          </BoardContainer>
+        </Section>
         <div className='separator-div' />
-        <section className='trips-section'>
+        <Section>
           <div className='trips-title-div'>
             <h4>Treeps</h4>
-            <Link to={`/${this.state.user.username}/treeps/add`}>
+            <Button icon to={`/${this.state.user.username}/treeps/add`}>
               <i className='material-icons'>library_add</i>
-            </Link>
+            </Button>
           </div>
-          <HomeTreepsBoard treeps={this.state.treeps} user={this.state.user} />
-        </section>
+          <BoardContainer>
+            <HomeTreepsBoard
+              treeps={this.state.treeps}
+              user={this.state.user}
+            />
+          </BoardContainer>
+        </Section>
         <div className='separator-div' />
-        <section className='contacts-section'>
+        <Section>
           <div className='contacts-title-div'>
             <h4>Contacts</h4>
           </div>
           <div className='contacts-slider'>
             <ContactBtn />
           </div>
-        </section>
+        </Section>
       </div>
     )
   }
